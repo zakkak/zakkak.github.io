@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en"
+>
+<head>
+    <title>Getting started with Emacs - Foivos . Zakkak . net</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="http://foivos.zakkak.net/tutorials/getting_started_emacs.html">
+
+        <meta name="author" content="zakkak" />
+        <meta name="description" content="So you want to learn how to use Emacs... First of all install Emacs (I suggest versions &gt;=24). Then start using it. It is going to be hard in the beginning, but day by day you will get used to it and learn new things. Your friends Reference cards (will ..." />
+
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://foivos.zakkak.net/theme/css/bootstrap.yeti.min.css" type="text/css"/>
+    <link href="http://foivos.zakkak.net/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://foivos.zakkak.net/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://foivos.zakkak.net/theme/css/style.css" type="text/css"/>
+
+        <link href="http://foivos.zakkak.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Foivos . Zakkak . net ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://foivos.zakkak.net/" class="navbar-brand">
+Foivos . Zakkak . net            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                        <li >
+                            <a href="http://foivos.zakkak.net/category/blog.html">Blog</a>
+                        </li>
+                        <li >
+                            <a href="http://foivos.zakkak.net/category/code.html">Code</a>
+                        </li>
+                        <li class="active">
+                            <a href="http://foivos.zakkak.net/category/tutorials.html">Tutorials</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://foivos.zakkak.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+            <ol class="breadcrumb">
+                <li><a href="http://foivos.zakkak.net" title="Foivos . Zakkak . net"><i class="fa fa-home fa-lg"></i></a></li>
+                <li><a href="http://foivos.zakkak.net/category/tutorials.html" title="Tutorials">Tutorials</a></li>
+                <li class="active">Getting started with Emacs</li>
+            </ol>
+
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://foivos.zakkak.net/tutorials/getting_started_emacs.html"
+                       rel="bookmark"
+                       title="Permalink to Getting started with Emacs">
+                        Getting started with Emacs
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2013-03-23T15:53:00"> Sat 23 March 2013</time>
+    </span>
+
+
+
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>So you want to learn how to use Emacs...</p>
+<p>First of all <strong>install</strong> Emacs (I suggest versions >=24). Then start
+using it. It is going to be hard in the beginning, but day by day you
+will get used to it and learn new things.</p>
+<h3>Your friends</h3>
+<ol>
+<li><a href="https://www.gnu.org/software/emacs/refcards/">Reference cards</a> (will help you learn the most basic commands)</li>
+<li>The Emacs built in tutorial (Control-h t).</li>
+<li>http://www.emacswiki.org (Includes <strong>everything</strong> about Emacs)<br />
+    a good place to start is http://www.emacswiki.org/emacs/EmacsNewbie</li>
+<li>The manual
+    (<a href="http://www.gnu.org/software/emacs/manual/html_node/emacs/index.html">http://www.gnu.org/software/emacs/manual/html_node/emacs/index.html</a>)</li>
+</ol>
+<h3>Terminology</h3>
+<ul>
+<li><strong>buffer:</strong> an open document in Emacs</li>
+<li><strong>window: </strong>A window displays the contents of a single buffer (see
+    <a href="http://www.emacswiki.org/pics/static/DrewsEmacsWindowCallouts.jpg">this picture</a>)</li>
+<li><strong>frame:</strong> the operating systems window (see this picture)</li>
+<li><strong>kill</strong>(for buffer)<strong>:</strong> close file</li>
+<li><strong>kill(</strong>for text<strong>):</strong> cut</li>
+<li><strong>yank:</strong> paste</li>
+</ul>
+<p>for more terms have a look <a href="http://www.emacswiki.org/emacs/CategoryGlossary">here</a>.</p>
+<h3>Configuration file</h3>
+<p>Emacs' configuration is stored in \~/.emacs (Windows users read
+<a href="http://www.gnu.org/software/emacs/windows/Installing-Emacs.html#Installing-Emacs">this</a>). In this file you can permanently store your preferences. To
+get you started I suggest having a look at <a href="https://github.com/eschulte/emacs24-starter-kit">emacs24-starter-kit</a>.</p>
+<h3>Packages</h3>
+<p>Two of the most popular and usefull packages are smex and
+ido-obiquitous. There a lot more external packages out there that can
+make emacs even more powerful. I am currently using the following
+packages.</p>
+<ul>
+<li><strong>rainbow-mode</strong>(Preview colors in css files)</li>
+<li><strong>rainbow-delimiters</strong> (Paints each pair of parentheses/brackets
+    with different colors)</li>
+<li><strong>tuareg</strong> (Mode for editing OCaml files)</li>
+<li><strong>whole-line-or-region</strong> (Lets you kill the whole line without
+    selecting it)</li>
+<li><strong>smartparens</strong>(A smarter parenthesis matching package)</li>
+<li><strong>auto-complete</strong> (Suggests possible completions for what you are
+    typing)</li>
+<li><strong>undo-tree</strong>(A better approach for undoing, supports virtualization
+    of the undo history as a tree and more)</li>
+<li><strong>auctex</strong>​ (Write and edit LaTeX)</li>
+</ul>
+<p>For that package system and the repositories have a look <a href="http://emacswiki.org/emacs/ELPA">here</a>.</p>
+<h3>Programming with emacs</h3>
+<p>Programmers should also read <a href="http://www.gnu.org/software/emacs/manual/html_node/emacs/Programs.html#Programs">this</a>.</p>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3 well well-sm" id="sidebar">
+
+<aside>
+    <section>
+        <ul class="list-group list-group-flush">
+                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+                  <ul class="list-group" id="social">
+
+                    <li class="list-group-item"><a href="mailto:foivos_(AT}_zakkak_(DOT}_net"><i class="fa fa-envelope-square fa-lg"></i> Email</a></li>
+                    <li class="list-group-item"><a href="https://github.com/zakkak"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+                    <li class="list-group-item"><a href="https://www.linkedin.com/in/zakkak"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+
+                    <li class="list-group-item"><a href="/uploads/zakkak_cv.pdf"><i class="fa fa-file-pdf-o fa-lg"></i> My CV</a></li>
+                  </ul>
+                </li>
+
+                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
+                    <ul class="list-group" id="recentposts">
+                        <li class="list-group-item">
+                            <a href="http://foivos.zakkak.net/tutorials/ubuntu_1304_raid1_setup.html">
+                                Ubuntu 13.04 RAID-1 setup
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://foivos.zakkak.net/code/syncbackup_script.html">
+                                A Sync/BackUp script
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://foivos.zakkak.net/tutorials/getting_started_emacs.html">
+                                Getting started with Emacs
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://foivos.zakkak.net/tutorials/using_emacs_and_notmuch_mail_client.html">
+                                Using emacs and notmuch as a mail client
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://foivos.zakkak.net/tutorials/google_pdf_viewer_chromium.html">
+                                Google PDF viewer on Chromium
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-github fa-lg"></i><span class="icon-label">GitHub Repos</span></h4>
+        <div id="gh_repos">
+            <p class="list-group-item">Status updating...</p>
+        </div>
+            <a href="https://github.com/zakkak">@zakkak</a> on GitHub
+    </li>
+
+        </ul>
+    </section>
+
+</aside>        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2013 Foivos S. Zakkak
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://foivos.zakkak.net/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://foivos.zakkak.net/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://foivos.zakkak.net/theme/js/respond.min.js"></script>
+
+    <!-- GitHub JS -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if (!window.jXHR) {
+                var jxhr = document.createElement('script');
+                jxhr.type = 'text/javascript';
+                jxhr.src = 'http://foivos.zakkak.net/theme/js/jXHR.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(jxhr, s);
+            }
+
+            github.showRepos({
+                user: 'zakkak',
+                count: 5,
+                skip_forks: false,
+                target: '#gh_repos'
+            });
+        });
+    </script>
+    <script src="http://foivos.zakkak.net/theme/js/github.js" type="text/javascript"></script>
+    <!-- End GitHub JS Code -->
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-29112990-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
+</body>
+</html>

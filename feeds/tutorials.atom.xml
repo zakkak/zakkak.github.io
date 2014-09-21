@@ -1,0 +1,1076 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Foivos . Zakkak . net</title><link href="http://foivos.zakkak.net/" rel="alternate"></link><link href="http://foivos.zakkak.net/feeds/tutorials.atom.xml" rel="self"></link><id>http://foivos.zakkak.net/</id><updated>2013-06-23T09:54:00+03:00</updated><entry><title>Ubuntu 13.04 RAID-1 setup</title><link href="http://foivos.zakkak.net/tutorials/ubuntu_1304_raid1_setup.html" rel="alternate"></link><updated>2013-06-23T09:54:00+03:00</updated><author><name>zakkak</name></author><id>tag:foivos.zakkak.net,2013-06-23:tutorials/ubuntu_1304_raid1_setup.html</id><summary type="html">&lt;h2&gt;Purpose&lt;/h2&gt;
+&lt;p&gt;This tutorial aims to help you setup a software RAID-1 (mirror) under
+ubuntu 13.04  &lt;/p&gt;
+&lt;p&gt;Lets assume the following mapping&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sda1&lt;/span&gt;    &lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sda2&lt;/span&gt;    &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;
+&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sda3&lt;/span&gt;    &lt;span class="n"&gt;swap&lt;/span&gt;
+&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sda4&lt;/span&gt;    &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;spare&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We also assume that you have a second (empty) hard disk drive larger or
+equal to sda .  &lt;/p&gt;
+&lt;p&gt;We are going to create 4 new partitions (md1,md2,md3,md4) which will
+act as RAID-1 using sda1 &amp;amp; sdb1, sda2 &amp;amp; sdb2, sda3 &amp;amp; sdb3, and sda4 &amp;amp;
+sdb4 respectively to store the data.  This way all our data will be
+available on both disks.&lt;/p&gt;
+&lt;h2&gt;Dependencies&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;initramfs&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;tools&lt;/span&gt; &lt;span class="n"&gt;mdadm&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now run&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;modprobe&lt;/span&gt; &lt;span class="n"&gt;raid1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;more&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;proc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mdstat&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This should print something like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Personalities&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;linear&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;multipath&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;raid0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;raid1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;raid6&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;raid5&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;raid4&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;raid10&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;unused&lt;/span&gt; &lt;span class="n"&gt;devices&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Setup sdb&lt;/h2&gt;
+&lt;p&gt;sdb's partition table must be a replica of sda's.  Execute:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# sfdisk -d /dev/sda | sfdisk --force /dev/sdb&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;to replicate it.  Next we need to set the partitions' types.  Execute:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# fdisk /dev/sdb&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;you will see a prompt like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Command (m for help):&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;type t and enter. Then you will see a prompt like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Partition number (1-4):&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;type 1 and enter. Then you will see a prompt like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Hex&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="n"&gt;L&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;list&lt;/span&gt; &lt;span class="n"&gt;codes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;type fd and enter.  &lt;/p&gt;
+&lt;p&gt;Do this for every partition (1-4) only changing the partition number at
+the second prompt.  &lt;/p&gt;
+&lt;p&gt;Finally type w and enter to write the changes.&lt;/p&gt;
+&lt;p&gt;The output should be like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Command&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt;
+&lt;span class="n"&gt;Partition&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="n"&gt;Hex&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="n"&gt;L&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;list&lt;/span&gt; &lt;span class="n"&gt;codes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;fd&lt;/span&gt;
+&lt;span class="n"&gt;Changed&lt;/span&gt; &lt;span class="n"&gt;system&lt;/span&gt; &lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;partition&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;fd&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Linux&lt;/span&gt; &lt;span class="n"&gt;raid&lt;/span&gt; &lt;span class="n"&gt;autodetect&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;Command&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt;
+&lt;span class="n"&gt;Partition&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="n"&gt;Hex&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="n"&gt;L&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;list&lt;/span&gt; &lt;span class="n"&gt;codes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;fd&lt;/span&gt;
+&lt;span class="n"&gt;Changed&lt;/span&gt; &lt;span class="n"&gt;system&lt;/span&gt; &lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;partition&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;fd&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Linux&lt;/span&gt; &lt;span class="n"&gt;raid&lt;/span&gt; &lt;span class="n"&gt;autodetect&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;Command&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt;
+&lt;span class="n"&gt;Partition&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="n"&gt;Hex&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="n"&gt;L&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;list&lt;/span&gt; &lt;span class="n"&gt;codes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;fd&lt;/span&gt;
+&lt;span class="n"&gt;Changed&lt;/span&gt; &lt;span class="n"&gt;system&lt;/span&gt; &lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;partition&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;fd&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Linux&lt;/span&gt; &lt;span class="n"&gt;raid&lt;/span&gt; &lt;span class="n"&gt;autodetect&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;Command&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt;
+&lt;span class="n"&gt;Partition&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
+&lt;span class="n"&gt;Hex&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="n"&gt;L&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;list&lt;/span&gt; &lt;span class="n"&gt;codes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;fd&lt;/span&gt;
+&lt;span class="n"&gt;Changed&lt;/span&gt; &lt;span class="n"&gt;system&lt;/span&gt; &lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;partition&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;fd&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Linux&lt;/span&gt; &lt;span class="n"&gt;raid&lt;/span&gt; &lt;span class="n"&gt;autodetect&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;Command&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt;
+&lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="n"&gt;partition&lt;/span&gt; &lt;span class="n"&gt;table&lt;/span&gt; &lt;span class="n"&gt;has&lt;/span&gt; &lt;span class="n"&gt;been&lt;/span&gt; &lt;span class="n"&gt;altered&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;
+
+&lt;span class="n"&gt;Calling&lt;/span&gt; &lt;span class="n"&gt;ioctl&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt; &lt;span class="n"&gt;partition&lt;/span&gt; &lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Create the RAID arrays&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# for i in 1 2 3 4; do mdadm --create /dev/md$i --level=1 --raid-disks=2 missing /dev/sdb$i; done&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If you see the following message type y.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;mdadm&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Note&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt; &lt;span class="n"&gt;has&lt;/span&gt; &lt;span class="n"&gt;metadata&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt;
+    &lt;span class="n"&gt;may&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;suitable&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;boot&lt;/span&gt; &lt;span class="n"&gt;device&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;  &lt;span class="n"&gt;If&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;plan&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt;
+    &lt;span class="n"&gt;store&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/boot&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt; &lt;span class="n"&gt;device&lt;/span&gt; &lt;span class="n"&gt;please&lt;/span&gt; &lt;span class="n"&gt;ensure&lt;/span&gt; &lt;span class="n"&gt;that&lt;/span&gt;
+    &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="n"&gt;boot&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;loader&lt;/span&gt; &lt;span class="n"&gt;understands&lt;/span&gt; &lt;span class="n"&gt;md&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;v1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;x&lt;/span&gt; &lt;span class="n"&gt;metadata&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="n"&gt;use&lt;/span&gt;
+    &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;metadata&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;0.90&lt;/span&gt;
+&lt;span class="n"&gt;Continue&lt;/span&gt; &lt;span class="n"&gt;creating&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="o"&gt;?&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now setup the filesystem on the arrays.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# for i in 1 2 4; do mkfs.ext4 /dev/md$i; done&lt;/span&gt;
+&lt;span class="c"&gt;# mkswap /dev/md3&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Configure mdadm&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# cp /etc/mdadm/mdadm.conf /etc/mdadm/mdadm.conf_orig&lt;/span&gt;
+&lt;span class="c"&gt;# mdadm --examine --scan &amp;gt;&amp;gt; /etc/mdadm/mdadm.conf&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Update the fstab&lt;/h2&gt;
+&lt;p&gt;Open /etc/fstab and change the /dev/sdX uuids with those of the
+corresponding /dev/mdX uuids.  To see the mapping between /dev/mdX and
+the uuids use:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;ls&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;disk&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;by&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;uuid&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Temporarily set GRUB2&lt;/h2&gt;
+&lt;p&gt;Create /etc/grub.d/09_temp with the following content&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/sh&lt;/span&gt;
+&lt;span class="nb"&gt;exec &lt;/span&gt;tail -n +3 &lt;span class="nv"&gt;$0&lt;/span&gt;
+&lt;span class="c"&gt;# This file provides an easy way to add custom menu entries.  Simply type the&lt;/span&gt;
+&lt;span class="c"&gt;# menu entries you want to add after this comment.  Be careful not to change&lt;/span&gt;
+&lt;span class="c"&gt;# the &amp;#39;exec tail&amp;#39; line above.&lt;/span&gt;
+menuentry &lt;span class="s1"&gt;&amp;#39;temp&amp;#39;&lt;/span&gt; --class ubuntu --class gnu-linux --class gnu --class os &lt;span class="o"&gt;{&lt;/span&gt;
+        insmod raid
+        insmod mdraid
+        insmod part_msdos
+        insmod ext2
+        &lt;span class="nb"&gt;set &lt;/span&gt;&lt;span class="nv"&gt;root&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;(md/1)&amp;#39;&lt;/span&gt;
+        &lt;span class="nb"&gt;echo&lt;/span&gt;    &lt;span class="s1"&gt;&amp;#39;Loading Linux...&amp;#39;&lt;/span&gt;
+        linux   /boot/vmlinuz-3.8.0-25-generic &lt;span class="nv"&gt;root&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;UUID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;the_UUID_of_/dev/md1 ro  quiet
+        &lt;span class="nb"&gt;echo&lt;/span&gt;    &lt;span class="s1"&gt;&amp;#39;Loading initial ramdisk ...&amp;#39;&lt;/span&gt;
+        initrd  /boot/initrd.img-3.8.0-25-generic
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;Use&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;uname&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;to get the appropriate kernel version or just&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;ls&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;boot&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;to see the available files.&lt;/p&gt;
+&lt;p&gt;Make /etc/grub.d/09_temp executable&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# chmod +x /etc/grub.d/09_temp&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now we need to update GRUB&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# update-grub&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and the ramdisk&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# update-initramfs -u&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Finally mount /dev/md1, /dev/md2 and /dev/md3 and&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# cp -dpRx / /mnt/md1&lt;/span&gt;
+&lt;span class="c"&gt;# rm -rf /mnt/md1/home /mnt/md1/spare&lt;/span&gt;
+&lt;span class="c"&gt;# cp -dpRx /home/* /mnt/md2&lt;/span&gt;
+&lt;span class="c"&gt;# cp -dpRx /spare/* /mnt/md4&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Install GRUB on both disks&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# grub-install /dev/sda&lt;/span&gt;
+&lt;span class="c"&gt;# grub-install /dev/sdb&lt;/span&gt;
+&lt;span class="c"&gt;# reboot&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If during the startup it asks you something about booting in degraded
+mode type y. Then you might also need to type S. When the system finally
+start, execute&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and you should see /dev/md1, /dev/md2 and /dev/md4 in the listing.&lt;/p&gt;
+&lt;h2&gt;Update partitions' type of /dev/sda and add them to the array&lt;/h2&gt;
+&lt;p&gt;Execute:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# fdisk /dev/sda&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;you will see a prompt like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Command (m for help):&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;type t and enter. Then you will see a prompt like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Partition number (1-4):&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;type 1 and enter. Then you will see a prompt like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Hex&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="n"&gt;L&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;list&lt;/span&gt; &lt;span class="n"&gt;codes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;type fd and enter.  &lt;/p&gt;
+&lt;p&gt;Do this for every partition (1-4) only changing the partition number at
+the second prompt.  &lt;/p&gt;
+&lt;p&gt;Finally type w and enter to write the changes.&lt;/p&gt;
+&lt;p&gt;The output should be like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Command&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt;
+&lt;span class="n"&gt;Partition&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="n"&gt;Hex&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="n"&gt;L&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;list&lt;/span&gt; &lt;span class="n"&gt;codes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;fd&lt;/span&gt;
+&lt;span class="n"&gt;Changed&lt;/span&gt; &lt;span class="n"&gt;system&lt;/span&gt; &lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;partition&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;fd&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Linux&lt;/span&gt; &lt;span class="n"&gt;raid&lt;/span&gt; &lt;span class="n"&gt;autodetect&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;Command&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt;
+&lt;span class="n"&gt;Partition&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="n"&gt;Hex&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="n"&gt;L&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;list&lt;/span&gt; &lt;span class="n"&gt;codes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;fd&lt;/span&gt;
+&lt;span class="n"&gt;Changed&lt;/span&gt; &lt;span class="n"&gt;system&lt;/span&gt; &lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;partition&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;fd&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Linux&lt;/span&gt; &lt;span class="n"&gt;raid&lt;/span&gt; &lt;span class="n"&gt;autodetect&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;Command&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt;
+&lt;span class="n"&gt;Partition&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="n"&gt;Hex&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="n"&gt;L&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;list&lt;/span&gt; &lt;span class="n"&gt;codes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;fd&lt;/span&gt;
+&lt;span class="n"&gt;Changed&lt;/span&gt; &lt;span class="n"&gt;system&lt;/span&gt; &lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;partition&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;fd&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Linux&lt;/span&gt; &lt;span class="n"&gt;raid&lt;/span&gt; &lt;span class="n"&gt;autodetect&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;Command&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt;
+&lt;span class="n"&gt;Partition&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
+&lt;span class="n"&gt;Hex&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="n"&gt;L&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;list&lt;/span&gt; &lt;span class="n"&gt;codes&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;fd&lt;/span&gt;
+&lt;span class="n"&gt;Changed&lt;/span&gt; &lt;span class="n"&gt;system&lt;/span&gt; &lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;partition&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;fd&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Linux&lt;/span&gt; &lt;span class="n"&gt;raid&lt;/span&gt; &lt;span class="n"&gt;autodetect&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;Command&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt;
+&lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="n"&gt;partition&lt;/span&gt; &lt;span class="n"&gt;table&lt;/span&gt; &lt;span class="n"&gt;has&lt;/span&gt; &lt;span class="n"&gt;been&lt;/span&gt; &lt;span class="n"&gt;altered&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;
+
+&lt;span class="n"&gt;Calling&lt;/span&gt; &lt;span class="n"&gt;ioctl&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt; &lt;span class="n"&gt;partition&lt;/span&gt; &lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Finally add them.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# for i in 1 2 3 4; do mdadm --add /dev/md$i /dev/sda$i; done&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Executing:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;proc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mdstat&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;should print something like this&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Personalities&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;linear&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;multipath&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;raid0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;raid1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;raid6&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;raid5&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;raid4&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;raid10&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; 
+&lt;span class="n"&gt;md3&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;active&lt;/span&gt; &lt;span class="n"&gt;raid1&lt;/span&gt; &lt;span class="n"&gt;sda3&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;sdb3&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+      &lt;span class="mi"&gt;8384448&lt;/span&gt; &lt;span class="n"&gt;blocks&lt;/span&gt; &lt;span class="n"&gt;super&lt;/span&gt; &lt;span class="mf"&gt;1.2&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;_U&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="n"&gt;resync&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;DELAYED&lt;/span&gt;
+
+&lt;span class="n"&gt;md4&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;active&lt;/span&gt; &lt;span class="n"&gt;raid1&lt;/span&gt; &lt;span class="n"&gt;sda4&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;sdb4&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+      &lt;span class="mi"&gt;162277248&lt;/span&gt; &lt;span class="n"&gt;blocks&lt;/span&gt; &lt;span class="n"&gt;super&lt;/span&gt; &lt;span class="mf"&gt;1.2&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;_U&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="n"&gt;resync&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;DELAYED&lt;/span&gt;
+
+&lt;span class="n"&gt;md2&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;active&lt;/span&gt; &lt;span class="n"&gt;raid1&lt;/span&gt; &lt;span class="n"&gt;sda2&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;sdb2&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+      &lt;span class="mi"&gt;41910144&lt;/span&gt; &lt;span class="n"&gt;blocks&lt;/span&gt; &lt;span class="n"&gt;super&lt;/span&gt; &lt;span class="mf"&gt;1.2&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;_U&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="n"&gt;resync&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;DELAYED&lt;/span&gt;
+
+&lt;span class="n"&gt;md1&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;active&lt;/span&gt; &lt;span class="n"&gt;raid1&lt;/span&gt; &lt;span class="n"&gt;sda1&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;sdb1&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+      &lt;span class="mi"&gt;31440512&lt;/span&gt; &lt;span class="n"&gt;blocks&lt;/span&gt; &lt;span class="n"&gt;super&lt;/span&gt; &lt;span class="mf"&gt;1.2&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;_U&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+      &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;...................]&lt;/span&gt;  &lt;span class="n"&gt;recovery&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;  &lt;span class="mf"&gt;9.8&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3111488&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;31440512&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;finish&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;13.5&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt; &lt;span class="n"&gt;speed&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;34736&lt;/span&gt;&lt;span class="n"&gt;K&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sec&lt;/span&gt;
+
+&lt;span class="n"&gt;unused&lt;/span&gt; &lt;span class="n"&gt;devices&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Wait&lt;/strong&gt; for it to finish&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;watch&lt;/span&gt; &lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;proc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mdstat&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now we must reconfigure mdadm&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# cp /etc/mdadm/mdadm.conf_orig /etc/mdadm/mdadm.conf&lt;/span&gt;
+&lt;span class="c"&gt;# mdadm --examine --scan &amp;gt;&amp;gt; /etc/mdadm/mdadm.conf&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Final setup of GRUB2&lt;/h2&gt;
+&lt;p&gt;Delete the temporary entry&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# rm -f /etc/grub.d/09_temp&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now update GRUB&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# update-grub&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and the ramdisk&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# update-initramfs -u&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Re-install and reboot&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# grub-install /dev/sda&lt;/span&gt;
+&lt;span class="c"&gt;# grub-install /dev/sdb&lt;/span&gt;
+&lt;span class="c"&gt;# reboot&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Test&lt;/h2&gt;
+&lt;p&gt;To test your new RAID-1 setup follow &lt;a href="http://www.howtoforge.com/how-to-set-up-software-raid1-on-a-running-system-incl-grub2-configuration-debian-squeeze-p4"&gt;these&lt;/a&gt; instructions.&lt;/p&gt;
+&lt;p&gt;Source:
+&lt;a href="http://www.howtoforge.com/how-to-set-up-software-raid1-on-a-running-system-incl-grub2-configuration-debian-squeeze"&gt;http://www.howtoforge.com/how-to-set-up-software-raid1-on-a-running-system-incl-grub2-configuration-debian-squeeze&lt;/a&gt;&lt;/p&gt;</summary></entry><entry><title>Getting started with Emacs</title><link href="http://foivos.zakkak.net/tutorials/getting_started_emacs.html" rel="alternate"></link><updated>2013-03-23T15:53:00+02:00</updated><author><name>zakkak</name></author><id>tag:foivos.zakkak.net,2013-03-23:tutorials/getting_started_emacs.html</id><summary type="html">&lt;p&gt;So you want to learn how to use Emacs...&lt;/p&gt;
+&lt;p&gt;First of all &lt;strong&gt;install&lt;/strong&gt; Emacs (I suggest versions &gt;=24). Then start
+using it. It is going to be hard in the beginning, but day by day you
+will get used to it and learn new things.&lt;/p&gt;
+&lt;h3&gt;Your friends&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://www.gnu.org/software/emacs/refcards/"&gt;Reference cards&lt;/a&gt; (will help you learn the most basic commands)&lt;/li&gt;
+&lt;li&gt;The Emacs built in tutorial (Control-h t).&lt;/li&gt;
+&lt;li&gt;http://www.emacswiki.org (Includes &lt;strong&gt;everything&lt;/strong&gt; about Emacs)&lt;br /&gt;
+    a good place to start is http://www.emacswiki.org/emacs/EmacsNewbie&lt;/li&gt;
+&lt;li&gt;The manual
+    (&lt;a href="http://www.gnu.org/software/emacs/manual/html_node/emacs/index.html"&gt;http://www.gnu.org/software/emacs/manual/html_node/emacs/index.html&lt;/a&gt;)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Terminology&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;buffer:&lt;/strong&gt; an open document in Emacs&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;window: &lt;/strong&gt;A window displays the contents of a single buffer (see
+    &lt;a href="http://www.emacswiki.org/pics/static/DrewsEmacsWindowCallouts.jpg"&gt;this picture&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;frame:&lt;/strong&gt; the operating systems window (see this picture)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;kill&lt;/strong&gt;(for buffer)&lt;strong&gt;:&lt;/strong&gt; close file&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;kill(&lt;/strong&gt;for text&lt;strong&gt;):&lt;/strong&gt; cut&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;yank:&lt;/strong&gt; paste&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;for more terms have a look &lt;a href="http://www.emacswiki.org/emacs/CategoryGlossary"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Configuration file&lt;/h3&gt;
+&lt;p&gt;Emacs' configuration is stored in \~/.emacs (Windows users read
+&lt;a href="http://www.gnu.org/software/emacs/windows/Installing-Emacs.html#Installing-Emacs"&gt;this&lt;/a&gt;). In this file you can permanently store your preferences. To
+get you started I suggest having a look at &lt;a href="https://github.com/eschulte/emacs24-starter-kit"&gt;emacs24-starter-kit&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Packages&lt;/h3&gt;
+&lt;p&gt;Two of the most popular and usefull packages are smex and
+ido-obiquitous. There a lot more external packages out there that can
+make emacs even more powerful. I am currently using the following
+packages.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;rainbow-mode&lt;/strong&gt;(Preview colors in css files)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;rainbow-delimiters&lt;/strong&gt; (Paints each pair of parentheses/brackets
+    with different colors)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;tuareg&lt;/strong&gt; (Mode for editing OCaml files)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;whole-line-or-region&lt;/strong&gt; (Lets you kill the whole line without
+    selecting it)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;smartparens&lt;/strong&gt;(A smarter parenthesis matching package)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;auto-complete&lt;/strong&gt; (Suggests possible completions for what you are
+    typing)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;undo-tree&lt;/strong&gt;(A better approach for undoing, supports virtualization
+    of the undo history as a tree and more)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;auctex&lt;/strong&gt;​ (Write and edit LaTeX)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For that package system and the repositories have a look &lt;a href="http://emacswiki.org/emacs/ELPA"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Programming with emacs&lt;/h3&gt;
+&lt;p&gt;Programmers should also read &lt;a href="http://www.gnu.org/software/emacs/manual/html_node/emacs/Programs.html#Programs"&gt;this&lt;/a&gt;.&lt;/p&gt;</summary></entry><entry><title>Using emacs and notmuch as a mail client</title><link href="http://foivos.zakkak.net/tutorials/using_emacs_and_notmuch_mail_client.html" rel="alternate"></link><updated>2013-03-13T05:42:00+02:00</updated><author><name>zakkak</name></author><id>tag:foivos.zakkak.net,2013-03-13:tutorials/using_emacs_and_notmuch_mail_client.html</id><summary type="html">&lt;p&gt;This tutorial aims to help you setup &lt;a href="http://notmuchmail.org/"&gt;notmuch&lt;/a&gt; for multiple IMAP
+accounts and use &lt;a href="http://www.gnu.org/software/emacs/"&gt;emacs&lt;/a&gt; as a frontend.&lt;br /&gt;
+( At the time writing this tutorial emacs version was 24.3 and notmuch
+version was 0.15.2)&lt;/p&gt;
+&lt;p&gt;Soon after writing this tutorial I experimented with &lt;a href="http://www.djcbsoftware.nl/code/mu/"&gt;mu&lt;/a&gt; and
+&lt;a href="http://www.djcbsoftware.nl/code/mu/mu4e.html"&gt;mu4e&lt;/a&gt;, the configuration is similar and the experience much
+better (IMO).&lt;/p&gt;
+&lt;h2&gt;The stack&lt;/h2&gt;
+&lt;p&gt;We are going to use the following stack to fetch, index and finally read
+our emails.&lt;/p&gt;
+&lt;p&gt;offlineimap --&gt; notmuch --&gt; emacs&lt;/p&gt;
+&lt;h2&gt;Fetching from the IMAP servers&lt;/h2&gt;
+&lt;p&gt;First we have to setup offlineimap to fetch our emails to a local
+directory.&lt;br /&gt;
+A configuration (.offlineimaprc) example follows:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;[general]&lt;/span&gt;
+&lt;span class="na"&gt;accounts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;Gmail, Other&lt;/span&gt;
+&lt;span class="na"&gt;ui&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;quiet&lt;/span&gt;
+
+&lt;span class="k"&gt;[Account Gmail]&lt;/span&gt;
+&lt;span class="na"&gt;localrepository&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;localG&lt;/span&gt;
+&lt;span class="na"&gt;remoterepository&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;remoteG&lt;/span&gt;
+&lt;span class="na"&gt;autorefresh&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;5&lt;/span&gt;
+&lt;span class="na"&gt;holdconnectionopen&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;true&lt;/span&gt;
+&lt;span class="na"&gt;keepalive&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;60&lt;/span&gt;
+
+&lt;span class="k"&gt;[Account Other]&lt;/span&gt;
+&lt;span class="na"&gt;localrepository&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;localI&lt;/span&gt;
+&lt;span class="na"&gt;remoterepository&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;remoteI&lt;/span&gt;
+&lt;span class="na"&gt;autorefresh&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;5&lt;/span&gt;
+&lt;span class="na"&gt;holdconnectionopen&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;true&lt;/span&gt;
+&lt;span class="na"&gt;keepalive&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;60&lt;/span&gt;
+
+&lt;span class="k"&gt;[Repository localG]&lt;/span&gt;
+&lt;span class="na"&gt;type&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;Maildir&lt;/span&gt;
+&lt;span class="na"&gt;localfolders&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;~/.mail/G&lt;/span&gt;
+
+&lt;span class="k"&gt;[Repository localI]&lt;/span&gt;
+&lt;span class="na"&gt;type&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;Maildir&lt;/span&gt;
+&lt;span class="na"&gt;localfolders&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;~/.mail/I&lt;/span&gt;
+
+&lt;span class="k"&gt;[Repository remoteG]&lt;/span&gt;
+&lt;span class="na"&gt;type&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;IMAP&lt;/span&gt;
+&lt;span class="na"&gt;remotehost&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;imap.googlemail.com&lt;/span&gt;
+&lt;span class="na"&gt;remoteuser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;yourusername&lt;/span&gt;
+&lt;span class="na"&gt;remotepass&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;yourpassword&lt;/span&gt;
+&lt;span class="na"&gt;ssl&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;yes&lt;/span&gt;
+&lt;span class="na"&gt;folderfilter&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;lambda foldername: foldername not in [&amp;#39;Trash&amp;#39;, &amp;#39;Spam&amp;#39;, &amp;#39;Junk&amp;#39;, &amp;#39;All Mail&amp;#39;, &amp;#39;[Gmail]/All Mail&amp;#39;, &amp;#39;[Gmail]/Spam&amp;#39;, &amp;#39;[Gmail]/Trash&amp;#39;, &amp;#39;[Gmail]/Junk&amp;#39;]&lt;/span&gt;
+&lt;span class="na"&gt;cert_fingerprint&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;a_hex_code(will explain later)&lt;/span&gt;
+
+&lt;span class="k"&gt;[Repository remoteI]&lt;/span&gt;
+&lt;span class="na"&gt;type&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;IMAP&lt;/span&gt;
+&lt;span class="na"&gt;remotehost&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;mailhost.other.com&lt;/span&gt;
+&lt;span class="na"&gt;remoteuser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;yourusername&lt;/span&gt;
+&lt;span class="na"&gt;remotepass&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;yourpassword&lt;/span&gt;
+&lt;span class="na"&gt;ssl&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;yes&lt;/span&gt;
+&lt;span class="na"&gt;folderfilter&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;lambda foldername: foldername not in [&amp;#39;Trash&amp;#39;, &amp;#39;Spam&amp;#39;, &amp;#39;Junk&amp;#39;, &amp;#39;Junk E-mail&amp;#39;]&lt;/span&gt;
+&lt;span class="na"&gt;cert_fingerprint&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;a_hex_code(will explain later)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Next I will shortly explain the configuration.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;[general]&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;accounts&lt;/em&gt; Here we declare the IMAP accounts, in this case I want two
+accounts&lt;br /&gt;
+&lt;em&gt;ui&lt;/em&gt; Here we specify the UI. Since we are going to run it in the
+background we would like it to be quiet. Quiet will suppress anything
+but errors.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;[Account Name]&lt;/strong&gt; Here we define account Name.&lt;br /&gt;
+&lt;em&gt;localrepository&lt;/em&gt; is where we want to locally store the emails for this
+account (which we define later).&lt;br /&gt;
+&lt;em&gt;remoterepository&lt;/em&gt; is where we want to fetch our email from (which we
+also define later).&lt;br /&gt;
+&lt;em&gt;autorefresh&lt;/em&gt; is the interval (in minutes) between synchronizations
+with the server.&lt;br /&gt;
+&lt;em&gt;holdconnectionopen&lt;/em&gt; is a hint to keep the connection with the IMAP
+server open. This way we can skip the overhead of a new connection at
+every synchronization.&lt;br /&gt;
+&lt;em&gt;keepalive&lt;/em&gt; is the interval (in seconds) between messages to the server
+to keep the connection open.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;[Repository Name]&lt;/strong&gt; Here we setup the local and remote repositories
+mentioned earlier.&lt;br /&gt;
+&lt;em&gt;type&lt;/em&gt; Defines the type of the repository. (Note: notmuch does not
+support mbox).&lt;br /&gt;
+&lt;em&gt;localfolders&lt;/em&gt; Defines the local folder to store the fetched mails.&lt;br /&gt;
+&lt;em&gt;remotehost&lt;/em&gt; Defines the IMAP server.&lt;br /&gt;
+&lt;em&gt;remoteuser&lt;/em&gt; Defines the username for the IMAP server.&lt;br /&gt;
+&lt;em&gt;remotepass&lt;/em&gt; Defines the password for the IMAP server.&lt;br /&gt;
+&lt;em&gt;ssl&lt;/em&gt; Defines whether the IMAP server supports SSL connections
+(yes/no).\&amp;lt;br\&gt; &lt;em&gt;folderfilter&lt;/em&gt; Defines a python function that is
+called before each folder fetch. The folder is fetched only if the
+function returns true.&lt;br /&gt;
+&lt;em&gt;cert_fingerprint&lt;/em&gt; This is the IMAP server's fingerprint in hex. This
+is required only if ssl is enabled. The first time leave this field out
+and run offlineimap. It will print a message and give you the value you
+should fill.&lt;/p&gt;
+&lt;p&gt;That's it. Now fetch your email invoking offlineimap -u basic (to enable
+printing, so you can see what's going on the first time). After this add
+offlineimap &amp;amp; at your initialization script or in a cronjob to be
+executed @reboot.&lt;/p&gt;
+&lt;h2&gt;Initial index&lt;/h2&gt;
+&lt;p&gt;Now that we have fetched all our email it is time to setup notmuch.
+That's really simple. Run notmuch and answer its questions (run notmuch
+config to reconfigure it in case you did something wrong the first
+time). After you are finished with the configuration run notmuch
+new.\&amp;lt;\p&gt;&lt;/p&gt;
+&lt;p&gt;To initially tag some emails refer to &lt;a href="http://notmuchmail.org/initial_tagging/"&gt;this&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Send emails through SMTP&lt;/h2&gt;
+&lt;p&gt;To achieve this we are using &lt;a href="http://msmtp.sourceforge.net/"&gt;msmpt&lt;/a&gt;. &lt;a href="http://notmuchmail.org/emacstips/"&gt;Here&lt;/a&gt; you can find a
+configuration (.msmtprc) example.&lt;/p&gt;
+&lt;h2&gt;Emacs setup (.emacs)&lt;/h2&gt;
+&lt;p&gt;First add the melpa repository if you haven't done it already.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;require&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;list&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;archives&lt;/span&gt;
+             &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;melpa&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;http//melpa.milkbox.net/packages&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;initialize&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now install the package with:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;refresh&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;contents&lt;/span&gt;
+&lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="n"&gt;package&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;RET&lt;/span&gt; &lt;span class="n"&gt;notmuch&lt;/span&gt; &lt;span class="n"&gt;RET&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And finally add these to your configuration file:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;require&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;notmuch&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;loads&lt;/span&gt; &lt;span class="n"&gt;notmuch&lt;/span&gt; &lt;span class="nf"&gt;package&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;setq&lt;/span&gt; &lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;kill&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;buffer&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;on&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;exit&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;kill&lt;/span&gt; &lt;span class="n"&gt;buffer&lt;/span&gt; &lt;span class="n"&gt;after&lt;/span&gt; &lt;span class="n"&gt;sending&lt;/span&gt; &lt;span class="n"&gt;mail&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;setq&lt;/span&gt; &lt;span class="n"&gt;mail&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;specify&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;envelope&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;Settings&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;work&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="nf"&gt;msmtp&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;setq&lt;/span&gt; &lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;sendmail&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;envelope&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;header&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;setq&lt;/span&gt; &lt;span class="n"&gt;mail&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;envelope&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;header&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;setq&lt;/span&gt; &lt;span class="n"&gt;notmuch&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;fcc&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;dirs&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;G/[Gmail]Sent Mail&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;stores&lt;/span&gt; &lt;span class="n"&gt;sent&lt;/span&gt; &lt;span class="n"&gt;mail&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;specified&lt;/span&gt; &lt;span class="nf"&gt;directory&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;setq&lt;/span&gt; &lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;directory&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;G/[Gmail]Drafts&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;stores&lt;/span&gt; &lt;span class="n"&gt;postponed&lt;/span&gt; &lt;span class="n"&gt;messages&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;specified&lt;/span&gt; &lt;span class="n"&gt;directory&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;For more customization and tricks have a look &lt;a href="http://notmuchmail.org/emacstips/"&gt;here&lt;/a&gt;.&lt;/p&gt;</summary></entry><entry><title>Google PDF viewer on Chromium</title><link href="http://foivos.zakkak.net/tutorials/google_pdf_viewer_chromium.html" rel="alternate"></link><updated>2012-12-29T14:12:00+02:00</updated><author><name>zakkak</name></author><id>tag:foivos.zakkak.net,2012-12-29:tutorials/google_pdf_viewer_chromium.html</id><summary type="html">&lt;p&gt;This is a tutorial (more like a code dumb) on how to enable the pdf
+viewer plugin from google chrome in chromium.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;wget&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb&lt;/span&gt;
+&lt;span class="n"&gt;ar&lt;/span&gt; &lt;span class="n"&gt;vx&lt;/span&gt; &lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;chrome&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;stable_current_amd64&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;deb&lt;/span&gt;
+&lt;span class="n"&gt;rm&lt;/span&gt; &lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;chrome&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;stable_current_amd64&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;deb&lt;/span&gt; &lt;span class="n"&gt;control&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gz&lt;/span&gt; &lt;span class="n"&gt;debian&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;binary&lt;/span&gt;
+&lt;span class="n"&gt;tar&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;lzma&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;xvf&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lzma&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;cp&lt;/span&gt; &lt;span class="n"&gt;opt&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;chrome&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;libpdf&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;so&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;chromium&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;browser&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;rm&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;rf&lt;/span&gt; &lt;span class="n"&gt;etc&lt;/span&gt; &lt;span class="n"&gt;opt&lt;/span&gt; &lt;span class="n"&gt;usr&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lzma&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary></entry><entry><title>Flashing BIOS (Acer Aspire 2920z)</title><link href="http://foivos.zakkak.net/tutorials/flashing_bios_acer_aspire_2920z.html" rel="alternate"></link><updated>2012-12-27T21:35:00+02:00</updated><author><name>zakkak</name></author><id>tag:foivos.zakkak.net,2012-12-27:tutorials/flashing_bios_acer_aspire_2920z.html</id><summary type="html">&lt;p&gt;A few weeks ago my precious Acer Aspire 2920z started misbehaving.&lt;/p&gt;
+&lt;h3&gt;The symptoms:&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Power and battery leds flashing as soon as I plug it in.&lt;/li&gt;
+&lt;li&gt;Automatic power on as soon as I plug it in.&lt;/li&gt;
+&lt;li&gt;Screen backlight doesn't go on and i can see it gets through the
+    BIOS splash screen and then nothing.&lt;/li&gt;
+&lt;li&gt;On battery exactly the same results, except that this time it waits
+    for you to push the power button to start.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Suggestions:&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Unplug it and remove the battery. Then keep the power button pressed
+    for about 1 minute to statically discharge the laptop. Didn't work.&lt;/li&gt;
+&lt;li&gt;Your mobo is bricked. Didn't look like this.&lt;/li&gt;
+&lt;li&gt;There is a short circuit in the display cables. Tried without the
+    display and an external monitor. Still the same.&lt;/li&gt;
+&lt;li&gt;Your power supply is bricked get a new one. Didn't look like this.&lt;/li&gt;
+&lt;li&gt;There is something wrong with the power conductors. I was almost
+    convinced that this was the problem but it was not...&lt;/li&gt;
+&lt;li&gt;A friend told me he had a similar problem and he got it fixed
+    flashing the BIOS. Didn't believe it at the begining but that was
+    it.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;The solution:&lt;/h3&gt;
+&lt;p&gt;Flash your BIOS.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Download the latest BIOS
+    from &lt;a href="http://support.acer-euro.com/drivers/downloads.html"&gt;http://support.acer-euro.com/drivers/downloads.html&lt;/a&gt; and not
+    the new site (it includes an outdated version and no DOS utility...)&lt;/li&gt;
+&lt;li&gt;Download &lt;a href="http://unetbootin.sourceforge.net/"&gt;unetbootin&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Create a FreeDOS usb with unetbootin&lt;/li&gt;
+&lt;li&gt;Copy and paste everything from the zip you downloaded from Acer to
+    the bootable usb stick you just created&lt;/li&gt;
+&lt;li&gt;Boot your laptop from the usb stick and choose option 5 when the
+    FreeDOS menu appears&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Type the letter of the usb stick to enter it. In my case it was&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+    c:&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;execute&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+    dir&lt;/p&gt;
+&lt;p&gt;&lt;p&gt;
+to see if you are at the right place (you should see the files you
+pasted)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;execute&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+    phlash16 /x /s /mode=3 CLD-114.WPH&lt;/p&gt;
+&lt;p&gt;&lt;p&gt;
+to flash the BIOS (you might want to execute the batch file instead
+but in my case it did not work)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;That's it. My precious is working fine again.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</summary></entry><entry><title>Changing the default browser in Thunderbird</title><link href="http://foivos.zakkak.net/tutorials/changing_default_browser_thunderbird.html" rel="alternate"></link><updated>2012-06-25T10:24:00+03:00</updated><author><name>zakkak</name></author><id>tag:foivos.zakkak.net,2012-06-25:tutorials/changing_default_browser_thunderbird.html</id><summary type="html">&lt;p&gt;If you are unable to launch Firefox from URL links in a Thunderbird
+mail message, or if you want to change the browser that is launched,
+add the following lines to the &lt;code&gt;user.js&lt;/code&gt; file, located in your
+Thunderbird profile folder (you may need to create the &lt;code&gt;user.js&lt;/code&gt;
+file). Change the path of the Firefox executable, if yours is not
+&lt;code&gt;/usr/bin/firefox&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;user_pref&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;network.protocol-handler.app.http&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;/usr/bin/firefox&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;  
+
+&lt;span class="n"&gt;user_pref&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;network.protocol-handler.app.https&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;/usr/bin/firefox&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;  
+
+&lt;span class="n"&gt;user_pref&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;network.protocol-handler.app.ftp&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;/usr/bin/firefox&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Note: You can also use &lt;code&gt;about:config&lt;/code&gt; to set these preferences. See
+Register protocol and &lt;code&gt;network.protocol-handler.app.(protocol)&lt;/code&gt; for
+more information.&lt;/p&gt;
+&lt;p&gt;If you are still unable to change the browser after modifying these
+settings, editing the &lt;code&gt;mimeTypes.rdf&lt;/code&gt; file, also located in your
+Profile folder, can fix the problem. Simply use a text editor to
+search for all references to the browser that links are currently
+opening in and replace them with references to the browser that you
+would like links to open in.&lt;/p&gt;
+&lt;p&gt;If there are no references to browsers to be replaced in the
+mimeTypes.rdf file, then adding some new sections to this file can fix
+the problem. Rather than directly editing the file, you can get
+Thunderbird to automatically add the required sections as follows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Navigate to "Edit --&amp;gt; Preferences --&amp;gt; Advanced" in the Thunderbird
+  menus and click on the "Config Editor" button.&lt;/li&gt;
+&lt;li&gt;Search for the following three entries:&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;network.protocol-handler.warn-external.http&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;network.protocol-handler.warn-external.https&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;network.protocol-handler.warn-external.ftp&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Set the value of each of these three entries to true (you can do
+  this by double-clicking on each entry, then close the &lt;code&gt;about:config&lt;/code&gt;
+  window and click "OK" on the "Thunderbird Preferences" window). &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Having completed these steps, the next time you click on an http,
+https or ftp link in Thunderbird, you will be presented with the
+"Launch Application" window. Press the "Choose" button on this window
+to select your browser of choice. This will add the required entry to
+the mimeTypes.rdf file. This is a one-time task; having selected the
+browser once, links of the same type will now always be opened with
+the selected browser.&lt;/p&gt;
+&lt;p&gt;source: &lt;a href="http://kb.mozillazine.org/Default_browser#Setting_the_browser_that_opens_in_Thunderbird_-_Linux"&gt;http://kb.mozillazine.org/Default_browser#Setting_the_browser_that_opens_in_Thunderbird_-_Linux&lt;/a&gt;&lt;/p&gt;</summary></entry><entry><title>How to create local git repositories</title><link href="http://foivos.zakkak.net/tutorials/how_create_local_git_repositories.html" rel="alternate"></link><updated>2012-05-15T19:07:00+03:00</updated><author><name>zakkak</name></author><id>tag:foivos.zakkak.net,2012-05-15:tutorials/how_create_local_git_repositories.html</id><summary type="html">&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Create the repo directory (the '.' prefix is to make it hidden)&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+    mkdir .myrepo.git&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Go inside the directory&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+    cd .myrepo.git&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Initialize the git repo&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+    git init --bare&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Our repo is now ready  &lt;/p&gt;
+&lt;p&gt;to clone:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;clone&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;myrepo&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;where_to_clone&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: the first push must be&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;push&lt;/span&gt; &lt;span class="n"&gt;origin&lt;/span&gt; &lt;span class="n"&gt;master&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And now you can work from that directory as usual ;)&lt;/p&gt;</summary></entry><entry><title>Changing user id in linux</title><link href="http://foivos.zakkak.net/tutorials/changing_user_id_linux.html" rel="alternate"></link><updated>2012-02-22T18:46:00+02:00</updated><author><name>zakkak</name></author><id>tag:foivos.zakkak.net,2012-02-22:tutorials/changing_user_id_linux.html</id><summary type="html">&lt;p&gt;As a &lt;strong&gt;different&lt;/strong&gt; user execute&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;usermod&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt;  &lt;span class="n"&gt;username&lt;/span&gt;
+&lt;span class="n"&gt;find&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;exec&lt;/span&gt; &lt;span class="n"&gt;chown&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;usermod&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt; &lt;span class="mi"&gt;2179&lt;/span&gt; &lt;span class="n"&gt;user1&lt;/span&gt;
+&lt;span class="n"&gt;find&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;exec&lt;/span&gt; &lt;span class="n"&gt;chown&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt; &lt;span class="mi"&gt;2179&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary></entry><entry><title>Mounting remote folders with sshfs</title><link href="http://foivos.zakkak.net/tutorials/mounting_remote_folders_sshfs.html" rel="alternate"></link><updated>2012-02-21T17:52:00+02:00</updated><author><name>zakkak</name></author><id>tag:foivos.zakkak.net,2012-02-21:tutorials/mounting_remote_folders_sshfs.html</id><summary type="html">&lt;p&gt;This tutorial will show you how to mount a remote folder, that you can
+access through &lt;strong&gt;sftp&lt;/strong&gt;, on your local filesystem.&lt;/p&gt;
+&lt;p&gt;First you will need to set up your ssh connection to work
+&lt;strong&gt;passwordless&lt;/strong&gt;. Read &lt;a href="http://node/17"&gt;this&lt;/a&gt; if you don't know how.&lt;/p&gt;
+&lt;p&gt;Install sshfs to your system and add your user to the fuse group.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;sshfs&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;adduser&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;USER&lt;/span&gt; &lt;span class="n"&gt;fuse&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Open /etc/fstab and append the following line (yes it is &lt;strong&gt;one&lt;/strong&gt;line)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sshfs&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;remote&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;server&lt;/span&gt;&lt;span class="o"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;remote&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;folder&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;to_mount&lt;/span&gt; &lt;span class="n"&gt;fuse&lt;/span&gt; &lt;span class="n"&gt;comment&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;sshfs&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;noauto&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;users&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;exec&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;reconnect&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;transform_symlinks&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;BatchMode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;yes&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;To &lt;strong&gt;mount&lt;/strong&gt; execute:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;mount&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;to_mount&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;To &lt;strong&gt;unmount&lt;/strong&gt; execute:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;fusermount&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;to_mount&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;unmount&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary></entry><entry><title>How to use your Google OpenID on sites supporting OpenID (like this one)</title><link href="http://foivos.zakkak.net/tutorials/how_use_your_google_openid_sites_supporting_openid_one.html" rel="alternate"></link><updated>2012-02-10T23:06:00+02:00</updated><author><name>zakkak</name></author><id>tag:foivos.zakkak.net,2012-02-10:tutorials/how_use_your_google_openid_sites_supporting_openid_one.html</id><summary type="html">&lt;p&gt;&lt;span&gt;Simply
+type&lt;/span&gt;&lt;span&gt;https://www.google.com/accounts/o8/id&lt;/span&gt;&lt;span&gt; as
+your OpenID and it will do the trick ;)&lt;/span&gt;&lt;/p&gt;</summary></entry><entry><title>SSH login without password</title><link href="http://foivos.zakkak.net/tutorials/ssh_login_without_password.html" rel="alternate"></link><updated>2010-07-05T16:57:00+03:00</updated><author><name>zakkak</name></author><id>tag:foivos.zakkak.net,2010-07-05:tutorials/ssh_login_without_password.html</id><summary type="html">&lt;p&gt;Open your favorite terminal emulator and type&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;keygen&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="n"&gt;dsa&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;(simply enter on whatever it asks you)&lt;/p&gt;
+&lt;p&gt;try&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;copy&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;id_dsa&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pub&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;remote&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;machine&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;if it fails (you don't have ssh-copy-id) do&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;id_dsa&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pub&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;ssh&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;remote&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;machine&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;authorized_keys&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;give your password and you are ready to go  &lt;/p&gt;
+&lt;p&gt;try:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ssh&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;remote&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;machine&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;it should log you in without asking for a password&lt;/p&gt;</summary></entry><entry><title>Synchronizing iphone on linux</title><link href="http://foivos.zakkak.net/tutorials/synchronizing_iphone_linux.html" rel="alternate"></link><updated>2010-06-13T17:36:00+03:00</updated><author><name>zakkak</name></author><id>tag:foivos.zakkak.net,2010-06-13:tutorials/synchronizing_iphone_linux.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Required packages:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;libgpod4, gtkpod, ifuse, usbmuxd&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Steps:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;After having installed the above packages&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;mkdir&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;media&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;iPhone&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;can&lt;/span&gt; &lt;span class="n"&gt;choose&lt;/span&gt; &lt;span class="n"&gt;whatever&lt;/span&gt; &lt;span class="n"&gt;location&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;desire&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;chown&lt;/span&gt; &lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;whoami&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;media&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;iPhone&lt;/span&gt;
+&lt;span class="n"&gt;ifuse&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;media&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;iPhone&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;this&lt;/span&gt; &lt;span class="n"&gt;will&lt;/span&gt; &lt;span class="n"&gt;mount&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="n"&gt;iphone&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;media&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;iPhone&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;mkdir&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;media&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;iPhone&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;iTunes_Control&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Device&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;lsusb&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;grep&lt;/span&gt; &lt;span class="n"&gt;iSerial&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;this will output like something this:&lt;/p&gt;
+&lt;div&gt;
+
+  iSerial                 1 0000:00:12.2
+
+&lt;/div&gt;
+
+&lt;div&gt;
+
+  iSerial                 1 0000:00:13.2  
+
+  iSerial                 3 8372189bcafb324324eafbs8432b4235b32130537  
+
+  iSerial                 1 0000:00:12.0  
+
+  iSerial                 0
+&lt;/p&gt;
+&lt;div&gt;
+
+  iSerial                 1 0000:00:12.1
+
+&lt;/div&gt;
+
+&lt;div&gt;
+
+  iSerial                 0
+
+&lt;/div&gt;
+
+&lt;div&gt;
+
+  iSerial                 1 0000:00:13.0
+
+&lt;/div&gt;
+
+&lt;div&gt;
+
+  iSerial                 1 0000:00:13.1
+
+&lt;/div&gt;
+
+&lt;div&gt;
+
+  iSerial                 1 0000:00:14.5
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ipod&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;sysinfo&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;extended&lt;/span&gt; &lt;span class="mi"&gt;8372189&lt;/span&gt;&lt;span class="n"&gt;bcafb324324eafbs8432b4235b32130537&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;media&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;iPhone&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;
+&lt;div&gt;
+
+&lt;p&gt;check if /media/iPhone/iTunes_Control/Device/SysInfoExtended now
+exists&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div&gt;
+
+&lt;p&gt;launch gtkpod and follow the on-screen instructions. If it shows any
+warnings don't worry too much ;)&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;div&gt;
+
+&lt;p&gt;You should now be able to access your iphone playlist and add songs.
+&lt;/p&gt;
+&lt;div&gt;&lt;/p&gt;
+&lt;p&gt;After doing anything you want don't forget to "save changes" on
+gtkpod and quit normally&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Then before unplugging your iphone always remember to unmount it
+    using  &lt;/p&gt;
+&lt;p&gt;fusermount -u /media/iPhone.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;From now on you can &lt;strong&gt;mount&lt;/strong&gt; your iphone with&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ifuse&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;media&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;iPhone&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;synchronize&lt;/strong&gt; it with gtkpod and &lt;strong&gt;unmount&lt;/strong&gt; it with&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;fusermount&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;media&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;iPhone&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary></entry><entry><title>Connect to UCNET over vpn on ubuntu</title><link href="http://foivos.zakkak.net/tutorials/connect_ucnet_over_vpn_ubuntu.html" rel="alternate"></link><updated>2010-06-11T20:06:00+03:00</updated><author><name>zakkak</name></author><id>tag:foivos.zakkak.net,2010-06-11:tutorials/connect_ucnet_over_vpn_ubuntu.html</id><summary type="html">&lt;p&gt;Go to &lt;strong&gt;System-&gt;Administration-&gt;Synaptic Package Manager&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Search for &lt;strong&gt;pptp&lt;/strong&gt; and install &lt;strong&gt;pptp-linux&lt;/strong&gt; and
+&lt;strong&gt;network-manager-pptp&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;click the network manager and go to &lt;strong&gt;VPN Connections-&gt;Configure
+VPN&lt;/strong&gt;...&lt;/p&gt;
+&lt;p&gt;Connection name: whatever you like  &lt;/p&gt;
+&lt;p&gt;Gateway: 192.168.1.1  &lt;/p&gt;
+&lt;p&gt;User name: login@csd.uoc.gr  &lt;/p&gt;
+&lt;p&gt;Password: yourPass&lt;/p&gt;
+&lt;p&gt;now click advanced... and check Use point-to-point encryption (MPPE)
+ok-&gt;ok-&gt;close&lt;/p&gt;
+&lt;p&gt;you should now be able to connect using the ucnet network and then
+clicking network manager's icon and go to VPN Connections-&gt;the name you
+chose&lt;/p&gt;
+&lt;p&gt;for command line installation:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;pptp&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;linux&lt;/span&gt; &lt;span class="n"&gt;network&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;manager&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pptp&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary></entry><entry><title>Using kompare for svn diff</title><link href="http://foivos.zakkak.net/tutorials/using_kompare_svn_diff.html" rel="alternate"></link><updated>2010-06-09T17:43:00+03:00</updated><author><name>zakkak</name></author><id>tag:foivos.zakkak.net,2010-06-09:tutorials/using_kompare_svn_diff.html</id><summary type="html">&lt;p&gt;(&lt;strong&gt;Update: 15-10-2012&lt;/strong&gt;) First read &lt;a href="http://foivos.zakkak.net/?q=node/43"&gt;this&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;You don't like/understand the svn diff output?&lt;/p&gt;
+&lt;p&gt;You would prefer a better tool with merge options and appropriate
+coloring?&lt;/p&gt;
+&lt;p&gt;Kompare is a great tool used by kdevelop to compare files. You can find
+it in the repositories of all famous linux distros or &lt;a href="http://kde-apps.org/content/show.php/Kompare?content=19001"&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;But how could you use it as svn diff command?&lt;/p&gt;
+&lt;p&gt;I 've written a ruby script based on the script svnvimdiff, written by
+Geoff Buchan that will let you svn diff your files with kompare.&lt;/p&gt;
+&lt;p&gt;Click &lt;a href="http://foivos@zakkak.net/files/svnkomp.rb"&gt;here&lt;/a&gt; to see and get the script.&lt;/p&gt;
+&lt;p&gt;A usage example is the following (diffs/compares "file" with the last
+checked in "file")&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;svnkomp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rb&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;rHEAD&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary></entry><entry><title>Connecting through gate1.csd.uoc.gr and gate2.csd.uoc.gr</title><link href="http://foivos.zakkak.net/tutorials/connecting_through_gate1csduocgr_and_gate2csduocgr.html" rel="alternate"></link><updated>2010-06-01T11:47:00+03:00</updated><author><name>zakkak</name></author><id>tag:foivos.zakkak.net,2010-06-01:tutorials/connecting_through_gate1csduocgr_and_gate2csduocgr.html</id><summary type="html">&lt;h3&gt;&lt;a id="simple_ssh" name="simple_ssh"&gt;&lt;/a&gt;Απλό SSH:&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;ssh gate1.csd.uoc.g​r&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Αφού εισάγετε των κωδικό σας και εμφανιστεί το %&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ssh&lt;/span&gt; &lt;span class="n"&gt;milo&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;θα σας τυπώσει το παρακάτω μήνυμα&lt;/p&gt;
+&lt;p&gt;&lt;address&gt;
+The authe​nticity of host 'milo.csd.uoc.gr (147.52.19.9)' can't be
+established. RSA key fingerprint is
+5a:37:48:87:3a:d3:37:4e:34:15:4b:d2:3f:07:bc:aa. Are you sure you
+want to continue connecting (yes/no)?&lt;/p&gt;
+&lt;p&gt;&lt;/address&gt;
+Γράφεται yes&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Εισάγεται τον κωδικό σας και είστε έτοιμοι&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;&lt;a id="enable_ssh" name="enable_ssh"&gt;&lt;/a&gt;Απλό SSH με χρήση enable:&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;ssh gate1.csd.uoc.gr&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Αφού εισάγετε των κωδικό σας και εμφανιστεί το %&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;enable&lt;/span&gt; &lt;span class="n"&gt;milo&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;θα σας τυπώσει το παρακάτω μήνυμα&lt;/p&gt;
+&lt;p&gt;&lt;address&gt;
+Th​e authenticity of host 'milo.csd.uoc.gr (147.52.19.9)' can't be
+established. RSA key fingerprint is
+5a:37:48:87:3a:d3:37:4e:34:15:4b:d2:3f:07:bc:aa. Are you sure you
+want to continue connecting (yes/no)?&lt;/p&gt;
+&lt;p&gt;&lt;/address&gt;
+ Γράφεται yes&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Εισάγεται τον κωδικό σας και θα εμφανιστεί ενα μήνυμα σαν αυτό&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;You&lt;/span&gt; &lt;span class="nx"&gt;can&lt;/span&gt; &lt;span class="nx"&gt;now&lt;/span&gt; &lt;span class="nb"&gt;connect&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="nx"&gt;milo.&lt;/span&gt;
+
+&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="nx"&gt;.&lt;/span&gt; &lt;span class="nx"&gt;Linux&lt;/span&gt; &lt;span class="nx"&gt;commands&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+
+&lt;span class="nx"&gt;ssh&lt;/span&gt; &lt;span class="nx"&gt;zakkak&lt;/span&gt;&lt;span class="p"&gt;@&lt;/span&gt;&lt;span class="nx"&gt;gate1.csd.uoc.gr&lt;/span&gt; &lt;span class="na"&gt;-p&lt;/span&gt; &lt;span class="mi"&gt;10705&lt;/span&gt;
+&lt;span class="nx"&gt;scp&lt;/span&gt; &lt;span class="na"&gt;-P&lt;/span&gt; &lt;span class="mi"&gt;10705&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;zakkak&lt;/span&gt;&lt;span class="p"&gt;@&lt;/span&gt;&lt;span class="nx"&gt;gate1.csd.uoc.gr&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="kc"&gt;full&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;dest&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;path&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nx"&gt;sftp&lt;/span&gt; &lt;span class="na"&gt;-o&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10705&lt;/span&gt; &lt;span class="nx"&gt;zakkak&lt;/span&gt;&lt;span class="p"&gt;@&lt;/span&gt;&lt;span class="nx"&gt;gate1.csd.uoc.gr&lt;/span&gt;
+
+&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="nx"&gt;.&lt;/span&gt; &lt;span class="nx"&gt;Windows&lt;/span&gt; &lt;span class="nx"&gt;settings&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;SSH&lt;/span&gt; &lt;span class="nx"&gt;Secure&lt;/span&gt; &lt;span class="nx"&gt;Shell&lt;/span&gt; &lt;span class="nx"&gt;Client&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="nb"&gt;replace&lt;/span&gt; &lt;span class="nx"&gt;scp&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;sftp&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nx"&gt;pscp&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;psftp&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+&lt;span class="nx"&gt;Username&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;zakkak&lt;/span&gt;
+&lt;span class="nb"&gt;Hostname&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;gate1.csd.uoc.gr&lt;/span&gt;
+&lt;span class="nb"&gt;Port&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10705&lt;/span&gt;
+
+&lt;span class="nb"&gt;For&lt;/span&gt; &lt;span class="nx"&gt;detailed&lt;/span&gt; &lt;span class="nx"&gt;info&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;go&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="nx"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//www.csd.uoc.gr/services/useful-info/remote-connection.html&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Από το παραπάνω μήνυμα κάνουμε αντιγραφή και επικόληση σε άλλο
+    τερματικό (προσοχή το port θα διαφέρει κάθε φορά)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ssh&lt;/span&gt; &lt;span class="n"&gt;zakkak&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;gate1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;csd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;uoc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gr&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="mi"&gt;17440&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;θα σας τυπώσει το παρακάτω μήνυμα&lt;/p&gt;
+&lt;p&gt;&lt;address&gt;
+The authenticity of host 'gate1.csd.uoc.gr (147.52.19.9)' can't be
+established. RSA key fingerprint is
+5a:37:48:87:3a:d3:37:4e:34:15:4b:d2:3f:07:bc:aa. Are you sure you
+want to continue connecting (yes/no)?&lt;/p&gt;
+&lt;p&gt;&lt;/address&gt;
+Γράφεται yes&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Εισάγεται τον κωδικό σας και είστε έτοιμοι&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;&lt;a id="x11_ssh" name="x11_ssh"&gt;&lt;/a&gt;SSH με Χ11:​&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;ssh -Χ gate1.csd.uoc.gr&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Αφού εισάγετε των κωδικό σας και εμφανιστεί το %&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;enable&lt;/span&gt; &lt;span class="n"&gt;milo&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;θα σας τυπώσει το παρακάτω μήνυμα&lt;/p&gt;
+&lt;p&gt;&lt;address&gt;
+The authenticity of host 'milo.csd.uoc.gr (147.52.19.9)' can't be
+established. RSA key fingerprint is
+5a:37:48:87:3a:d3:37:4e:34:15:4b:d2:3f:07:bc:aa. Are you sure you
+want to continue connecting (yes/no)?&lt;/p&gt;
+&lt;p&gt;&lt;/address&gt;
+Γράφεται yes&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Εισάγεται τον κωδικό σας και θα εμφανιστεί ενα μήνυμα σαν αυτό&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;You&lt;/span&gt; &lt;span class="nx"&gt;can&lt;/span&gt; &lt;span class="nx"&gt;now&lt;/span&gt; &lt;span class="nb"&gt;connect&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="nx"&gt;milo.&lt;/span&gt;
+
+&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="nx"&gt;.&lt;/span&gt; &lt;span class="nx"&gt;Linux&lt;/span&gt; &lt;span class="nx"&gt;commands&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+
+&lt;span class="nx"&gt;ssh&lt;/span&gt; &lt;span class="nx"&gt;zakkak&lt;/span&gt;&lt;span class="p"&gt;@&lt;/span&gt;&lt;span class="nx"&gt;gate1.csd.uoc.gr&lt;/span&gt; &lt;span class="na"&gt;-p&lt;/span&gt; &lt;span class="mi"&gt;10705&lt;/span&gt;
+&lt;span class="nx"&gt;scp&lt;/span&gt; &lt;span class="na"&gt;-P&lt;/span&gt; &lt;span class="mi"&gt;10705&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;zakkak&lt;/span&gt;&lt;span class="p"&gt;@&lt;/span&gt;&lt;span class="nx"&gt;gate1.csd.uoc.gr&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="kc"&gt;full&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;dest&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;path&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nx"&gt;sftp&lt;/span&gt; &lt;span class="na"&gt;-o&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10705&lt;/span&gt; &lt;span class="nx"&gt;zakkak&lt;/span&gt;&lt;span class="p"&gt;@&lt;/span&gt;&lt;span class="nx"&gt;gate1.csd.uoc.gr&lt;/span&gt;
+
+&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="nx"&gt;.&lt;/span&gt; &lt;span class="nx"&gt;Windows&lt;/span&gt; &lt;span class="nx"&gt;settings&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;SSH&lt;/span&gt; &lt;span class="nx"&gt;Secure&lt;/span&gt; &lt;span class="nx"&gt;Shell&lt;/span&gt; &lt;span class="nx"&gt;Client&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="nb"&gt;replace&lt;/span&gt; &lt;span class="nx"&gt;scp&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;sftp&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nx"&gt;pscp&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;psftp&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+&lt;span class="nx"&gt;Username&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;zakkak&lt;/span&gt;
+&lt;span class="nb"&gt;Hostname&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;gate1.csd.uoc.gr&lt;/span&gt;
+&lt;span class="nb"&gt;Port&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10705&lt;/span&gt;
+
+&lt;span class="nb"&gt;For&lt;/span&gt; &lt;span class="nx"&gt;detailed&lt;/span&gt; &lt;span class="nx"&gt;info&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;go&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="nx"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//www.csd.uoc.gr/services/useful-info/remote-connection.html&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Από το παραπάνω μήνυμα κάνουμε αντιγραφή και επικόληση σε άλλο
+    τερματικό (προσοχή το port θα διαφέρει κάθε φορά) και προσθέτουμε
+    την παράμετρο -X, το αποτέλεσμα θα είναι κάπως έτσι&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ssh&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt; &lt;span class="n"&gt;zakkak&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;gate1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;csd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;uoc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gr&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="mi"&gt;17440&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;θα σας τυπώσει το παρακάτω μήνυμα&lt;/p&gt;
+&lt;p&gt;&lt;address&gt;
+The authenticity of host 'gate1.csd.uoc.gr (147.52.19.9)' can't be
+established. RSA key fingerprint is
+5a:37:48:87:3a:d3:37:4e:34:15:4b:d2:3f:07:bc:aa. Are you sure you
+want to continue connecting (yes/no)?&lt;/p&gt;
+&lt;p&gt;&lt;/address&gt;
+Γράφεται yes&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Εισάγεται τον κωδικό σας και είστε έτοιμοι (για δοκιμή τρέξτε το xclock)&lt;/p&gt;
+&lt;p&gt;xclock&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;&lt;a id="sftp" name="sftp"&gt;&lt;/a&gt;SFTP:​&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;ssh gate1.csd.uoc.gr&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Αφού εισάγετε των κωδικό σας και εμφανιστεί το %&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;enable&lt;/span&gt;&lt;span class="err"&gt;​&lt;/span&gt; &lt;span class="n"&gt;milo&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;θα σας τυπώσει το παρακάτω μήνυμα&lt;/p&gt;
+&lt;p&gt;&lt;address&gt;
+The authenticity of host 'milo.csd.uoc.gr (147.52.19.9)' can't be
+established. RSA key fingerprint is
+5a:37:48:87:3a:d3:37:4e:34:15:4b:d2:3f:07:bc:aa. Are you sure you
+want to continue connecting (yes/no)?&lt;/p&gt;
+&lt;p&gt;&lt;/address&gt;
+Γράφεται yes&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Εισάγεται τον κωδικό σας και θα εμφανιστεί ενα μήνυμα σαν αυτό&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;You&lt;/span&gt; &lt;span class="nx"&gt;can&lt;/span&gt; &lt;span class="nx"&gt;now&lt;/span&gt; &lt;span class="nb"&gt;connect&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="nx"&gt;milo.&lt;/span&gt;
+
+&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="nx"&gt;.&lt;/span&gt; &lt;span class="nx"&gt;Linux&lt;/span&gt; &lt;span class="nx"&gt;commands&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+
+&lt;span class="nx"&gt;ssh&lt;/span&gt; &lt;span class="nx"&gt;zakkak&lt;/span&gt;&lt;span class="p"&gt;@&lt;/span&gt;&lt;span class="nx"&gt;gate1.csd.uoc.gr&lt;/span&gt; &lt;span class="na"&gt;-p&lt;/span&gt; &lt;span class="mi"&gt;10705&lt;/span&gt;
+&lt;span class="nx"&gt;scp&lt;/span&gt; &lt;span class="na"&gt;-P&lt;/span&gt; &lt;span class="mi"&gt;10705&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;zakkak&lt;/span&gt;&lt;span class="p"&gt;@&lt;/span&gt;&lt;span class="nx"&gt;gate1.csd.uoc.gr&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="kc"&gt;full&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;dest&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;path&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nx"&gt;sftp&lt;/span&gt; &lt;span class="na"&gt;-o&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10705&lt;/span&gt; &lt;span class="nx"&gt;zakkak&lt;/span&gt;&lt;span class="p"&gt;@&lt;/span&gt;&lt;span class="nx"&gt;gate1.csd.uoc.gr&lt;/span&gt;
+
+&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="nx"&gt;.&lt;/span&gt; &lt;span class="nx"&gt;Windows&lt;/span&gt; &lt;span class="nx"&gt;settings&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;SSH&lt;/span&gt; &lt;span class="nx"&gt;Secure&lt;/span&gt; &lt;span class="nx"&gt;Shell&lt;/span&gt; &lt;span class="nx"&gt;Client&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="nb"&gt;replace&lt;/span&gt; &lt;span class="nx"&gt;scp&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;sftp&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nx"&gt;pscp&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;psftp&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+&lt;span class="nx"&gt;Username&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;zakkak&lt;/span&gt;
+&lt;span class="nb"&gt;Hostname&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;gate1.csd.uoc.gr&lt;/span&gt;
+&lt;span class="nb"&gt;Port&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10705&lt;/span&gt;
+
+&lt;span class="nb"&gt;For&lt;/span&gt; &lt;span class="nx"&gt;detailed&lt;/span&gt; &lt;span class="nx"&gt;info&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;go&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="nx"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//www.csd.uoc.gr/services/useful-info/remote-connection.html&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Από το παραπάνω μήνυμα βλέπουμε ότι τα στοιχεία που χρειαζόμαστε για
+    το sftp είναι τα ακόλουθα  &lt;/p&gt;
+&lt;p&gt;Hostname: gate1.csd.uoc.gr  &lt;/p&gt;
+&lt;p&gt;Port: 17440&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Ανοίγουμε την sftp client εφαρμογή της αρεσκείας μας (π.χ.
+    Filezilla) και στις ρυθμίσεις για το site Που επιθιμούμε να
+    συνδεθούμε εισάγουμε τα παραπάνω στοιχεία και επιλέγουμε ως
+    πρωτόκολλο για την σύνδεση το sftp&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;em&gt;   * Στα παραδείγματα χρησιμοποιήθηκε το milo σαν μηχάνημα και to
+gate1 προφανώς μπορείτε να χρησιμοποιήσετε όποιο μηχάνημα της σχολής
+θέλετε και το gate2 εναλλακτικά&lt;/em&gt;&lt;/p&gt;</summary></entry></feed>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Foivos . Zakkak . net</title><link href="http://foivos.zakkak.net/" rel="alternate"></link><link href="http://foivos.zakkak.net/feeds/blog.atom.xml" rel="self"></link><id>http://foivos.zakkak.net/</id><updated>2012-11-16T21:45:00+02:00</updated><entry><title>Μία μέρα σαν τις άλλες;</title><link href="http://foivos.zakkak.net/blog/mia_mera_san_tis_alles.html" rel="alternate"></link><updated>2012-11-16T21:45:00+02:00</updated><author><name>zakkak</name></author><id>tag:foivos.zakkak.net,2012-11-16:blog/mia_mera_san_tis_alles.html</id><summary type="html">&lt;p&gt;Σήμερα ήταν μία πολύ σημαντική μέρα για κάποιους φίλους μου. Πήραν το
+πτυχίο τους (όχι ότι ξέρουν τι να το κάνουν, αλλά τουλάχιστον το πήραν).
+Ο ένας έκανε ανάποδη κωλοτούμπα στον αέρα και μετά έριξε και έναν τροχό
+στον αέρα (ναι ένιωσα φλώρος που απλά περπατούσα στις ορκωμοσίες μου). Ο
+άλλος πόσταρε τα μούτρα του με το πτυχίο στο FB και μετά έκανε και check
+in για να το γλεντήσει. Η άλλη πήγε και ίσιωσε τα υπέροχα σγουρά μαλλιά
+της. Ο άλλος έγινε παπανικολής. Κάποιοι άλλοι πάλι δεν έκαναν τίποτα
+ξεχωριστό, αλλά δεν πειράζει χαλάλι τους. Και εγώ σε όλα αυτά ήμουν
+απών.&lt;/p&gt;
+&lt;p&gt;Έτσι αποφάσισα να κάνω και εγώ κάτι διαφορετικό σήμερα γι αυτούς και
+έγραψα αυτό το ποστ.&lt;/p&gt;
+&lt;p&gt;Μάλιστα είχα σκοπό να το βάλω στο blog μου και να μην το ποστάρω εδώ
+αλλά το blog μου έχει μόνο αγγλικά, αλλά δε γαμ...τε. Οπότε νάτο στο
+blog μου.&lt;/p&gt;
+&lt;p&gt;Καλή συνέχεια παιδιά :)&lt;/p&gt;
+&lt;iframe allowfullscreen frameborder="0" height="480" src="https://www.youtube.com/embed/kmN3FBX_-JY" width="853"&gt;&lt;/iframe&gt;</summary></entry><entry><title>My Favorite VIM plugins</title><link href="http://foivos.zakkak.net/blog/my_favorite_vim_plugins.html" rel="alternate"></link><updated>2012-11-08T07:26:00+02:00</updated><author><name>zakkak</name></author><id>tag:foivos.zakkak.net,2012-11-08:blog/my_favorite_vim_plugins.html</id><summary type="html">&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Plugin&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Link&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Vundle&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;The plugin manager&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/gmarik/vundle"&gt;https://github.com/gmarik/vundle&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Gundo&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Undo tree visualizer&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/sjl/gundo.vim"&gt;https://github.com/sjl/gundo.vim&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;NERDTree&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Folder tree visualizer&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/scrooloose/nerdtree"&gt;https://github.com/scrooloose/nerdtree&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;NERDCommenter&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Make commenting easy and fast&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/scrooloose/nerdcommenter"&gt;https://github.com/scrooloose/nerdcommenter&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Automatic TeX&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Writing LaTeX the easy way&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/coot/atp_vim"&gt;https://github.com/coot/atp_vim&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Syntastic&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Syntax checking on save&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/scrooloose/syntastic"&gt;https://github.com/scrooloose/syntastic&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;SuperTab&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Auto completion with &lt;code&gt;&amp;lt;Tab&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/ervandew/supertab"&gt;https://github.com/ervandew/supertab&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;AutoComplPop&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Automatically show the completion menu&lt;/td&gt;
+&lt;td&gt;&lt;a href="http://www.vim.org/scripts/script.php?script_id=1879"&gt;http://www.vim.org/scripts/script.php?script_id=1879&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;CtrlP&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Fuzzy file, buffer, mru, tag, etc finder&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/kien/ctrlp.vim"&gt;https://github.com/kien/ctrlp.vim&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Vimux&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Vim -&gt; &lt;a href="http://tmux.sourceforge.net/"&gt;tmux&lt;/a&gt; interaction&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/benmills/vimux"&gt;https://github.com/benmills/vimux&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;ZoomWin&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Zoom to current window with &lt;code&gt;&amp;lt;C-w&amp;gt; o&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="http://vim.sourceforge.net/scripts/script.php?script_id=508"&gt;http://vim.sourceforge.net/scripts/script.php?script_id=508&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Tabular&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Align text/code to a symbol&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/godlygeek/tabular"&gt;https://github.com/godlygeek/tabular&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;(i.e. assignments to "=")&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;VCScommand&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;VCS integration in VIM&lt;/td&gt;
+&lt;td&gt;&lt;a href="http://www.vim.org/script.php?script_id=90"&gt;http://www.vim.org/script.php?script_id=90&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;VIM-Autoclose&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Autocloses ( and { and puts the cursor inside&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/Townk/vim-autoclose"&gt;https://github.com/Townk/vim-autoclose&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;MatchIt&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Make % match more stuff&lt;/td&gt;
+&lt;td&gt;&lt;a href="http://www.vim.org/scripts/script.php?script_id=39"&gt;http://www.vim.org/scripts/script.php?script_id=39&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;(i.e begin end)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;AutoTag&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Updates entries in a tags file automatically on save&lt;/td&gt;
+&lt;td&gt;&lt;a href="http://www.vim.org/scripts/script.php?script_id=1343"&gt;http://www.vim.org/scripts/script.php?script_id=1343&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;TagBar&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;tags visualizer&lt;/td&gt;
+&lt;td&gt;&lt;a href="http://majutsushi/tagbar"&gt;http://majutsushi/tagbar&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;BuffKill&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Mainly to unload, delete or wipe a buffer&lt;/td&gt;
+&lt;td&gt;&lt;a href="http://www.vim.org/scripts/script.php?script_id=1147"&gt;http://www.vim.org/scripts/script.php?script_id=1147&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;without closing the window (or windows)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;it was displayed in&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;SearchComplete&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Adds completion to search&lt;/td&gt;
+&lt;td&gt;&lt;a href="http://www.vim.org/scripts/script.php?script_id=474"&gt;http://www.vim.org/scripts/script.php?script_id=474&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Numbers&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Relative numbering on normal mode&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/myusuf3/numbers.vim"&gt;https://github.com/myusuf3/numbers.vim&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Absolute numbering on insert mode&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;foivos.vim&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;My theme (based on ron)&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://github.com/zakkak/foivos.vim"&gt;https://github.com/zakkak/foivos.vim&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</summary></entry><entry><title>svnkomp -&gt; vcsdiff</title><link href="http://foivos.zakkak.net/blog/svnkomp_vcsdiff.html" rel="alternate"></link><updated>2012-10-14T22:15:00+03:00</updated><author><name>zakkak</name></author><id>tag:foivos.zakkak.net,2012-10-14:blog/svnkomp_vcsdiff.html</id><summary type="html">&lt;p&gt;Do you remember &lt;a href="http://foivos.zakkak.net/code/svnkomp_using_kompare_svndiff.html"&gt;svnkomp&lt;/a&gt;?&lt;/p&gt;
+&lt;p&gt;After completely rewriting it from bash to ruby i decided to extend it.&lt;/p&gt;
+&lt;p&gt;svnkomp is called &lt;a href="https://rubygems.org/gems/vcsdiff"&gt;vcsdiff&lt;/a&gt; from now on and is available as a ruby gem
+(currently prerelease)&lt;/p&gt;
+&lt;p&gt;vcsdiff gem source can be found &lt;a href="https://github.com/zakkak/vcsdiff"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Finally to get the pure ruby script go &lt;a href="https://github.com/zakkak/vcsdiff/blob/master/bin/vcsdiff"&gt;here&lt;/a&gt;.&lt;/p&gt;</summary></entry><entry><title>Zero-day flaw bypasses Windows UAC</title><link href="http://foivos.zakkak.net/blog/zeroday_flaw_bypasses_windows_uac.html" rel="alternate"></link><updated>2010-12-12T12:07:00+02:00</updated><author><name>zakkak</name></author><id>tag:foivos.zakkak.net,2010-12-12:blog/zeroday_flaw_bypasses_windows_uac.html</id><summary type="html">&lt;div class="entry"&gt;
+
+A new vulnerability in the Windows kernel was disclosed this
+Wednesday(11-24-2010) that could allow malware to attain administrative
+privileges by bypassing User Account Control (UAC).
+
+A zero-day exploit in Microsoft Windows enables non-administrator
+accounts to execute code as if they were an administrator. The flaw
+appears to affect all versions of Windows back to at least Windows XP,
+including the latest Windows 2008 R2 and Windows 7 systems.
+
+A bug in win32k.sys, which is part of the Windows kernel, seems to be
+responsible for this exploit. The flaw is related to the way in which a
+certain registry key is interpreted and enables an attacker to
+impersonate the system account, which has nearly unlimited access to all
+components of the Windows system. The registry key in question is under
+the full control of non-privileged users.
+
+This exploit does not allow remote code execution (RCE). Thus, malicious
+code that uses the exploit needs to be introduced. So your anti-virus
+system should be able to block those payloads and keep you safe.
+
+[source][]
+
+&lt;/div&gt;</summary></entry></feed>

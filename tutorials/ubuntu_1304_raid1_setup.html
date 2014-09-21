@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en"
+>
+<head>
+    <title>Ubuntu 13.04 RAID-1 setup - Foivos . Zakkak . net</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="http://foivos.zakkak.net/tutorials/ubuntu_1304_raid1_setup.html">
+
+        <meta name="author" content="zakkak" />
+        <meta name="description" content="Purpose This tutorial aims to help you setup a software RAID-1 (mirror) under ubuntu 13.04 Lets assume the following mapping /dev/sda1 / /dev/sda2 /home /dev/sda3 swap /dev/sda4 /spare We also assume that you have a second (empty) hard disk drive larger or equal to sda . We ..." />
+
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://foivos.zakkak.net/theme/css/bootstrap.yeti.min.css" type="text/css"/>
+    <link href="http://foivos.zakkak.net/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://foivos.zakkak.net/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://foivos.zakkak.net/theme/css/style.css" type="text/css"/>
+
+        <link href="http://foivos.zakkak.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Foivos . Zakkak . net ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://foivos.zakkak.net/" class="navbar-brand">
+Foivos . Zakkak . net            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                        <li >
+                            <a href="http://foivos.zakkak.net/category/blog.html">Blog</a>
+                        </li>
+                        <li >
+                            <a href="http://foivos.zakkak.net/category/code.html">Code</a>
+                        </li>
+                        <li class="active">
+                            <a href="http://foivos.zakkak.net/category/tutorials.html">Tutorials</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://foivos.zakkak.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+            <ol class="breadcrumb">
+                <li><a href="http://foivos.zakkak.net" title="Foivos . Zakkak . net"><i class="fa fa-home fa-lg"></i></a></li>
+                <li><a href="http://foivos.zakkak.net/category/tutorials.html" title="Tutorials">Tutorials</a></li>
+                <li class="active">Ubuntu 13.04 RAID-1 setup</li>
+            </ol>
+
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://foivos.zakkak.net/tutorials/ubuntu_1304_raid1_setup.html"
+                       rel="bookmark"
+                       title="Permalink to Ubuntu 13.04 RAID-1 setup">
+                        Ubuntu 13.04 RAID-1 setup
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2013-06-23T09:54:00"> Sun 23 June 2013</time>
+    </span>
+
+
+
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <h2>Purpose</h2>
+<p>This tutorial aims to help you setup a software RAID-1 (mirror) under
+ubuntu 13.04  </p>
+<p>Lets assume the following mapping</p>
+<div class="highlight"><pre><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda1</span>    <span class="o">/</span>
+<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda2</span>    <span class="o">/</span><span class="n">home</span>
+<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda3</span>    <span class="n">swap</span>
+<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda4</span>    <span class="o">/</span><span class="n">spare</span>
+</pre></div>
+
+
+<p>We also assume that you have a second (empty) hard disk drive larger or
+equal to sda .  </p>
+<p>We are going to create 4 new partitions (md1,md2,md3,md4) which will
+act as RAID-1 using sda1 &amp; sdb1, sda2 &amp; sdb2, sda3 &amp; sdb3, and sda4 &amp;
+sdb4 respectively to store the data.  This way all our data will be
+available on both disks.</p>
+<h2>Dependencies</h2>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">initramfs</span><span class="o">-</span><span class="n">tools</span> <span class="n">mdadm</span>
+</pre></div>
+
+
+<p>Now run</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">modprobe</span> <span class="n">raid1</span>
+</pre></div>
+
+
+<p>and</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">more</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">mdstat</span>
+</pre></div>
+
+
+<p>This should print something like this:</p>
+<div class="highlight"><pre><span class="n">Personalities</span> <span class="o">:</span> <span class="p">[</span><span class="n">linear</span><span class="p">]</span> <span class="p">[</span><span class="n">multipath</span><span class="p">]</span> <span class="p">[</span><span class="n">raid0</span><span class="p">]</span> <span class="p">[</span><span class="n">raid1</span><span class="p">]</span> <span class="p">[</span><span class="n">raid6</span><span class="p">]</span> <span class="p">[</span><span class="n">raid5</span><span class="p">]</span> <span class="p">[</span><span class="n">raid4</span><span class="p">]</span> <span class="p">[</span><span class="n">raid10</span><span class="p">]</span>
+<span class="n">unused</span> <span class="n">devices</span><span class="o">:</span>
+</pre></div>
+
+
+<h2>Setup sdb</h2>
+<p>sdb's partition table must be a replica of sda's.  Execute:</p>
+<div class="highlight"><pre><span class="c"># sfdisk -d /dev/sda | sfdisk --force /dev/sdb</span>
+</pre></div>
+
+
+<p>to replicate it.  Next we need to set the partitions' types.  Execute:</p>
+<div class="highlight"><pre><span class="c"># fdisk /dev/sdb</span>
+</pre></div>
+
+
+<p>you will see a prompt like this:</p>
+<div class="highlight"><pre><span class="c"># Command (m for help):</span>
+</pre></div>
+
+
+<p>type t and enter. Then you will see a prompt like this:</p>
+<div class="highlight"><pre><span class="c"># Partition number (1-4):</span>
+</pre></div>
+
+
+<p>type 1 and enter. Then you will see a prompt like this:</p>
+<div class="highlight"><pre><span class="n">Hex</span> <span class="n">code</span> <span class="p">(</span><span class="n">type</span> <span class="n">L</span> <span class="n">to</span> <span class="n">list</span> <span class="n">codes</span><span class="p">)</span><span class="o">:</span>
+</pre></div>
+
+
+<p>type fd and enter.  </p>
+<p>Do this for every partition (1-4) only changing the partition number at
+the second prompt.  </p>
+<p>Finally type w and enter to write the changes.</p>
+<p>The output should be like this:</p>
+<div class="highlight"><pre><span class="n">Command</span> <span class="p">(</span><span class="n">m</span> <span class="k">for</span> <span class="n">help</span><span class="p">)</span><span class="o">:</span> <span class="n">t</span>
+<span class="n">Partition</span> <span class="n">number</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span><span class="o">:</span> <span class="mi">1</span>
+<span class="n">Hex</span> <span class="n">code</span> <span class="p">(</span><span class="n">type</span> <span class="n">L</span> <span class="n">to</span> <span class="n">list</span> <span class="n">codes</span><span class="p">)</span><span class="o">:</span> <span class="n">fd</span>
+<span class="n">Changed</span> <span class="n">system</span> <span class="n">type</span> <span class="n">of</span> <span class="n">partition</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">fd</span> <span class="p">(</span><span class="n">Linux</span> <span class="n">raid</span> <span class="n">autodetect</span><span class="p">)</span>
+
+<span class="n">Command</span> <span class="p">(</span><span class="n">m</span> <span class="k">for</span> <span class="n">help</span><span class="p">)</span><span class="o">:</span> <span class="n">t</span>
+<span class="n">Partition</span> <span class="n">number</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span><span class="o">:</span> <span class="mi">2</span>
+<span class="n">Hex</span> <span class="n">code</span> <span class="p">(</span><span class="n">type</span> <span class="n">L</span> <span class="n">to</span> <span class="n">list</span> <span class="n">codes</span><span class="p">)</span><span class="o">:</span> <span class="n">fd</span>
+<span class="n">Changed</span> <span class="n">system</span> <span class="n">type</span> <span class="n">of</span> <span class="n">partition</span> <span class="mi">2</span> <span class="n">to</span> <span class="n">fd</span> <span class="p">(</span><span class="n">Linux</span> <span class="n">raid</span> <span class="n">autodetect</span><span class="p">)</span>
+
+<span class="n">Command</span> <span class="p">(</span><span class="n">m</span> <span class="k">for</span> <span class="n">help</span><span class="p">)</span><span class="o">:</span> <span class="n">t</span>
+<span class="n">Partition</span> <span class="n">number</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span><span class="o">:</span> <span class="mi">3</span>
+<span class="n">Hex</span> <span class="n">code</span> <span class="p">(</span><span class="n">type</span> <span class="n">L</span> <span class="n">to</span> <span class="n">list</span> <span class="n">codes</span><span class="p">)</span><span class="o">:</span> <span class="n">fd</span>
+<span class="n">Changed</span> <span class="n">system</span> <span class="n">type</span> <span class="n">of</span> <span class="n">partition</span> <span class="mi">3</span> <span class="n">to</span> <span class="n">fd</span> <span class="p">(</span><span class="n">Linux</span> <span class="n">raid</span> <span class="n">autodetect</span><span class="p">)</span>
+
+<span class="n">Command</span> <span class="p">(</span><span class="n">m</span> <span class="k">for</span> <span class="n">help</span><span class="p">)</span><span class="o">:</span> <span class="n">t</span>
+<span class="n">Partition</span> <span class="n">number</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span><span class="o">:</span> <span class="mi">4</span>
+<span class="n">Hex</span> <span class="n">code</span> <span class="p">(</span><span class="n">type</span> <span class="n">L</span> <span class="n">to</span> <span class="n">list</span> <span class="n">codes</span><span class="p">)</span><span class="o">:</span> <span class="n">fd</span>
+<span class="n">Changed</span> <span class="n">system</span> <span class="n">type</span> <span class="n">of</span> <span class="n">partition</span> <span class="mi">4</span> <span class="n">to</span> <span class="n">fd</span> <span class="p">(</span><span class="n">Linux</span> <span class="n">raid</span> <span class="n">autodetect</span><span class="p">)</span>
+
+<span class="n">Command</span> <span class="p">(</span><span class="n">m</span> <span class="k">for</span> <span class="n">help</span><span class="p">)</span><span class="o">:</span> <span class="n">w</span>
+<span class="n">The</span> <span class="n">partition</span> <span class="n">table</span> <span class="n">has</span> <span class="n">been</span> <span class="n">altered</span><span class="o">!</span>
+
+<span class="n">Calling</span> <span class="n">ioctl</span><span class="p">()</span> <span class="n">to</span> <span class="n">re</span><span class="o">-</span><span class="n">read</span> <span class="n">partition</span> <span class="n">table</span><span class="p">.</span>
+</pre></div>
+
+
+<h2>Create the RAID arrays</h2>
+<div class="highlight"><pre><span class="c"># for i in 1 2 3 4; do mdadm --create /dev/md$i --level=1 --raid-disks=2 missing /dev/sdb$i; done</span>
+</pre></div>
+
+
+<p>If you see the following message type y.</p>
+<div class="highlight"><pre><span class="n">mdadm</span><span class="o">:</span> <span class="n">Note</span><span class="o">:</span> <span class="k">this</span> <span class="n">array</span> <span class="n">has</span> <span class="n">metadata</span> <span class="n">at</span> <span class="n">the</span> <span class="n">start</span> <span class="n">and</span>
+    <span class="n">may</span> <span class="n">not</span> <span class="n">be</span> <span class="n">suitable</span> <span class="k">as</span> <span class="n">a</span> <span class="n">boot</span> <span class="n">device</span><span class="o">.</span>  <span class="n">If</span> <span class="n">you</span> <span class="n">plan</span> <span class="n">to</span>
+    <span class="n">store</span> <span class="s1">&#39;/boot&#39;</span> <span class="n">on</span> <span class="k">this</span> <span class="n">device</span> <span class="n">please</span> <span class="n">ensure</span> <span class="n">that</span>
+    <span class="n">your</span> <span class="n">boot</span><span class="o">-</span><span class="n">loader</span> <span class="n">understands</span> <span class="n">md</span><span class="o">/</span><span class="n">v1</span><span class="o">.</span><span class="na">x</span> <span class="n">metadata</span><span class="o">,</span> <span class="n">or</span> <span class="n">use</span>
+    <span class="o">--</span><span class="n">metadata</span><span class="o">=</span><span class="mf">0.90</span>
+<span class="n">Continue</span> <span class="n">creating</span> <span class="n">array</span><span class="o">?</span>
+</pre></div>
+
+
+<p>Now setup the filesystem on the arrays.</p>
+<div class="highlight"><pre><span class="c"># for i in 1 2 4; do mkfs.ext4 /dev/md$i; done</span>
+<span class="c"># mkswap /dev/md3</span>
+</pre></div>
+
+
+<p>Configure mdadm</p>
+<div class="highlight"><pre><span class="c"># cp /etc/mdadm/mdadm.conf /etc/mdadm/mdadm.conf_orig</span>
+<span class="c"># mdadm --examine --scan &gt;&gt; /etc/mdadm/mdadm.conf</span>
+</pre></div>
+
+
+<h2>Update the fstab</h2>
+<p>Open /etc/fstab and change the /dev/sdX uuids with those of the
+corresponding /dev/mdX uuids.  To see the mapping between /dev/mdX and
+the uuids use:</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">ls</span> <span class="o">-</span><span class="n">l</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">disk</span><span class="o">/</span><span class="n">by</span><span class="o">-</span><span class="n">uuid</span><span class="o">/</span>
+</pre></div>
+
+
+<h2>Temporarily set GRUB2</h2>
+<p>Create /etc/grub.d/09_temp with the following content</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/sh</span>
+<span class="nb">exec </span>tail -n +3 <span class="nv">$0</span>
+<span class="c"># This file provides an easy way to add custom menu entries.  Simply type the</span>
+<span class="c"># menu entries you want to add after this comment.  Be careful not to change</span>
+<span class="c"># the &#39;exec tail&#39; line above.</span>
+menuentry <span class="s1">&#39;temp&#39;</span> --class ubuntu --class gnu-linux --class gnu --class os <span class="o">{</span>
+        insmod raid
+        insmod mdraid
+        insmod part_msdos
+        insmod ext2
+        <span class="nb">set </span><span class="nv">root</span><span class="o">=</span><span class="s1">&#39;(md/1)&#39;</span>
+        <span class="nb">echo</span>    <span class="s1">&#39;Loading Linux...&#39;</span>
+        linux   /boot/vmlinuz-3.8.0-25-generic <span class="nv">root</span><span class="o">=</span><span class="nv">UUID</span><span class="o">=</span>the_UUID_of_/dev/md1 ro  quiet
+        <span class="nb">echo</span>    <span class="s1">&#39;Loading initial ramdisk ...&#39;</span>
+        initrd  /boot/initrd.img-3.8.0-25-generic
+<span class="o">}</span>
+</pre></div>
+</td></tr></table>
+
+<p>Use</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">uname</span><span class="o">-</span><span class="n">r</span>
+</pre></div>
+
+
+<p>to get the appropriate kernel version or just</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">ls</span> <span class="o">/</span><span class="n">boot</span><span class="o">/</span>
+</pre></div>
+
+
+<p>to see the available files.</p>
+<p>Make /etc/grub.d/09_temp executable</p>
+<div class="highlight"><pre><span class="c"># chmod +x /etc/grub.d/09_temp</span>
+</pre></div>
+
+
+<p>Now we need to update GRUB</p>
+<div class="highlight"><pre><span class="c"># update-grub</span>
+</pre></div>
+
+
+<p>and the ramdisk</p>
+<div class="highlight"><pre><span class="c"># update-initramfs -u</span>
+</pre></div>
+
+
+<p>Finally mount /dev/md1, /dev/md2 and /dev/md3 and</p>
+<div class="highlight"><pre><span class="c"># cp -dpRx / /mnt/md1</span>
+<span class="c"># rm -rf /mnt/md1/home /mnt/md1/spare</span>
+<span class="c"># cp -dpRx /home/* /mnt/md2</span>
+<span class="c"># cp -dpRx /spare/* /mnt/md4</span>
+</pre></div>
+
+
+<h2>Install GRUB on both disks</h2>
+<div class="highlight"><pre><span class="c"># grub-install /dev/sda</span>
+<span class="c"># grub-install /dev/sdb</span>
+<span class="c"># reboot</span>
+</pre></div>
+
+
+<p>If during the startup it asks you something about booting in degraded
+mode type y. Then you might also need to type S. When the system finally
+start, execute</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">df</span>
+</pre></div>
+
+
+<p>and you should see /dev/md1, /dev/md2 and /dev/md4 in the listing.</p>
+<h2>Update partitions' type of /dev/sda and add them to the array</h2>
+<p>Execute:</p>
+<div class="highlight"><pre><span class="c"># fdisk /dev/sda</span>
+</pre></div>
+
+
+<p>you will see a prompt like this:</p>
+<div class="highlight"><pre><span class="c"># Command (m for help):</span>
+</pre></div>
+
+
+<p>type t and enter. Then you will see a prompt like this:</p>
+<div class="highlight"><pre><span class="c"># Partition number (1-4):</span>
+</pre></div>
+
+
+<p>type 1 and enter. Then you will see a prompt like this:</p>
+<div class="highlight"><pre><span class="n">Hex</span> <span class="n">code</span> <span class="p">(</span><span class="n">type</span> <span class="n">L</span> <span class="n">to</span> <span class="n">list</span> <span class="n">codes</span><span class="p">)</span><span class="o">:</span>
+</pre></div>
+
+
+<p>type fd and enter.  </p>
+<p>Do this for every partition (1-4) only changing the partition number at
+the second prompt.  </p>
+<p>Finally type w and enter to write the changes.</p>
+<p>The output should be like this:</p>
+<div class="highlight"><pre><span class="n">Command</span> <span class="p">(</span><span class="n">m</span> <span class="k">for</span> <span class="n">help</span><span class="p">)</span><span class="o">:</span> <span class="n">t</span>
+<span class="n">Partition</span> <span class="n">number</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span><span class="o">:</span> <span class="mi">1</span>
+<span class="n">Hex</span> <span class="n">code</span> <span class="p">(</span><span class="n">type</span> <span class="n">L</span> <span class="n">to</span> <span class="n">list</span> <span class="n">codes</span><span class="p">)</span><span class="o">:</span> <span class="n">fd</span>
+<span class="n">Changed</span> <span class="n">system</span> <span class="n">type</span> <span class="n">of</span> <span class="n">partition</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">fd</span> <span class="p">(</span><span class="n">Linux</span> <span class="n">raid</span> <span class="n">autodetect</span><span class="p">)</span>
+
+<span class="n">Command</span> <span class="p">(</span><span class="n">m</span> <span class="k">for</span> <span class="n">help</span><span class="p">)</span><span class="o">:</span> <span class="n">t</span>
+<span class="n">Partition</span> <span class="n">number</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span><span class="o">:</span> <span class="mi">2</span>
+<span class="n">Hex</span> <span class="n">code</span> <span class="p">(</span><span class="n">type</span> <span class="n">L</span> <span class="n">to</span> <span class="n">list</span> <span class="n">codes</span><span class="p">)</span><span class="o">:</span> <span class="n">fd</span>
+<span class="n">Changed</span> <span class="n">system</span> <span class="n">type</span> <span class="n">of</span> <span class="n">partition</span> <span class="mi">2</span> <span class="n">to</span> <span class="n">fd</span> <span class="p">(</span><span class="n">Linux</span> <span class="n">raid</span> <span class="n">autodetect</span><span class="p">)</span>
+
+<span class="n">Command</span> <span class="p">(</span><span class="n">m</span> <span class="k">for</span> <span class="n">help</span><span class="p">)</span><span class="o">:</span> <span class="n">t</span>
+<span class="n">Partition</span> <span class="n">number</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span><span class="o">:</span> <span class="mi">3</span>
+<span class="n">Hex</span> <span class="n">code</span> <span class="p">(</span><span class="n">type</span> <span class="n">L</span> <span class="n">to</span> <span class="n">list</span> <span class="n">codes</span><span class="p">)</span><span class="o">:</span> <span class="n">fd</span>
+<span class="n">Changed</span> <span class="n">system</span> <span class="n">type</span> <span class="n">of</span> <span class="n">partition</span> <span class="mi">3</span> <span class="n">to</span> <span class="n">fd</span> <span class="p">(</span><span class="n">Linux</span> <span class="n">raid</span> <span class="n">autodetect</span><span class="p">)</span>
+
+<span class="n">Command</span> <span class="p">(</span><span class="n">m</span> <span class="k">for</span> <span class="n">help</span><span class="p">)</span><span class="o">:</span> <span class="n">t</span>
+<span class="n">Partition</span> <span class="n">number</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span><span class="o">:</span> <span class="mi">4</span>
+<span class="n">Hex</span> <span class="n">code</span> <span class="p">(</span><span class="n">type</span> <span class="n">L</span> <span class="n">to</span> <span class="n">list</span> <span class="n">codes</span><span class="p">)</span><span class="o">:</span> <span class="n">fd</span>
+<span class="n">Changed</span> <span class="n">system</span> <span class="n">type</span> <span class="n">of</span> <span class="n">partition</span> <span class="mi">4</span> <span class="n">to</span> <span class="n">fd</span> <span class="p">(</span><span class="n">Linux</span> <span class="n">raid</span> <span class="n">autodetect</span><span class="p">)</span>
+
+<span class="n">Command</span> <span class="p">(</span><span class="n">m</span> <span class="k">for</span> <span class="n">help</span><span class="p">)</span><span class="o">:</span> <span class="n">w</span>
+<span class="n">The</span> <span class="n">partition</span> <span class="n">table</span> <span class="n">has</span> <span class="n">been</span> <span class="n">altered</span><span class="o">!</span>
+
+<span class="n">Calling</span> <span class="n">ioctl</span><span class="p">()</span> <span class="n">to</span> <span class="n">re</span><span class="o">-</span><span class="n">read</span> <span class="n">partition</span> <span class="n">table</span><span class="p">.</span>
+</pre></div>
+
+
+<p>Finally add them.</p>
+<div class="highlight"><pre><span class="c"># for i in 1 2 3 4; do mdadm --add /dev/md$i /dev/sda$i; done</span>
+</pre></div>
+
+
+<p>Executing:</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">cat</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">mdstat</span>
+</pre></div>
+
+
+<p>should print something like this</p>
+<div class="highlight"><pre><span class="n">Personalities</span> <span class="o">:</span> <span class="p">[</span><span class="n">linear</span><span class="p">]</span> <span class="p">[</span><span class="n">multipath</span><span class="p">]</span> <span class="p">[</span><span class="n">raid0</span><span class="p">]</span> <span class="p">[</span><span class="n">raid1</span><span class="p">]</span> <span class="p">[</span><span class="n">raid6</span><span class="p">]</span> <span class="p">[</span><span class="n">raid5</span><span class="p">]</span> <span class="p">[</span><span class="n">raid4</span><span class="p">]</span> <span class="p">[</span><span class="n">raid10</span><span class="p">]</span> 
+<span class="n">md3</span> <span class="o">:</span> <span class="n">active</span> <span class="n">raid1</span> <span class="n">sda3</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">sdb3</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+      <span class="mi">8384448</span> <span class="n">blocks</span> <span class="n">super</span> <span class="mf">1.2</span> <span class="p">[</span><span class="mi">2</span><span class="o">/</span><span class="mi">1</span><span class="p">]</span> <span class="p">[</span><span class="n">_U</span><span class="p">]</span>
+        <span class="n">resync</span><span class="o">=</span><span class="n">DELAYED</span>
+
+<span class="n">md4</span> <span class="o">:</span> <span class="n">active</span> <span class="n">raid1</span> <span class="n">sda4</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">sdb4</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+      <span class="mi">162277248</span> <span class="n">blocks</span> <span class="n">super</span> <span class="mf">1.2</span> <span class="p">[</span><span class="mi">2</span><span class="o">/</span><span class="mi">1</span><span class="p">]</span> <span class="p">[</span><span class="n">_U</span><span class="p">]</span>
+        <span class="n">resync</span><span class="o">=</span><span class="n">DELAYED</span>
+
+<span class="n">md2</span> <span class="o">:</span> <span class="n">active</span> <span class="n">raid1</span> <span class="n">sda2</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">sdb2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+      <span class="mi">41910144</span> <span class="n">blocks</span> <span class="n">super</span> <span class="mf">1.2</span> <span class="p">[</span><span class="mi">2</span><span class="o">/</span><span class="mi">1</span><span class="p">]</span> <span class="p">[</span><span class="n">_U</span><span class="p">]</span>
+        <span class="n">resync</span><span class="o">=</span><span class="n">DELAYED</span>
+
+<span class="n">md1</span> <span class="o">:</span> <span class="n">active</span> <span class="n">raid1</span> <span class="n">sda1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">sdb1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+      <span class="mi">31440512</span> <span class="n">blocks</span> <span class="n">super</span> <span class="mf">1.2</span> <span class="p">[</span><span class="mi">2</span><span class="o">/</span><span class="mi">1</span><span class="p">]</span> <span class="p">[</span><span class="n">_U</span><span class="p">]</span>
+      <span class="p">[</span><span class="o">=&gt;</span><span class="p">...................]</span>  <span class="n">recovery</span> <span class="o">=</span>  <span class="mf">9.8</span><span class="o">%</span> <span class="p">(</span><span class="mi">3111488</span><span class="o">/</span><span class="mi">31440512</span><span class="p">)</span> <span class="n">finish</span><span class="o">=</span><span class="mf">13.5</span><span class="n">min</span> <span class="n">speed</span><span class="o">=</span><span class="mi">34736</span><span class="n">K</span><span class="o">/</span><span class="n">sec</span>
+
+<span class="n">unused</span> <span class="n">devices</span><span class="o">:</span>
+</pre></div>
+
+
+<p><strong>Wait</strong> for it to finish</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">watch</span> <span class="n">cat</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">mdstat</span>
+</pre></div>
+
+
+<p>Now we must reconfigure mdadm</p>
+<div class="highlight"><pre><span class="c"># cp /etc/mdadm/mdadm.conf_orig /etc/mdadm/mdadm.conf</span>
+<span class="c"># mdadm --examine --scan &gt;&gt; /etc/mdadm/mdadm.conf</span>
+</pre></div>
+
+
+<h2>Final setup of GRUB2</h2>
+<p>Delete the temporary entry</p>
+<div class="highlight"><pre><span class="c"># rm -f /etc/grub.d/09_temp</span>
+</pre></div>
+
+
+<p>Now update GRUB</p>
+<div class="highlight"><pre><span class="c"># update-grub</span>
+</pre></div>
+
+
+<p>and the ramdisk</p>
+<div class="highlight"><pre><span class="c"># update-initramfs -u</span>
+</pre></div>
+
+
+<p>Re-install and reboot</p>
+<div class="highlight"><pre><span class="c"># grub-install /dev/sda</span>
+<span class="c"># grub-install /dev/sdb</span>
+<span class="c"># reboot</span>
+</pre></div>
+
+
+<h2>Test</h2>
+<p>To test your new RAID-1 setup follow <a href="http://www.howtoforge.com/how-to-set-up-software-raid1-on-a-running-system-incl-grub2-configuration-debian-squeeze-p4">these</a> instructions.</p>
+<p>Source:
+<a href="http://www.howtoforge.com/how-to-set-up-software-raid1-on-a-running-system-incl-grub2-configuration-debian-squeeze">http://www.howtoforge.com/how-to-set-up-software-raid1-on-a-running-system-incl-grub2-configuration-debian-squeeze</a></p>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3 well well-sm" id="sidebar">
+
+<aside>
+    <section>
+        <ul class="list-group list-group-flush">
+                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+                  <ul class="list-group" id="social">
+
+                    <li class="list-group-item"><a href="mailto:foivos_(AT}_zakkak_(DOT}_net"><i class="fa fa-envelope-square fa-lg"></i> Email</a></li>
+                    <li class="list-group-item"><a href="https://github.com/zakkak"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+                    <li class="list-group-item"><a href="https://www.linkedin.com/in/zakkak"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+
+                    <li class="list-group-item"><a href="/uploads/zakkak_cv.pdf"><i class="fa fa-file-pdf-o fa-lg"></i> My CV</a></li>
+                  </ul>
+                </li>
+
+                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
+                    <ul class="list-group" id="recentposts">
+                        <li class="list-group-item">
+                            <a href="http://foivos.zakkak.net/tutorials/ubuntu_1304_raid1_setup.html">
+                                Ubuntu 13.04 RAID-1 setup
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://foivos.zakkak.net/code/syncbackup_script.html">
+                                A Sync/BackUp script
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://foivos.zakkak.net/tutorials/getting_started_emacs.html">
+                                Getting started with Emacs
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://foivos.zakkak.net/tutorials/using_emacs_and_notmuch_mail_client.html">
+                                Using emacs and notmuch as a mail client
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="http://foivos.zakkak.net/tutorials/google_pdf_viewer_chromium.html">
+                                Google PDF viewer on Chromium
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-github fa-lg"></i><span class="icon-label">GitHub Repos</span></h4>
+        <div id="gh_repos">
+            <p class="list-group-item">Status updating...</p>
+        </div>
+            <a href="https://github.com/zakkak">@zakkak</a> on GitHub
+    </li>
+
+        </ul>
+    </section>
+
+</aside>        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2013 Foivos S. Zakkak
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://foivos.zakkak.net/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://foivos.zakkak.net/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://foivos.zakkak.net/theme/js/respond.min.js"></script>
+
+    <!-- GitHub JS -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if (!window.jXHR) {
+                var jxhr = document.createElement('script');
+                jxhr.type = 'text/javascript';
+                jxhr.src = 'http://foivos.zakkak.net/theme/js/jXHR.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(jxhr, s);
+            }
+
+            github.showRepos({
+                user: 'zakkak',
+                count: 5,
+                skip_forks: false,
+                target: '#gh_repos'
+            });
+        });
+    </script>
+    <script src="http://foivos.zakkak.net/theme/js/github.js" type="text/javascript"></script>
+    <!-- End GitHub JS Code -->
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-29112990-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
+</body>
+</html>
