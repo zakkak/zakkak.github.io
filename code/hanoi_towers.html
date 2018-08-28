@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"
->
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
     <title>Hanoi Towers - Foivos . Zakkak . net</title>
     <!-- Using the latest rendering mode for IE -->
@@ -13,8 +12,16 @@
 <link rel="canonical" href="http://foivos.zakkak.net/code/hanoi_towers.html">
 
         <meta name="author" content="zakkak" />
-        <meta name="description" content="Download file /****************************************************************************** * * * File: hanoi_towers.c * * * * This program solves the Towers of Hanoi puzzle recursively * * * * For details about that weird \033 staff visit * * www.linuxdoc.org/HOWTO/Bash-Prompt-HOWTO/c327.html * * * * Compile: * * gcc -lm hanoi.c -o hanoi * * * * Copyright (C) 2011-2012 Foivos S. Zakkak * * * * This program is free software: you can redistribute ..." />
+        <meta name="description" content="/****************************************************************************** * * * File: hanoi_towers.c * * * * This program solves the Towers of Hanoi puzzle recursively * * * * For details about that weird \033 staff visit * * www.linuxdoc.org/HOWTO/Bash-Prompt-HOWTO/c327.html * * * * Compile: * * gcc -lm hanoi.c -o hanoi * * * * Copyright (C) 2011-2012 Foivos S. Zakkak * * * * This program is free software: you can redistribute it and …" />
 
+        <meta property="og:site_name" content="Foivos . Zakkak . net" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Hanoi Towers"/>
+        <meta property="og:url" content="http://foivos.zakkak.net/code/hanoi_towers.html"/>
+        <meta property="og:description" content="/****************************************************************************** * * * File: hanoi_towers.c * * * * This program solves the Towers of Hanoi puzzle recursively * * * * For details about that weird \033 staff visit * * www.linuxdoc.org/HOWTO/Bash-Prompt-HOWTO/c327.html * * * * Compile: * * gcc -lm hanoi.c -o hanoi * * * * Copyright (C) 2011-2012 Foivos S. Zakkak * * * * This program is free software: you can redistribute it and …"/>
+        <meta property="article:published_time" content="2011-12-22" />
+            <meta property="article:section" content="Code" />
+            <meta property="article:author" content="zakkak" />
 
 
     <!-- Bootstrap -->
@@ -22,16 +29,22 @@
     <link href="http://foivos.zakkak.net/theme/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="http://foivos.zakkak.net/theme/css/pygments/native.css" rel="stylesheet">
+    <link href="http://foivos.zakkak.net/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
     <link rel="stylesheet" href="http://foivos.zakkak.net/theme/css/style.css" type="text/css"/>
 
         <link href="http://foivos.zakkak.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
               title="Foivos . Zakkak . net ATOM Feed"/>
 
+
+
+        <link href="http://foivos.zakkak.net/feeds/code.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Foivos . Zakkak . net Code ATOM Feed"/>
+
 </head>
 <body>
 
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
+	<div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -51,26 +64,29 @@ Foivos . Zakkak . net            </a>
                             <a href="http://foivos.zakkak.net/category/code.html">Code</a>
                         </li>
                         <li >
+                            <a href="http://foivos.zakkak.net/category/courses.html">Courses</a>
+                        </li>
+                        <li >
                             <a href="http://foivos.zakkak.net/category/tutorials.html">Tutorials</a>
                         </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="http://foivos.zakkak.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+              <li><span>
+                <form class="navbar-search" action="/search.html">
+                  <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input" required>
+                </form></span>
+              </li>
+              <li><a href="http://foivos.zakkak.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>
 </div> <!-- /.navbar -->
-
+<!-- Banner -->
+<!-- End Banner -->
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-            <ol class="breadcrumb">
-                <li><a href="http://foivos.zakkak.net" title="Foivos . Zakkak . net"><i class="fa fa-home fa-lg"></i></a></li>
-                <li><a href="http://foivos.zakkak.net/category/code.html" title="Code">Code</a></li>
-                <li class="active">Hanoi Towers</li>
-            </ol>
-
     <section id="content">
         <article>
             <header class="page-header">
@@ -88,320 +104,323 @@ Foivos . Zakkak . net            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2011-12-22T22:26:00"> Thu 22 December 2011</time>
+        <i class="fa fa-calendar"></i><time datetime="2011-12-22T22:26:00+02:00"> Thu 22 December 2011</time>
     </span>
+
+
 
 
 
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p><a href="/uploads/hanoi_towers.c">Download file</a></p>
-<div class="highlight"><pre><span class="cm">/******************************************************************************</span>
-<span class="cm"> *                                                                            *</span>
-<span class="cm"> * File: hanoi_towers.c                                                       *</span>
-<span class="cm"> *                                                                            *</span>
-<span class="cm"> * This program solves the Towers of Hanoi puzzle recursively                 *</span>
-<span class="cm"> *                                                                            *</span>
-<span class="cm"> * For details about that weird \033 staff visit                              *</span>
-<span class="cm"> *  www.linuxdoc.org/HOWTO/Bash-Prompt-HOWTO/c327.html                        *</span>
-<span class="cm"> *                                                                            *</span>
-<span class="cm"> * Compile:                                                                   *</span>
-<span class="cm"> *  gcc -lm hanoi.c -o hanoi                                                  *</span>
-<span class="cm"> *                                                                            *</span>
-<span class="cm"> * Copyright (C) 2011-2012  Foivos S. Zakkak                                  *</span>
-<span class="cm"> *                                                                            *</span>
-<span class="cm"> * This program is free software: you can redistribute it and/or modify       *</span>
-<span class="cm"> * it under the terms of the GNU General Public License as published by       *</span>
-<span class="cm"> * the Free Software Foundation, either version 3 of the License, or          *</span>
-<span class="cm"> * (at your option) any later version.                                        *</span>
-<span class="cm"> *                                                                            *</span>
-<span class="cm"> * This program is distributed in the hope that it will be useful,            *</span>
-<span class="cm"> * but WITHOUT ANY WARRANTY; without even the implied warranty of             *</span>
-<span class="cm"> * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the              *</span>
-<span class="cm"> * GNU General Public License for more details.                               *</span>
-<span class="cm"> *                                                                            *</span>
-<span class="cm"> * You should have received a copy of the GNU General Public License          *</span>
-<span class="cm"> * along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.      *</span>
-<span class="cm"> *                                                                            *</span>
-<span class="cm"> ******************************************************************************/</span>
+                <div class="gist">
+    <script src='https://gist.github.com/95b2b152f4172442f6cc.js'></script>
+    <noscript>
+        <pre><code>/******************************************************************************
+ *                                                                            *
+ * File: hanoi_towers.c                                                       *
+ *                                                                            *
+ * This program solves the Towers of Hanoi puzzle recursively                 *
+ *                                                                            *
+ * For details about that weird \033 staff visit                              *
+ *  www.linuxdoc.org/HOWTO/Bash-Prompt-HOWTO/c327.html                        *
+ *                                                                            *
+ * Compile:                                                                   *
+ *  gcc -lm hanoi.c -o hanoi                                                  *
+ *                                                                            *
+ * Copyright (C) 2011-2012  Foivos S. Zakkak                                  *
+ *                                                                            *
+ * This program is free software: you can redistribute it and/or modify       *
+ * it under the terms of the GNU General Public License as published by       *
+ * the Free Software Foundation, either version 3 of the License, or          *
+ * (at your option) any later version.                                        *
+ *                                                                            *
+ * This program is distributed in the hope that it will be useful,            *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of             *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the              *
+ * GNU General Public License for more details.                               *
+ *                                                                            *
+ * You should have received a copy of the GNU General Public License          *
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.      *
+ *                                                                            *
+ ******************************************************************************/
 
-<span class="cm">/* needed for usleep (see man usleep) */</span>
-<span class="p">#</span><span class="n">define</span> <span class="no">_BSD_SOURCE</span>
+/* needed for usleep (see man usleep) */
+#define _BSD_SOURCE
 
-<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">stdio</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
-<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">stdlib</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
-<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="k">assert</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
-<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">unistd</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
-<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">math</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <unistd.h>
+#include <math.h>
 
-<span class="cm">/* Unomment to disable effects */</span>
-<span class="cm">/* #define CS100 */</span>
-<span class="p">#</span><span class="n">ifndef</span> <span class="no">CS100</span>
-<span class="p">#</span><span class="k">if</span> <span class="n">defined</span><span class="p">(</span><span class="no">WIN32</span><span class="p">)</span> <span class="o">||</span> <span class="n">defined</span><span class="p">(</span><span class="no">WIN64</span><span class="p">)</span>
-<span class="p">#</span><span class="n">undef</span> <span class="no">COLORED</span>
-<span class="p">#</span><span class="n">undef</span> <span class="no">KEEPLOG</span>
-<span class="p">#</span><span class="k">else</span>
-<span class="p">#</span><span class="n">define</span> <span class="no">COLORED</span>
-<span class="p">#</span><span class="n">define</span> <span class="no">KEEPLOG</span>
-<span class="p">#</span><span class="n">endif</span>
-<span class="p">#</span><span class="n">define</span> <span class="no">ANIMATED</span>
-<span class="p">#</span><span class="n">endif</span>                          <span class="cm">/*CS100 */</span>
+/* Unomment to disable effects */
+/* #define CS100 */
+#ifndef CS100
+#if defined(WIN32) || defined(WIN64)
+#undef COLORED
+#undef KEEPLOG
+#else
+#define COLORED
+#define KEEPLOG
+#endif
+#define ANIMATED
+#endif                          /*CS100 */
 
-<span class="cm">/* N will hold the number of disks */</span>
-<span class="k">int</span> <span class="no">N</span><span class="p">,</span> <span class="n">delay</span><span class="p">;</span>
+/* N will hold the number of disks */
+int N, delay;
 
-<span class="cm">/* declare a structure for each column */</span>
-<span class="cm">/* each column is actually a LIFO stack */</span>
-<span class="k">typedef</span> <span class="k">struct</span> <span class="n">column</span> <span class="p">{</span>
-  <span class="k">int</span> <span class="n">top</span><span class="p">;</span>                      <span class="cm">/* top holds the stack&#39;s top index */</span>
-  <span class="k">int</span> <span class="o">*</span><span class="n">stack</span><span class="p">;</span>                   <span class="cm">/* stack is a dynamically allocated array which</span>
-<span class="cm">                                   is used as the stack */</span>
-<span class="p">}</span> <span class="n">column_t</span><span class="p">;</span>
+/* declare a structure for each column */
+/* each column is actually a LIFO stack */
+typedef struct column {
+  int top;                      /* top holds the stack's top index */
+  int *stack;                   /* stack is a dynamically allocated array which
+                                   is used as the stack */
+} column_t;
 
-<span class="cm">/* This function prints the board</span>
-<span class="cm"> * won&#39;t work well for N&gt;9 */</span>
-<span class="k">void</span> <span class="n">printBoard</span><span class="p">(</span><span class="n">column_t</span> <span class="n">board</span><span class="p">[</span><span class="mh">3</span><span class="p">])</span>
-<span class="p">{</span>
+/* This function prints the board
+ * won't work well for N>9 */
+void printBoard(column_t board[3])
+{
 
-  <span class="k">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">num_of_digits</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">disk</span><span class="p">,</span> <span class="n">mod</span><span class="p">,</span> <span class="n">div</span><span class="p">;</span>
+  int i, j, k, n, num_of_digits, width, disk, mod, div;
 
-  <span class="cm">/* calculate the width of the largest disk and add some extra space */</span>
-  <span class="k">int</span> <span class="n">maxwidth</span> <span class="o">=</span> <span class="p">(</span><span class="mh">2</span> <span class="o">*</span> <span class="p">(</span><span class="no">N</span> <span class="o">-</span> <span class="mh">1</span><span class="p">))</span> <span class="o">+</span> <span class="mh">4</span><span class="p">;</span>
+  /* calculate the width of the largest disk and add some extra space */
+  int maxwidth = (2 * (N - 1)) + 4;
 
-  <span class="cm">/* print the letters of the columns */</span>
-  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mh">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mh">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">k</span> <span class="o">=</span> <span class="mh">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">maxwidth</span> <span class="o">/</span> <span class="mh">2</span><span class="p">);</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span>
-      <span class="n">printf</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span>
+  /* print the letters of the columns */
+  for (i = 0; i < 3; ++i) {
+    for (k = 0; k < (maxwidth / 2); ++k)
+      printf(" ");
 
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%c&quot;</span><span class="p">,</span> <span class="sc">&#39;A&#39;</span> <span class="o">+</span> <span class="n">i</span><span class="p">);</span>
+    printf("%c", 'A' + i);
 
-    <span class="k">for</span> <span class="p">(</span><span class="n">k</span> <span class="o">=</span> <span class="mh">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">maxwidth</span> <span class="o">/</span> <span class="mh">2</span><span class="p">);</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span>
-      <span class="n">printf</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-<span class="p">#</span><span class="n">ifdef</span> <span class="no">KEEPLOG</span>
-  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\033</span><span class="s">[2K&quot;</span><span class="p">);</span>
-<span class="p">#</span><span class="n">endif</span>                          <span class="cm">/* KEEPLOG */</span>
-  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-
-
-  <span class="cm">/* print the first empty line for all three columns */</span>
-  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mh">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mh">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">k</span> <span class="o">=</span> <span class="mh">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">maxwidth</span> <span class="o">/</span> <span class="mh">2</span><span class="p">);</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span>
-      <span class="n">printf</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span>
-
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;|&quot;</span><span class="p">);</span>
-
-    <span class="k">for</span> <span class="p">(</span><span class="n">k</span> <span class="o">=</span> <span class="mh">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">maxwidth</span> <span class="o">/</span> <span class="mh">2</span><span class="p">);</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span>
-      <span class="n">printf</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-
-  <span class="cm">/* now print the actual columns */</span>
-  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="no">N</span> <span class="o">-</span> <span class="mh">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mh">0</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>        <span class="cm">/* for each stack level */</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mh">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mh">3</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>   <span class="cm">/* for each column/stack */</span>
-      <span class="n">disk</span> <span class="o">=</span> <span class="n">board</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">stack</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-      <span class="cm">/* calculate the disk&#39;s width */</span>
-      <span class="n">width</span> <span class="o">=</span> <span class="p">(</span><span class="mh">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">disk</span> <span class="o">-</span> <span class="mh">1</span><span class="p">))</span> <span class="o">+</span> <span class="mh">1</span><span class="p">;</span>
-
-      <span class="k">if</span> <span class="p">(</span><span class="n">disk</span><span class="p">)</span> <span class="p">{</span>            <span class="cm">/* if there is a disk at this level of the stack */</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">k</span> <span class="o">=</span> <span class="mh">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="p">(((</span><span class="n">maxwidth</span> <span class="o">-</span> <span class="n">width</span><span class="p">)</span> <span class="o">+</span> <span class="mh">1</span><span class="p">)</span> <span class="o">/</span> <span class="mh">2</span><span class="p">);</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span>
-          <span class="n">printf</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span>
-
-        <span class="cm">/* calculate the numbers width */</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="n">disk</span><span class="p">;</span>
-        <span class="n">num_of_digits</span> <span class="o">=</span> <span class="mh">0</span><span class="p">;</span>
-        <span class="k">while</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mh">0</span><span class="p">)</span> <span class="p">{</span>
-          <span class="n">n</span> <span class="o">/=</span> <span class="mh">10</span><span class="p">;</span>
-          <span class="o">++</span><span class="n">num_of_digits</span><span class="p">;</span>
-        <span class="p">}</span>
-
-<span class="p">#</span><span class="n">ifdef</span> <span class="no">COLORED</span>
-        <span class="cm">/* change color */</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\033</span><span class="s">[1;%dm&quot;</span><span class="p">,</span> <span class="mh">31</span> <span class="o">+</span> <span class="n">disk</span> <span class="o">%</span> <span class="mh">6</span><span class="p">);</span>
-<span class="p">#</span><span class="n">endif</span>                          <span class="cm">/* COLORED */</span>
-        <span class="n">div</span> <span class="o">=</span> <span class="n">width</span> <span class="o">/</span> <span class="n">num_of_digits</span><span class="p">;</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">k</span> <span class="o">=</span> <span class="mh">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">div</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span>
-          <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="n">disk</span><span class="p">);</span>
-
-        <span class="n">mod</span> <span class="o">=</span> <span class="n">width</span> <span class="o">%</span> <span class="n">num_of_digits</span><span class="p">;</span>
-        <span class="cm">/* if there are more digits to print */</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">mod</span><span class="p">)</span>
-          <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="n">disk</span> <span class="o">/</span> <span class="p">(</span><span class="k">int</span><span class="p">)</span> <span class="n">pow</span><span class="p">(</span><span class="mh">10</span><span class="p">,</span> <span class="n">num_of_digits</span> <span class="o">-</span> <span class="n">mod</span><span class="p">));</span>
-
-<span class="p">#</span><span class="n">ifdef</span> <span class="no">COLORED</span>
-        <span class="cm">/* reset color */</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\033</span><span class="s">[0m&quot;</span><span class="p">);</span>
-<span class="p">#</span><span class="n">endif</span>                          <span class="cm">/* COLORED */</span>
-
-        <span class="k">for</span> <span class="p">(</span><span class="n">k</span> <span class="o">=</span> <span class="mh">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="p">(((</span><span class="n">maxwidth</span> <span class="o">-</span> <span class="n">width</span><span class="p">)</span> <span class="o">+</span> <span class="mh">1</span><span class="p">)</span> <span class="o">/</span> <span class="mh">2</span><span class="p">);</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span>
-          <span class="n">printf</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span>
-      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>              <span class="cm">/* if there is no disk at this level of the stack */</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">k</span> <span class="o">=</span> <span class="mh">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">maxwidth</span> <span class="o">/</span> <span class="mh">2</span><span class="p">);</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span>
-          <span class="n">printf</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span>
-
-        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;|&quot;</span><span class="p">);</span>
-
-        <span class="k">for</span> <span class="p">(</span><span class="n">k</span> <span class="o">=</span> <span class="mh">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">maxwidth</span> <span class="o">/</span> <span class="mh">2</span><span class="p">);</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span>
-          <span class="n">printf</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span>
-
-      <span class="p">}</span>
-
-    <span class="p">}</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-  <span class="p">}</span>
-
-  <span class="cm">/* print the bottom line */</span>
-  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mh">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">maxwidth</span> <span class="o">+</span> <span class="mh">1</span><span class="p">)</span> <span class="o">*</span> <span class="mh">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;-&quot;</span><span class="p">);</span>
-
-  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-
-<span class="p">#</span><span class="n">ifdef</span> <span class="no">ANIMATED</span>
-  <span class="cm">/* set the delay between the printings */</span>
-  <span class="n">usleep</span><span class="p">(</span><span class="n">delay</span><span class="p">);</span>
-<span class="p">#</span><span class="n">endif</span>                          <span class="cm">/* ANIMATED */</span>
-<span class="p">}</span>
-
-<span class="cm">/* moves &#39;disk&#39; from &#39;from&#39; to &#39;to&#39; in &#39;board&#39; */</span>
-<span class="k">void</span> <span class="n">move</span><span class="p">(</span><span class="n">column_t</span> <span class="o">*</span> <span class="n">board</span><span class="p">,</span> <span class="k">int</span> <span class="n">disk</span><span class="p">,</span> <span class="k">int</span> <span class="n">from</span><span class="p">,</span> <span class="k">int</span> <span class="n">to</span><span class="p">)</span>
-<span class="p">{</span>
-
-  <span class="cm">/* remove the disk from the &#39;from&#39; column */</span>
-  <span class="n">board</span><span class="p">[</span><span class="n">from</span><span class="p">].</span><span class="n">stack</span><span class="p">[</span><span class="o">--</span><span class="n">board</span><span class="p">[</span><span class="n">from</span><span class="p">].</span><span class="n">top</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0</span><span class="p">;</span>
-  <span class="k">assert</span><span class="p">(</span><span class="n">board</span><span class="p">[</span><span class="n">from</span><span class="p">].</span><span class="n">top</span> <span class="o">&gt;=</span> <span class="mh">0</span><span class="p">);</span>
-
-  <span class="cm">/* move the disk to the &#39;to&#39; column */</span>
-  <span class="n">board</span><span class="p">[</span><span class="n">to</span><span class="p">].</span><span class="n">stack</span><span class="p">[</span><span class="n">board</span><span class="p">[</span><span class="n">to</span><span class="p">].</span><span class="n">top</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">disk</span><span class="p">;</span>
-
-<span class="p">#</span><span class="n">ifdef</span> <span class="no">ANIMATED</span>
-  <span class="cm">/* clear the terminal for animated solving */</span>
-<span class="p">#</span><span class="k">if</span> <span class="n">defined</span><span class="p">(</span><span class="no">WIN32</span><span class="p">)</span> <span class="o">||</span> <span class="n">defined</span><span class="p">(</span><span class="no">WIN64</span><span class="p">)</span>
-  <span class="n">system</span><span class="p">(</span><span class="s">&quot;CLS&quot;</span><span class="p">);</span>
-<span class="p">#</span><span class="k">else</span>
-  <span class="cm">/* there are many ways to do it</span>
-<span class="cm">   * 1st call system call clear</span>
-<span class="cm">   */</span>
-  <span class="cm">/* system(&quot;clear&quot;);</span>
-<span class="cm">   */</span>
-  <span class="cm">/* 2nd do yourself what clear would do \033[H moves the cursor to the top left</span>
-<span class="cm">   * of the terminal and \033[J clears it</span>
-<span class="cm">   */</span>
-  <span class="cm">/*printf(&quot;\033[H\033[J&quot;);</span>
-<span class="cm">   */</span>
-  <span class="cm">/* 3rd move your cursor X lines up and continue your printing from there</span>
-<span class="cm">   * \033[A moves cursor up N lines</span>
-<span class="cm">   */</span>
-<span class="p">#</span><span class="n">ifdef</span> <span class="no">KEEPLOG</span>
-  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\033</span><span class="s">[%dA&quot;</span><span class="p">,</span> <span class="no">N</span> <span class="o">+</span> <span class="mh">6</span><span class="p">);</span>
-<span class="p">#</span><span class="k">else</span>
-  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\033</span><span class="s">[%dA&quot;</span><span class="p">,</span> <span class="no">N</span> <span class="o">+</span> <span class="mh">7</span><span class="p">);</span>
-<span class="p">#</span><span class="n">endif</span>                          <span class="cm">/* KEEPLOG */</span>
-<span class="p">#</span><span class="n">endif</span>                          <span class="cm">/* WIN32 || WIN64 */</span>
-<span class="p">#</span><span class="n">endif</span>                          <span class="cm">/* ANIMATED */</span>
-
-  <span class="cm">/* print the move and then the board */</span>
-  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">%c--&gt;%c</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="sc">&#39;A&#39;</span> <span class="o">+</span> <span class="n">from</span><span class="p">,</span> <span class="sc">&#39;A&#39;</span> <span class="o">+</span> <span class="n">to</span><span class="p">);</span>
-<span class="p">#</span><span class="n">ifdef</span> <span class="no">KEEPLOG</span>
-  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\033</span><span class="s">[2K&quot;</span><span class="p">);</span>
-<span class="p">#</span><span class="n">endif</span>                          <span class="cm">/* KEEPLOG */</span>
-  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-  <span class="n">printBoard</span><span class="p">(</span><span class="n">board</span><span class="p">);</span>
-
-  <span class="k">return</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="cm">/* moves &#39;disk&#39; number of disks from &#39;from&#39; to &#39;to&#39; in &#39;board&#39; */</span>
-<span class="k">void</span> <span class="n">hanoi</span><span class="p">(</span><span class="n">column_t</span> <span class="o">*</span> <span class="n">board</span><span class="p">,</span> <span class="k">int</span> <span class="n">disk</span><span class="p">,</span> <span class="k">int</span> <span class="n">from</span><span class="p">,</span> <span class="k">int</span> <span class="n">to</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="k">int</span> <span class="n">tmp</span><span class="p">;</span>
-
-  <span class="cm">/* if there are no disks to move return (end recursion) */</span>
-  <span class="k">if</span> <span class="p">(</span><span class="o">--</span><span class="n">disk</span> <span class="o">==</span> <span class="mh">0</span><span class="p">)</span>
-    <span class="k">return</span><span class="p">;</span>
-
-  <span class="cm">/* calculate the column to use as temporary */</span>
-  <span class="n">tmp</span> <span class="o">=</span> <span class="mh">3</span> <span class="o">-</span> <span class="p">(</span><span class="n">to</span> <span class="o">+</span> <span class="n">from</span><span class="p">);</span>
-
-  <span class="cm">/* step 1:</span>
-<span class="cm">   *   first move all the disks except the bottom one to the tmp column */</span>
-  <span class="n">hanoi</span><span class="p">(</span><span class="n">board</span><span class="p">,</span> <span class="n">disk</span><span class="p">,</span> <span class="n">from</span><span class="p">,</span> <span class="n">tmp</span><span class="p">);</span>
-  <span class="cm">/* step 2:</span>
-<span class="cm">   *   now we can move the last disk to &#39;to&#39; */</span>
-  <span class="n">move</span><span class="p">(</span><span class="n">board</span><span class="p">,</span> <span class="n">disk</span><span class="p">,</span> <span class="n">from</span><span class="p">,</span> <span class="n">to</span><span class="p">);</span>
-  <span class="cm">/* step 3:</span>
-<span class="cm">   *   now move the previously moved (step 1) disks from the tmp column</span>
-<span class="cm">   *   to &#39;to&#39; */</span>
-  <span class="n">hanoi</span><span class="p">(</span><span class="n">board</span><span class="p">,</span> <span class="n">disk</span><span class="p">,</span> <span class="n">tmp</span><span class="p">,</span> <span class="n">to</span><span class="p">);</span>
-
-  <span class="k">return</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">int</span> <span class="n">main</span><span class="p">(</span><span class="k">int</span> <span class="n">argc</span><span class="p">,</span> <span class="n">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
-<span class="p">{</span>
-
-  <span class="k">int</span> <span class="n">i</span><span class="p">;</span>
-  <span class="n">column_t</span> <span class="n">board</span><span class="p">[</span><span class="mh">3</span><span class="p">];</span>
-
-<span class="p">#</span><span class="n">ifndef</span> <span class="no">CS100</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">!=</span> <span class="mh">3</span><span class="p">)</span>
-<span class="p">#</span><span class="k">else</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">!=</span> <span class="mh">2</span><span class="p">)</span>
-<span class="p">#</span><span class="n">endif</span>                          <span class="cm">/* CS100 */</span>
-  <span class="p">{</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;  </span>
-       <span class="n">Copyright</span> <span class="p">(</span><span class="no">C</span><span class="p">)</span> <span class="mh">2011</span><span class="o">-</span><span class="mh">2012</span> <span class="n">Foivos</span> <span class="no">S</span><span class="p">.</span> <span class="n">Zakkak</span> <span class="err">\</span><span class="n">n</span>  
-       <span class="n">This</span> <span class="k">program</span> <span class="n">comes</span> <span class="k">with</span> <span class="no">ABSOLUTELY</span> <span class="no">NO</span> <span class="no">WARRANTY</span><span class="p">.</span><span class="err">\</span><span class="n">n</span>  
-       <span class="n">This</span> <span class="n">is</span> <span class="n">free</span> <span class="n">software</span><span class="p">,</span> <span class="k">and</span> <span class="n">you</span> <span class="n">are</span> <span class="n">welcome</span> <span class="n">to</span> <span class="n">redistribute</span> <span class="n">it</span><span class="err">\</span><span class="n">n</span>  
-       <span class="n">under</span> <span class="n">certain</span> <span class="n">conditions</span><span class="p">.</span><span class="err">\</span><span class="n">n</span><span class="err">\</span><span class="n">n</span><span class="s">&quot;);</span>
-<span class="p">#</span><span class="n">ifndef</span> <span class="no">CS100</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;  </span>
-       <span class="nl">Usage:</span><span class="o">%</span><span class="n">s</span>  <span class="err">\</span><span class="n">n</span>  
-       <span class="nl">Example:</span><span class="o">%</span><span class="n">s</span> <span class="mh">5</span> <span class="mh">100</span><span class="err">\</span><span class="n">n</span><span class="s">&quot;, argv[0], argv[0]);</span>
-<span class="p">#</span><span class="k">else</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;  </span>
-       <span class="nl">Usage:</span><span class="o">%</span><span class="n">s</span> <span class="err">\</span><span class="n">n</span>  
-       <span class="nl">Example:</span><span class="o">%</span><span class="n">s</span> <span class="mh">5</span><span class="err">\</span><span class="n">n</span><span class="s">&quot;, argv[0], argv[0]);</span>
-<span class="p">#</span><span class="n">endif</span>                          <span class="cm">/* CS100 */</span>
-    <span class="k">return</span> <span class="mh">1</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="no">N</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mh">1</span><span class="p">]);</span>
-<span class="p">#</span><span class="n">ifndef</span> <span class="no">CS100</span>
-  <span class="n">delay</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mh">2</span><span class="p">])</span> <span class="o">*</span> <span class="mh">1000</span><span class="p">;</span>
-
-  <span class="k">if</span> <span class="p">((</span><span class="no">N</span> <span class="o">*</span> <span class="n">delay</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mh">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Please enter positive numbers!&quot;</span><span class="p">);</span>
-    <span class="k">return</span> <span class="mh">1</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">#</span><span class="n">endif</span>                          <span class="cm">/* CS100 */</span>
-
-  <span class="n">board</span><span class="p">[</span><span class="mh">0</span><span class="p">].</span><span class="n">top</span> <span class="o">=</span> <span class="no">N</span><span class="p">;</span>
-  <span class="n">board</span><span class="p">[</span><span class="mh">0</span><span class="p">].</span><span class="n">stack</span> <span class="o">=</span> <span class="p">(</span><span class="k">int</span> <span class="o">*</span><span class="p">)</span> <span class="n">malloc</span><span class="p">(</span><span class="no">N</span> <span class="o">*</span> <span class="n">sizeof</span><span class="p">(</span><span class="k">int</span><span class="p">));</span>
-
-  <span class="cm">/* initially place all disks at first column */</span>
-  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mh">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">N</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">board</span><span class="p">[</span><span class="mh">0</span><span class="p">].</span><span class="n">stack</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="no">N</span> <span class="o">-</span> <span class="n">i</span><span class="p">;</span>
-
-  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mh">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mh">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">board</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">top</span> <span class="o">=</span> <span class="mh">0</span><span class="p">;</span>
-    <span class="n">board</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">stack</span> <span class="o">=</span> <span class="p">(</span><span class="k">int</span> <span class="o">*</span><span class="p">)</span> <span class="n">malloc</span><span class="p">(</span><span class="no">N</span> <span class="o">*</span> <span class="n">sizeof</span><span class="p">(</span><span class="k">int</span><span class="p">));</span>
-  <span class="p">}</span>
-
-  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n\n\n</span><span class="s">&quot;</span><span class="p">);</span>
-  <span class="n">printBoard</span><span class="p">(</span><span class="n">board</span><span class="p">);</span>
-  <span class="n">hanoi</span><span class="p">(</span><span class="n">board</span><span class="p">,</span> <span class="no">N</span> <span class="o">+</span> <span class="mh">1</span><span class="p">,</span> <span class="mh">0</span><span class="p">,</span> <span class="mh">2</span><span class="p">);</span>
-
-  <span class="cm">/* free the allocated memory */</span>
-  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mh">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mh">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">free</span><span class="p">(</span><span class="n">board</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">stack</span><span class="p">);</span>
-
-  <span class="k">return</span> <span class="mh">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
+    for (k = 0; k < (maxwidth / 2); ++k)
+      printf(" ");
+  }
+  printf("\n");
+#ifdef KEEPLOG
+  printf("\033[2K");
+#endif                          /* KEEPLOG */
+  printf("\n");
 
 
+  /* print the first empty line for all three columns */
+  for (i = 0; i < 3; ++i) {
+    for (k = 0; k < (maxwidth / 2); ++k)
+      printf(" ");
+
+    printf("|");
+
+    for (k = 0; k < (maxwidth / 2); ++k)
+      printf(" ");
+  }
+  printf("\n");
+
+  /* now print the actual columns */
+  for (i = N - 1; i >= 0; --i) {        /* for each stack level */
+    for (j = 0; j < 3; ++j) {   /* for each column/stack */
+      disk = board[j].stack[i];
+      /* calculate the disk's width */
+      width = (2 * (disk - 1)) + 1;
+
+      if (disk) {            /* if there is a disk at this level of the stack */
+        for (k = 0; k < (((maxwidth - width) + 1) / 2); ++k)
+          printf(" ");
+
+        /* calculate the numbers width */
+        n = disk;
+        num_of_digits = 0;
+        while (n > 0) {
+          n /= 10;
+          ++num_of_digits;
+        }
+
+#ifdef COLORED
+        /* change color */
+        printf("\033[1;%dm", 31 + disk % 6);
+#endif                          /* COLORED */
+        div = width / num_of_digits;
+        for (k = 0; k < div; ++k)
+          printf("%d", disk);
+
+        mod = width % num_of_digits;
+        /* if there are more digits to print */
+        if (mod)
+          printf("%d", disk / (int) pow(10, num_of_digits - mod));
+
+#ifdef COLORED
+        /* reset color */
+        printf("\033[0m");
+#endif                          /* COLORED */
+
+        for (k = 0; k < (((maxwidth - width) + 1) / 2); ++k)
+          printf(" ");
+      } else {              /* if there is no disk at this level of the stack */
+        for (k = 0; k < (maxwidth / 2); ++k)
+          printf(" ");
+
+        printf("|");
+
+        for (k = 0; k < (maxwidth / 2); ++k)
+          printf(" ");
+
+      }
+
+    }
+    printf("\n");
+  }
+
+  /* print the bottom line */
+  for (i = 0; i < (maxwidth + 1) * 3; ++i)
+    printf("-");
+
+  printf("\n");
+
+#ifdef ANIMATED
+  /* set the delay between the printings */
+  usleep(delay);
+#endif                          /* ANIMATED */
+}
+
+/* moves 'disk' from 'from' to 'to' in 'board' */
+void move(column_t * board, int disk, int from, int to)
+{
+
+  /* remove the disk from the 'from' column */
+  board[from].stack[--board[from].top] = 0;
+  assert(board[from].top >= 0);
+
+  /* move the disk to the 'to' column */
+  board[to].stack[board[to].top++] = disk;
+
+#ifdef ANIMATED
+  /* clear the terminal for animated solving */
+#if defined(WIN32) || defined(WIN64)
+  system("CLS");
+#else
+  /* there are many ways to do it
+   * 1st call system call clear
+   */
+  /* system("clear");
+   */
+  /* 2nd do yourself what clear would do \033[H moves the cursor to the top left
+   * of the terminal and \033[J clears it
+   */
+  /*printf("\033[H\033[J");
+   */
+  /* 3rd move your cursor X lines up and continue your printing from there
+   * \033[A moves cursor up N lines
+   */
+#ifdef KEEPLOG
+  printf("\033[%dA", N + 6);
+#else
+  printf("\033[%dA", N + 7);
+#endif                          /* KEEPLOG */
+#endif                          /* WIN32 || WIN64 */
+#endif                          /* ANIMATED */
+
+  /* print the move and then the board */
+  printf("\n%c-->%c\n", 'A' + from, 'A' + to);
+#ifdef KEEPLOG
+  printf("\033[2K");
+#endif                          /* KEEPLOG */
+  printf("\n");
+  printBoard(board);
+
+  return;
+}
+
+/* moves 'disk' number of disks from 'from' to 'to' in 'board' */
+void hanoi(column_t * board, int disk, int from, int to)
+{
+  int tmp;
+
+  /* if there are no disks to move return (end recursion) */
+  if (disk-- == 0)
+    return;
+
+  /* calculate the column to use as temporary */
+  tmp = 3 - (to + from);
+
+  /* step 1:
+   *   first move all the disks except the bottom one to the tmp column */
+  hanoi(board, disk, from, tmp);
+  /* step 2:
+   *   now we can move the last disk to 'to' */
+  move(board, disk, from, to);
+  /* step 3:
+   *   now move the previously moved (step 1) disks from the tmp column
+   *   to 'to' */
+  hanoi(board, disk, tmp, to);
+
+  return;
+}
+
+int main(int argc, char **argv)
+{
+
+  int i;
+  column_t board[3];
+
+#ifndef CS100
+  if (argc != 3)
+#else
+  if (argc != 2)
+#endif                          /* CS100 */
+  {
+    printf("\
+       Copyright (C) 2011-2012 Foivos S. Zakkak \n\
+       This program comes with ABSOLUTELY NO WARRANTY.\n\
+       This is free software, and you are welcome to redistribute it\n\
+       under certain conditions.\n\n");
+#ifndef CS100
+    printf("\
+       Usage:%s <number of disks> <animation delay in ms>\n\
+       Example:%s 5 100\n", argv[0], argv[0]);
+#else
+    printf("\
+       Usage:%s <number of disks>\n\
+       Example:%s 5\n", argv[0], argv[0]);
+#endif                          /* CS100 */
+    return 1;
+  }
+
+  N = atoi(argv[1]);
+#ifndef CS100
+  delay = atoi(argv[2]) * 1000;
+
+  if ((N * delay) < 0) {
+    printf("Please enter positive numbers!");
+    return 1;
+  }
+#endif                          /* CS100 */
+
+  board[0].top = N;
+  board[0].stack = (int *) malloc(N * sizeof(int));
+
+  /* initially place all disks at first column */
+  for (i = 0; i < N; ++i)
+    board[0].stack[i] = N - i;
+
+  for (i = 1; i < 3; ++i) {
+    board[i].top = 0;
+    board[i].stack = (int *) malloc(N * sizeof(int));
+  }
+
+  printf("\n\n\n");
+  printBoard(board);
+  hanoi(board, N, 0, 2);
+
+  /* free the allocated memory */
+  for (i = 0; i < 3; ++i)
+    free(board[i].stack);
+
+  return 0;
+}</code></pre>
+    </noscript>
+</div>
 <iframe width="640" height="480" src="https://www.youtube.com/embed/XqTgCpBWhS8?rel=0" frameborder="0" allowfullscreen></iframe>
             </div>
             <!-- /.entry-content -->
@@ -409,51 +428,51 @@ Foivos . Zakkak . net            </a>
     </section>
 
         </div>
-        <div class="col-sm-3 well well-sm" id="sidebar">
+        <div class="col-sm-3" id="sidebar">
+            <aside>
 
-<aside>
-    <section>
-        <ul class="list-group list-group-flush">
-                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
-                  <ul class="list-group" id="social">
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="mailto:foivos_(AT}_zakkak_(DOT}_net"><i class="fa fa-envelope-square fa-lg"></i> Email</a></li>
+                <li class="list-group-item"><a href="https://github.com/zakkak"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+                <li class="list-group-item"><a href="https://www.linkedin.com/in/zakkak"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+                <li class="list-group-item"><a href="/uploads/zakkak_cv.pdf"><i class="fa fa-file-pdf-o fa-lg"></i> My CV</a></li>
+              </ul>
+            </li>
 
-                    <li class="list-group-item"><a href="mailto:foivos_(AT}_zakkak_(DOT}_net"><i class="fa fa-envelope-square fa-lg"></i> Email</a></li>
-                    <li class="list-group-item"><a href="https://github.com/zakkak"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-                    <li class="list-group-item"><a href="https://www.linkedin.com/in/zakkak"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
+                <ul class="list-group" id="recentposts">
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/blog/latex_peculiarities.html">
+                            LaTeX Peculiarities
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/courses/managed_runtime_systems.html">
+                            Managed Runtime Systems
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/tutorials/gitlab_ldap_auth_without_querying_account.html">
+                            Gitlab LDAP authentication without querying account or anonymous binding
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/tutorials/building_the_linux_kernel.html">
+                            How to build the linux kernel
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/blog/voluntary_logging.html">
+                            Voluntary Logging of My Life
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
-                    <li class="list-group-item"><a href="/uploads/zakkak_cv.pdf"><i class="fa fa-file-pdf-o fa-lg"></i> My CV</a></li>
-                  </ul>
-                </li>
 
-                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
-                    <ul class="list-group" id="recentposts">
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/tutorials/ubuntu_1304_raid1_setup.html">
-                                Ubuntu 13.04 RAID-1 setup
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/code/syncbackup_script.html">
-                                A Sync/BackUp script
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/tutorials/getting_started_emacs.html">
-                                Getting started with Emacs
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/tutorials/using_emacs_and_notmuch_mail_client.html">
-                                Using emacs and notmuch as a mail client
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/tutorials/google_pdf_viewer_chromium.html">
-                                Google PDF viewer on Chromium
-                            </a>
-                        </li>
-                    </ul>
-                </li>
 
 
 
@@ -463,23 +482,21 @@ Foivos . Zakkak . net            </a>
         </div>
             <a href="https://github.com/zakkak">@zakkak</a> on GitHub
     </li>
-
-        </ul>
-    </section>
-
-</aside>        </div>
+    </ul>
+</section>            </aside>
+        </div>
     </div>
 </div>
 <footer>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2013 Foivos S. Zakkak
+         <div class="col-xs-10">&copy; 2018 Foivos S. Zakkak
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
     Content
-  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution 4.0 International License</a>, except where indicated otherwise.
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>, except where indicated otherwise.
 </small></p>
          </div>
          <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
@@ -532,5 +549,6 @@ Foivos . Zakkak . net            </a>
         })();
     </script>
     <!-- End Google Analytics Code -->
+
 </body>
 </html>

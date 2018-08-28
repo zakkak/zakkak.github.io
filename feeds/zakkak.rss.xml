@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"><channel><title>Foivos . Zakkak . net - zakkak</title><link>http://foivos.zakkak.net/</link><description></description><lastBuildDate>Mon, 20 Aug 2018 00:00:00 +0300</lastBuildDate><item><title>LaTeX Peculiarities</title><link>http://foivos.zakkak.net/blog/latex_peculiarities.html</link><description>
+&lt;div id="outline-container-sec-1" class="outline-2"&gt;
+&lt;h2 id="sec-1"&gt;Separating sentences&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;
+In LaTeX, in order to separate two sentences one needs to
+&lt;/p&gt;
+
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;insert two spaces between the period and the first letter of the second sentence, e.g., &lt;code&gt;First sentence.  Second sentence.&lt;/code&gt;, or
+&lt;/li&gt;
+&lt;li&gt;separate the two sentences with a new line, e.g.,
+&lt;div class="org-src-container"&gt;
+
+&lt;pre class="src src-latex"&gt;First sentence.
+Second sentence.
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;
+Using a …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Mon, 20 Aug 2018 00:00:00 +0300</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2018-08-20:/blog/latex_peculiarities.html</guid><category>latex</category></item><item><title>Managed Runtime Systems</title><link>http://foivos.zakkak.net/courses/managed_runtime_systems.html</link><description>
+&lt;div id="outline-container-sec-1" class="outline-2"&gt;
+&lt;h2 id="sec-1"&gt;Introduction&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;
+The aim of this course is to introduce students to the world of managed runtime systems.
+Managed runtime systems are the ones responsible for executing interpreted languages.
+Such languages are usually compiled to some intermediate representation instead of native machine code, this intermediate representation is then parsed and executed …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Tue, 28 Nov 2017 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2017-11-28:/courses/managed_runtime_systems.html</guid><category>course</category></item><item><title>Gitlab LDAP authentication without querying account or anonymous binding</title><link>http://foivos.zakkak.net/tutorials/gitlab_ldap_auth_without_querying_account.html</link><description>&lt;p&gt;
+&lt;b&gt;Note&lt;/b&gt;: This tutorial was last tested with gitlab 8.5 installed from source.
+&lt;/p&gt;
+
+&lt;p&gt;
+This tutorial aims to describe how to modify a &lt;a href="https://gitlab.com/"&gt;Gitlab&lt;/a&gt; installation to
+use the users credentials to authenticate with the LDAP server.  By
+default &lt;a href="https://gitlab.com/"&gt;Gitlab&lt;/a&gt; relies on anonymous binding or a special &lt;i&gt;querying&lt;/i&gt; user
+to ask the …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Sat, 02 Jan 2016 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2016-01-02:/tutorials/gitlab_ldap_auth_without_querying_account.html</guid><category>gitlab</category><category>LDAP</category></item><item><title>How to build the linux kernel</title><link>http://foivos.zakkak.net/tutorials/building_the_linux_kernel.html</link><description>&lt;h1&gt;Getting the source&lt;/h1&gt;
+&lt;p&gt;First you need to fetch the source.  Visit &lt;a href="https://www.kernel.org/"&gt;kernel.org&lt;/a&gt; and get the
+version of your preference.  Alternative, if you plan to hack it you
+might prefer to get the latest (merged by Linus Torvalds) code by
+cloning his git repository:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git clone git://git.kernel.org …&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Fri, 10 Jul 2015 20:55:00 +0300</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2015-07-10:/tutorials/building_the_linux_kernel.html</guid></item><item><title>Voluntary Logging of My Life</title><link>http://foivos.zakkak.net/blog/voluntary_logging.html</link><description>&lt;p&gt;
+In an effort to stop using google calendar I exported all the events I
+created since the first day I started using it (this was 4 years ago).
+&lt;/p&gt;
+
+&lt;p&gt;
+So the last 4 years I have created 2256 events.
+&lt;/p&gt;
+
+&lt;p&gt;
+That is about 1.54520547945 events per day&amp;#x2026;  Essentially meaning that
+google …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Fri, 29 May 2015 00:00:00 +0300</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2015-05-29:/blog/voluntary_logging.html</guid></item><item><title>How to backup your configuration using Git</title><link>http://foivos.zakkak.net/tutorials/using_git_to_backup_configuration.html</link><description>&lt;p&gt;This tutorial is about backing up the configuration under a user's
+home directory using Git.&lt;/p&gt;
+&lt;p&gt;Git supports negation of patterns in &lt;code&gt;.gitignore&lt;/code&gt; files.  To negate a
+pattern we simply prefix it with &lt;code&gt;!&lt;/code&gt;.  This feature enables to use
+&lt;code&gt;.gitignore&lt;/code&gt; file in a user's home directory that instructs Git to
+ignore all …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Sun, 26 Oct 2014 22:35:00 +0200</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2014-10-26:/tutorials/using_git_to_backup_configuration.html</guid></item><item><title>How to change the UID of a user with an encrypted home directory in Ubuntu</title><link>http://foivos.zakkak.net/tutorials/change_uid_ecryptfs.html</link><description>&lt;p&gt;This tutorial is about changing the UID of a user with an encrypted,
+by ecryptfs, home directory in Ubuntu.&lt;/p&gt;
+&lt;p&gt;You first need to logout the user you want to modify and kill all
+processes he runs.  An easy approach is to restart and log in as root
+or as another …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Mon, 29 Sep 2014 03:55:00 +0300</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2014-09-29:/tutorials/change_uid_ecryptfs.html</guid></item><item><title>Enable automatic security updates in Ubuntu</title><link>http://foivos.zakkak.net/tutorials/enable_automatic_security_updates_in_Ubuntu.html</link><description>&lt;p&gt;This tutorial will enable automatic download and installation of
+security updates for Ubuntu.&lt;/p&gt;
+&lt;p&gt;First we need to install &lt;code&gt;unattended-upgrades&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo apt-get install unattended-upgrades
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The we need to enable it:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo dpkg-reconfigure -plow unattended-upgrades
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;More information can be found [here](https://help.ubuntu.com/community/AutomaticSecurityUpdates}.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Thu, 25 Sep 2014 14:49:00 +0300</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2014-09-25:/tutorials/enable_automatic_security_updates_in_Ubuntu.html</guid></item><item><title>Ubuntu 13.04 RAID-1 setup</title><link>http://foivos.zakkak.net/tutorials/ubuntu_1304_raid1_setup.html</link><description>&lt;h2&gt;Purpose&lt;/h2&gt;
+&lt;p&gt;This tutorial aims to help you setup a software RAID-1 (mirror) under
+ubuntu 13.04  &lt;/p&gt;
+&lt;p&gt;Lets assume the following mapping&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;/dev/sda1    /
+/dev/sda2    /home
+/dev/sda3    swap
+/dev/sda4    /spare
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We also assume that you have a second (empty) hard disk drive larger or
+equal to sda .  &lt;/p&gt;
+&lt;p&gt;We …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Sun, 23 Jun 2013 09:54:00 +0300</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2013-06-23:/tutorials/ubuntu_1304_raid1_setup.html</guid></item><item><title>A Sync/BackUp script</title><link>http://foivos.zakkak.net/code/syncbackup_script.html</link><description>&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/45401b2c9009986913fb.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;#!/bin/bash
+
+#########################################################################
+#                                                                       #
+# File: backup_settings.sh                    A sync/backup script      #
+#                                                                       #
+#                                   ++++++++++++++++++++++++++++++      #
+# Copyright (C) 2013                + Author:  Foivos S. Zakkak  +      #
+#                                   + Website: foivos.zakkak.net +      #
+#                                   + Email:   foivos@zakkak.net +      #
+#                                   ++++++++++++++++++++++++++++++      #
+#                                                                       #
+# This program is free software: you can redistribute it and/or modify  #
+# it under the terms of the GNU General Public License as published by  #
+# the …&lt;/code&gt;&lt;/pre&gt;&lt;/noscript&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Mon, 01 Apr 2013 02:34:00 +0300</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2013-04-01:/code/syncbackup_script.html</guid></item><item><title>Getting started with Emacs</title><link>http://foivos.zakkak.net/tutorials/getting_started_emacs.html</link><description>&lt;p&gt;So you want to learn how to use Emacs...&lt;/p&gt;
+&lt;p&gt;First of all &lt;strong&gt;install&lt;/strong&gt; Emacs (I suggest versions &gt;=24). Then start
+using it. It is going to be hard in the beginning, but day by day you
+will get used to it and learn new things.&lt;/p&gt;
+&lt;h3&gt;Your friends&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://www.gnu.org/software/emacs/refcards/"&gt;Reference cards&lt;/a&gt; (will …&lt;/li&gt;&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Sat, 23 Mar 2013 15:53:00 +0200</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2013-03-23:/tutorials/getting_started_emacs.html</guid></item><item><title>Using emacs and notmuch as a mail client</title><link>http://foivos.zakkak.net/tutorials/using_emacs_and_notmuch_mail_client.html</link><description>&lt;p&gt;This tutorial aims to help you setup &lt;a href="http://notmuchmail.org/"&gt;notmuch&lt;/a&gt; for multiple IMAP
+accounts and use &lt;a href="http://www.gnu.org/software/emacs/"&gt;emacs&lt;/a&gt; as a frontend.&lt;br&gt;
+( At the time writing this tutorial emacs version was 24.3 and notmuch
+version was 0.15.2)&lt;/p&gt;
+&lt;p&gt;Soon after writing this tutorial I experimented with &lt;a href="http://www.djcbsoftware.nl/code/mu/"&gt;mu&lt;/a&gt; and
+&lt;a href="http://www.djcbsoftware.nl/code/mu/mu4e.html"&gt;mu4e&lt;/a&gt;, the configuration is …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Wed, 13 Mar 2013 05:42:00 +0200</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2013-03-13:/tutorials/using_emacs_and_notmuch_mail_client.html</guid></item><item><title>Google PDF viewer on Chromium</title><link>http://foivos.zakkak.net/tutorials/google_pdf_viewer_chromium.html</link><description>&lt;p&gt;This is a tutorial (more like a code dumb) on how to enable the pdf
+viewer plugin from google chrome in chromium.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+ar vx google-chrome-stable_current_amd64.deb
+rm google-chrome-stable_current_amd64.deb control.tar.gz debian-binary
+tar --lzma -xvf data.tar.lzma
+sudo cp …&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Sat, 29 Dec 2012 14:12:00 +0200</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2012-12-29:/tutorials/google_pdf_viewer_chromium.html</guid></item><item><title>Flashing BIOS (Acer Aspire 2920z)</title><link>http://foivos.zakkak.net/tutorials/flashing_bios_acer_aspire_2920z.html</link><description>&lt;p&gt;
+A few weeks ago my precious Acer Aspire 2920z started misbehaving.
+&lt;/p&gt;
+
+&lt;div id="outline-container-sec-1" class="outline-2"&gt;
+&lt;h2 id="sec-1"&gt;The symptoms:&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;Power and battery leds flashing as soon as I plug it in.
+&lt;/li&gt;
+&lt;li&gt;Automatic power on as soon as I plug it in.
+&lt;/li&gt;
+&lt;li&gt;Screen backlight doesn't go on and i can see it gets through the BIOS
+splash …&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Thu, 27 Dec 2012 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2012-12-27:/tutorials/flashing_bios_acer_aspire_2920z.html</guid><category>BIOS</category><category>2920z</category><category>aspire</category></item><item><title>My Favorite VIM plugins</title><link>http://foivos.zakkak.net/blog/my_favorite_vim_plugins.html</link><description>&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col  class="left" /&gt;
+
+&lt;col  class="left" /&gt;
+
+&lt;col  class="left" /&gt;
+
+&lt;col  class="left" /&gt;
+
+&lt;col  class="left" /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="left"&gt;Plugin&lt;/th&gt;
+&lt;th scope="col" class="left"&gt;&amp;#xa0;&lt;/th&gt;
+&lt;th scope="col" class="left"&gt;Description&lt;/th&gt;
+&lt;th scope="col" class="left"&gt;&amp;#xa0;&lt;/th&gt;
+&lt;th scope="col" class="left"&gt;Link&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="left"&gt;&lt;i&gt;&lt;b&gt;Vundle&lt;/b&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;The plugin manager&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&lt;a href="https://github.com/gmarik/vundle"&gt;https://github.com/gmarik/vundle&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="left"&gt;&lt;i&gt;&lt;b&gt;Gundo&lt;/b&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Undo tree visualizer&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&lt;a href="https://github.com/sjl/gundo.vim"&gt;https://github.com/sjl/gundo.vim&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="left"&gt;&lt;i&gt;&lt;b&gt;NERDTree&lt;/b&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Folder tree visualizer&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&lt;a href="https://github.com/scrooloose/nerdtree"&gt;https://github.com/scrooloose/nerdtree&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="left"&gt;&lt;i&gt;&lt;b&gt;NERDCommenter&lt;/b&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Make commenting easy and fast&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&lt;a href="https://github.com/scrooloose/nerdcommenter"&gt;https://github.com/scrooloose/nerdcommenter&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="left"&gt;&lt;i&gt;&lt;b&gt;Automatic TeX&lt;/b&gt;&lt;/i&gt;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Writing LaTeX the easy way&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&lt;a href="https://github.com/coot/atp_vim"&gt;https …&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Thu, 08 Nov 2012 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2012-11-08:/blog/my_favorite_vim_plugins.html</guid></item><item><title>svnkomp -&gt; vcsdiff</title><link>http://foivos.zakkak.net/blog/svnkomp_vcsdiff.html</link><description>&lt;p&gt;Do you remember &lt;a href="http://foivos.zakkak.net/code/svnkomp_using_kompare_svndiff.html"&gt;svnkomp&lt;/a&gt;?&lt;/p&gt;
+&lt;p&gt;After completely rewriting it from bash to ruby i decided to extend it.&lt;/p&gt;
+&lt;p&gt;svnkomp is called &lt;a href="https://rubygems.org/gems/vcsdiff"&gt;vcsdiff&lt;/a&gt; from now on and is available as a ruby gem
+(currently prerelease)&lt;/p&gt;
+&lt;p&gt;vcsdiff gem source can be found &lt;a href="https://github.com/zakkak/vcsdiff"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Finally to get the pure ruby script go &lt;a href="https://github.com/zakkak/vcsdiff/blob/master/bin/vcsdiff"&gt;here&lt;/a&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Sun, 14 Oct 2012 22:15:00 +0300</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2012-10-14:/blog/svnkomp_vcsdiff.html</guid></item><item><title>svnKomp (using Kompare for svndiff)</title><link>http://foivos.zakkak.net/code/svnkomp_using_kompare_svndiff.html</link><description>&lt;p&gt;An extended version of this script can be found &lt;a href="https://github.com/zakkak/vcsdiff/blob/master/bin/vcsdiff"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/4e4466a2f9bdbdf79ae0.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;#!/usr/bin/env ruby
+
+################################################################################
+#                                                                              #
+# File: svnkomp.rb                                                             #
+#                                   ++++++++++++++++++++++++++++++             #
+# Copyright (C) 2012                + Author:  Foivos S. Zakkak  +             #
+#                                   + Website: foivos.zakkak.net +             #
+#                                   + Email:   foivos@zakkak.net +             #
+#                                   ++++++++++++++++++++++++++++++             #
+#                                                                              #
+# Based on the script svnvimdiff, written by                                   #
+#   Geoff Buchan &lt;geoffrey.buchan@gmail.com&gt;                                   #
+#                                                                              #
+# This program is free software: you can redistribute it …&lt;/geoffrey.buchan@gmail.com&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/noscript&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Sun, 14 Oct 2012 00:07:00 +0300</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2012-10-14:/code/svnkomp_using_kompare_svndiff.html</guid></item><item><title>Text encoding converter (suitable for subtitles)</title><link>http://foivos.zakkak.net/code/text_srt_converter.html</link><description>&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/c3af8c7346d932c9c907.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;#!/usr/bin/env ruby
+
+################################################################################
+#                                                                              #
+# File: greek2utf8.rb                                                          #
+#                                   ++++++++++++++++++++++++++++++             #
+# Copyright (C) 2012                + Author:  Foivos S. Zakkak  +             #
+#                                   + Website: foivos.zakkak.net +             #
+#                                   + Email:   foivos@zakkak.net +             #
+#                                   ++++++++++++++++++++++++++++++             #
+#                                                                              #
+# This program is free software: you can redistribute it and/or modify         #
+# it under the terms of the GNU General Public License as published by         #
+# the Free Software …&lt;/code&gt;&lt;/pre&gt;&lt;/noscript&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Sat, 13 Oct 2012 17:37:00 +0300</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2012-10-13:/code/text_srt_converter.html</guid></item><item><title>Hello world</title><link>http://foivos.zakkak.net/code/hello_world.html</link><description>&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Hello world!&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Thu, 11 Oct 2012 22:14:00 +0300</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2012-10-11:/code/hello_world.html</guid></item><item><title>Changing the default browser in Thunderbird</title><link>http://foivos.zakkak.net/tutorials/changing_default_browser_thunderbird.html</link><description>&lt;p&gt;If you are unable to launch Firefox from URL links in a Thunderbird
+mail message, or if you want to change the browser that is launched,
+add the following lines to the &lt;code&gt;user.js&lt;/code&gt; file, located in your
+Thunderbird profile folder (you may need to create the &lt;code&gt;user.js&lt;/code&gt;
+file …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Mon, 25 Jun 2012 10:24:00 +0300</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2012-06-25:/tutorials/changing_default_browser_thunderbird.html</guid></item><item><title>How to create local git repositories</title><link>http://foivos.zakkak.net/tutorials/how_create_local_git_repositories.html</link><description>&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Create the repo directory (the '.' prefix is to make it hidden)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mkdir .myrepo.git
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Go inside the directory&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd .myrepo.git
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Initialize the git repo&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git init --bare
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Our repo is now ready  &lt;/p&gt;
+&lt;p&gt;to clone:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git clone /path/to/.myrepo.git where_to_clone
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: the first push must be&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git push …&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Tue, 15 May 2012 19:07:00 +0300</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2012-05-15:/tutorials/how_create_local_git_repositories.html</guid></item><item><title>Changing user id in linux</title><link>http://foivos.zakkak.net/tutorials/changing_user_id_linux.html</link><description>&lt;p&gt;As a &lt;strong&gt;different&lt;/strong&gt; user execute&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;usermod -u  username
+find / -user ; -exec chown -h ; {} \;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;example:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;usermod -u 2179 user1
+find / -user 1000 -exec chown -h 2179 {} \;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Wed, 22 Feb 2012 18:46:00 +0200</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2012-02-22:/tutorials/changing_user_id_linux.html</guid></item><item><title>Mounting remote folders with sshfs</title><link>http://foivos.zakkak.net/tutorials/mounting_remote_folders_sshfs.html</link><description>&lt;p&gt;This tutorial will show you how to mount a remote folder, that you can
+access through &lt;strong&gt;sftp&lt;/strong&gt;, on your local filesystem.&lt;/p&gt;
+&lt;p&gt;First you will need to set up your ssh connection to work
+&lt;strong&gt;passwordless&lt;/strong&gt;. Read &lt;a href="http://node/17"&gt;this&lt;/a&gt; if you don't know how.&lt;/p&gt;
+&lt;p&gt;Install sshfs to your system and add your user …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Tue, 21 Feb 2012 17:52:00 +0200</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2012-02-21:/tutorials/mounting_remote_folders_sshfs.html</guid></item><item><title>How to use your Google OpenID on sites supporting OpenID (like this one)</title><link>http://foivos.zakkak.net/tutorials/how_use_your_google_openid_sites_supporting_openid_one.html</link><description>&lt;p&gt;&lt;span&gt;Simply
+type&lt;/span&gt;&lt;span&gt;https://www.google.com/accounts/o8/id&lt;/span&gt;&lt;span&gt; as
+your OpenID and it will do the trick ;)&lt;/span&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Fri, 10 Feb 2012 23:06:00 +0200</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2012-02-10:/tutorials/how_use_your_google_openid_sites_supporting_openid_one.html</guid></item><item><title>Hanoi Towers</title><link>http://foivos.zakkak.net/code/hanoi_towers.html</link><description>&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/95b2b152f4172442f6cc.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;/******************************************************************************
+ *                                                                            *
+ * File: hanoi_towers.c                                                       *
+ *                                                                            *
+ * This program solves the Towers of Hanoi puzzle recursively                 *
+ *                                                                            *
+ * For details about that weird \033 staff visit                              *
+ *  www.linuxdoc.org/HOWTO/Bash-Prompt-HOWTO/c327.html                        *
+ *                                                                            *
+ * Compile:                                                                   *
+ *  gcc -lm hanoi.c -o hanoi                                                  *
+ *                                                                            *
+ * Copyright (C) 2011-2012  Foivos S. Zakkak                                  *
+ *                                                                            *
+ * This program is free software: you can redistribute it and …&lt;/code&gt;&lt;/pre&gt;&lt;/noscript&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Thu, 22 Dec 2011 22:26:00 +0200</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2011-12-22:/code/hanoi_towers.html</guid></item><item><title>Knights of the Round Table</title><link>http://foivos.zakkak.net/code/knights_round_table.html</link><description>&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/8a327ddb7f5a773d57ac.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;/******************************************************************************
+ *                                                                            *
+ * File: round_knights.c                                                      *
+ *                                                                            *
+ * This program solves the knights of the round table math problem with some  *
+ * bitwise logic                                                              *
+ *                                                                            *
+ * For details about the problem                                              *
+ *  http://mathforum.org/library/drmath/view/55862.html                       *
+ *                                                                            *
+ * Copyright (C) 2011-2012        ++++++++++++++++++++++++++++++              *
+ *                                + Author:  Foivos S. Zakkak  +              *
+ *                                + Website: foivos.zakkak.net +              *
+ *                                + Email:   foivos@zakkak.net +              *
+ *                                ++++++++++++++++++++++++++++++              *
+ *                                                                            *
+ * This program is free …&lt;/code&gt;&lt;/pre&gt;&lt;/noscript&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Thu, 22 Dec 2011 22:23:00 +0200</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2011-12-22:/code/knights_round_table.html</guid></item><item><title>SSH login without password</title><link>http://foivos.zakkak.net/tutorials/ssh_login_without_password.html</link><description>&lt;p&gt;Open your favorite terminal emulator and type&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ssh-keygen -t dsa
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;(simply enter on whatever it asks you)&lt;/p&gt;
+&lt;p&gt;try&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ssh-copy-id -i ~/.ssh/id_dsa.pub user@remote.machine.com
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;if it fails (you don't have ssh-copy-id) do&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cat ~/.ssh/id_dsa.pub | ssh user@remote.machine.com &amp;#39;cat &amp;gt;&amp;gt; ~/.ssh/authorized_keys&amp;#39;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;give your password …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Mon, 05 Jul 2010 16:57:00 +0300</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2010-07-05:/tutorials/ssh_login_without_password.html</guid></item><item><title>Synchronizing iphone on linux</title><link>http://foivos.zakkak.net/tutorials/synchronizing_iphone_linux.html</link><description>&lt;p&gt;&lt;strong&gt;Required packages:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;libgpod4, gtkpod, ifuse, usbmuxd&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Steps:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;After having installed the above packages&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo mkdir /media/iPhone (you can choose whatever location you desire)
+sudo chown `whoami` /media/iPhone
+ifuse /media/iPhone (this will mount your iphone on /media/iPhone)
+mkdir -p /media/iPhone/iTunes_Control/Device
+sudo lsusb -v | grep …&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Sun, 13 Jun 2010 17:36:00 +0300</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2010-06-13:/tutorials/synchronizing_iphone_linux.html</guid></item><item><title>Connect to UCNET over vpn on ubuntu</title><link>http://foivos.zakkak.net/tutorials/connect_ucnet_over_vpn_ubuntu.html</link><description>&lt;p&gt;Go to &lt;strong&gt;System-&gt;Administration-&gt;Synaptic Package Manager&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Search for &lt;strong&gt;pptp&lt;/strong&gt; and install &lt;strong&gt;pptp-linux&lt;/strong&gt; and
+&lt;strong&gt;network-manager-pptp&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;click the network manager and go to &lt;strong&gt;VPN Connections-&gt;Configure
+VPN&lt;/strong&gt;...&lt;/p&gt;
+&lt;p&gt;Connection name: whatever you like  &lt;/p&gt;
+&lt;p&gt;Gateway: 192.168.1.1  &lt;/p&gt;
+&lt;p&gt;User name: login@csd.uoc.gr  &lt;/p&gt;
+&lt;p&gt;Password: yourPass&lt;/p&gt;
+&lt;p&gt;now click advanced... and check Use …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Fri, 11 Jun 2010 20:06:00 +0300</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2010-06-11:/tutorials/connect_ucnet_over_vpn_ubuntu.html</guid></item><item><title>Using kompare for svn diff</title><link>http://foivos.zakkak.net/tutorials/using_kompare_svn_diff.html</link><description>&lt;p&gt;(&lt;strong&gt;Update: 15-10-2012&lt;/strong&gt;) First read &lt;a href="http://foivos.zakkak.net/?q=node/43"&gt;this&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;You don't like/understand the svn diff output?&lt;/p&gt;
+&lt;p&gt;You would prefer a better tool with merge options and appropriate
+coloring?&lt;/p&gt;
+&lt;p&gt;Kompare is a great tool used by kdevelop to compare files. You can find
+it in the repositories of all famous linux distros or &lt;a href="http://kde-apps.org/content/show.php/Kompare?content=19001"&gt;here …&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Wed, 09 Jun 2010 17:43:00 +0300</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2010-06-09:/tutorials/using_kompare_svn_diff.html</guid></item><item><title>Connecting through gate1.csd.uoc.gr and gate2.csd.uoc.gr</title><link>http://foivos.zakkak.net/tutorials/connecting_through_gate1csduocgr_and_gate2csduocgr.html</link><description>&lt;h3&gt;&lt;a id="simple_ssh" name="simple_ssh"&gt;&lt;/a&gt;Απλό SSH:&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;ssh gate1.csd.uoc.g​r&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Αφού εισάγετε των κωδικό σας και εμφανιστεί το %&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ssh milo
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;θα σας τυπώσει το παρακάτω μήνυμα&lt;/p&gt;
+&lt;p&gt;&lt;address&gt;
+The authe​nticity of host 'milo.csd.uoc.gr (147.52.19.9)' can't be
+established. RSA key fingerprint is
+5a:37:48:87:3a:d3 …&lt;/address&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">zakkak</dc:creator><pubDate>Tue, 01 Jun 2010 11:47:00 +0300</pubDate><guid isPermaLink="false">tag:foivos.zakkak.net,2010-06-01:/tutorials/connecting_through_gate1csduocgr_and_gate2csduocgr.html</guid></item></channel></rss>

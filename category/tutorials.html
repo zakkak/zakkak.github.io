@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"
->
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
     <title>Tutorials - Foivos . Zakkak . net</title>
     <!-- Using the latest rendering mode for IE -->
@@ -27,16 +26,22 @@
     <link href="http://foivos.zakkak.net/theme/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="http://foivos.zakkak.net/theme/css/pygments/native.css" rel="stylesheet">
+    <link href="http://foivos.zakkak.net/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
     <link rel="stylesheet" href="http://foivos.zakkak.net/theme/css/style.css" type="text/css"/>
 
         <link href="http://foivos.zakkak.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
               title="Foivos . Zakkak . net ATOM Feed"/>
 
+
+
+        <link href="http://foivos.zakkak.net/feeds/tutorials.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Foivos . Zakkak . net Tutorials ATOM Feed"/>
+
 </head>
 <body>
 
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
+	<div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -55,43 +60,115 @@ Foivos . Zakkak . net            </a>
                         <li >
                             <a href="http://foivos.zakkak.net/category/code.html">Code</a>
                         </li>
+                        <li >
+                            <a href="http://foivos.zakkak.net/category/courses.html">Courses</a>
+                        </li>
                         <li class="active">
                             <a href="http://foivos.zakkak.net/category/tutorials.html">Tutorials</a>
                         </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="http://foivos.zakkak.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+              <li><span>
+                <form class="navbar-search" action="/search.html">
+                  <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input" required>
+                </form></span>
+              </li>
+              <li><a href="http://foivos.zakkak.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>
 </div> <!-- /.navbar -->
-
+<!-- Banner -->
+<!-- End Banner -->
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-    <ol class="breadcrumb">
-        <li><a href="http://foivos.zakkak.net" title="Foivos . Zakkak . net"><i class="fa fa-home fa-lg"></i></a></li>
-        <li><a href="http://foivos.zakkak.net/" title="Foivos . Zakkak . net Categories">Categories</a></li>
-        <li class="active">Tutorials</li>
-    </ol>
+            <article>
+                <h2><a href="http://foivos.zakkak.net/tutorials/gitlab_ldap_auth_without_querying_account.html">Gitlab LDAP authentication without querying account or anonymous binding</a></h2>
+                <div class="summary"><p>
+<b>Note</b>: This tutorial was last tested with gitlab 8.5 installed from source.
+</p>
 
+<p>
+This tutorial aims to describe how to modify a <a href="https://gitlab.com/">Gitlab</a> installation to
+use the users credentials to authenticate with the LDAP server.  By
+default <a href="https://gitlab.com/">Gitlab</a> relies on anonymous binding or a special <i>querying</i> user
+to ask the …</p>
+                    <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/tutorials/gitlab_ldap_auth_without_querying_account.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://foivos.zakkak.net/tutorials/building_the_linux_kernel.html">How to build the linux kernel</a></h2>
+                <div class="summary"><h1>Getting the source</h1>
+<p>First you need to fetch the source.  Visit <a href="https://www.kernel.org/">kernel.org</a> and get the
+version of your preference.  Alternative, if you plan to hack it you
+might prefer to get the latest (merged by Linus Torvalds) code by
+cloning his git repository:</p>
+<div class="highlight"><pre><span></span>git clone git://git.kernel.org …</pre></div>
+                    <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/tutorials/building_the_linux_kernel.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://foivos.zakkak.net/tutorials/using_git_to_backup_configuration.html">How to backup your configuration using Git</a></h2>
+                <div class="summary"><p>This tutorial is about backing up the configuration under a user's
+home directory using Git.</p>
+<p>Git supports negation of patterns in <code>.gitignore</code> files.  To negate a
+pattern we simply prefix it with <code>!</code>.  This feature enables to use
+<code>.gitignore</code> file in a user's home directory that instructs Git to
+ignore all …</p>
+                    <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/tutorials/using_git_to_backup_configuration.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://foivos.zakkak.net/tutorials/change_uid_ecryptfs.html">How to change the UID of a user with an encrypted home directory in Ubuntu</a></h2>
+                <div class="summary"><p>This tutorial is about changing the UID of a user with an encrypted,
+by ecryptfs, home directory in Ubuntu.</p>
+<p>You first need to logout the user you want to modify and kill all
+processes he runs.  An easy approach is to restart and log in as root
+or as another …</p>
+                    <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/tutorials/change_uid_ecryptfs.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://foivos.zakkak.net/tutorials/enable_automatic_security_updates_in_Ubuntu.html">Enable automatic security updates in Ubuntu</a></h2>
+                <div class="summary"><p>This tutorial will enable automatic download and installation of
+security updates for Ubuntu.</p>
+<p>First we need to install <code>unattended-upgrades</code>:</p>
+<div class="highlight"><pre><span></span>sudo apt-get install unattended-upgrades
+</pre></div>
+
+
+<p>The we need to enable it:</p>
+<div class="highlight"><pre><span></span>sudo dpkg-reconfigure -plow unattended-upgrades
+</pre></div>
+
+
+<p>More information can be found [here](https://help.ubuntu.com/community/AutomaticSecurityUpdates}.</p>
+                    <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/tutorials/enable_automatic_security_updates_in_Ubuntu.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
             <article>
                 <h2><a href="http://foivos.zakkak.net/tutorials/ubuntu_1304_raid1_setup.html">Ubuntu 13.04 RAID-1 setup</a></h2>
                 <div class="summary"><h2>Purpose</h2>
 <p>This tutorial aims to help you setup a software RAID-1 (mirror) under
 ubuntu 13.04  </p>
 <p>Lets assume the following mapping</p>
-<div class="highlight"><pre><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda1</span>    <span class="o">/</span>
-<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda2</span>    <span class="o">/</span><span class="n">home</span>
-<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda3</span>    <span class="n">swap</span>
-<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda4</span>    <span class="o">/</span><span class="n">spare</span>
+<div class="highlight"><pre><span></span>/dev/sda1    /
+/dev/sda2    /home
+/dev/sda3    swap
+/dev/sda4    /spare
 </pre></div>
 
 
 <p>We also assume that you have a second (empty) hard disk drive larger or
 equal to sda .  </p>
-<p>We ...</p>
+<p>We …</p>
                     <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/tutorials/ubuntu_1304_raid1_setup.html">more ...</a>
                 </div>
             </article>
@@ -104,7 +181,7 @@ using it. It is going to be hard in the beginning, but day by day you
 will get used to it and learn new things.</p>
 <h3>Your friends</h3>
 <ol>
-<li><a href="https://www.gnu.org/software/emacs/refcards/">Reference cards</a> (will ...</li></ol>
+<li><a href="https://www.gnu.org/software/emacs/refcards/">Reference cards</a> (will …</li></ol>
                     <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/tutorials/getting_started_emacs.html">more ...</a>
                 </div>
             </article>
@@ -112,11 +189,11 @@ will get used to it and learn new things.</p>
             <article>
                 <h2><a href="http://foivos.zakkak.net/tutorials/using_emacs_and_notmuch_mail_client.html">Using emacs and notmuch as a mail client</a></h2>
                 <div class="summary"><p>This tutorial aims to help you setup <a href="http://notmuchmail.org/">notmuch</a> for multiple IMAP
-accounts and use <a href="http://www.gnu.org/software/emacs/">emacs</a> as a frontend.<br />
+accounts and use <a href="http://www.gnu.org/software/emacs/">emacs</a> as a frontend.<br>
 ( At the time writing this tutorial emacs version was 24.3 and notmuch
 version was 0.15.2)</p>
 <p>Soon after writing this tutorial I experimented with <a href="http://www.djcbsoftware.nl/code/mu/">mu</a> and
-<a href="http://www.djcbsoftware.nl/code/mu/mu4e.html">mu4e</a>, the configuration is ...</p>
+<a href="http://www.djcbsoftware.nl/code/mu/mu4e.html">mu4e</a>, the configuration is …</p>
                     <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/tutorials/using_emacs_and_notmuch_mail_client.html">more ...</a>
                 </div>
             </article>
@@ -125,102 +202,32 @@ version was 0.15.2)</p>
                 <h2><a href="http://foivos.zakkak.net/tutorials/google_pdf_viewer_chromium.html">Google PDF viewer on Chromium</a></h2>
                 <div class="summary"><p>This is a tutorial (more like a code dumb) on how to enable the pdf
 viewer plugin from google chrome in chromium.</p>
-<div class="highlight"><pre><span class="n">wget</span> <span class="n">https</span><span class="o">:</span><span class="c1">//dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span>
-<span class="n">ar</span> <span class="n">vx</span> <span class="n">google</span><span class="o">-</span><span class="n">chrome</span><span class="o">-</span><span class="n">stable_current_amd64</span><span class="p">.</span><span class="n">deb</span>
-<span class="n">rm</span> <span class="n">google</span><span class="o">-</span><span class="n">chrome</span><span class="o">-</span><span class="n">stable_current_amd64</span><span class="p">.</span><span class="n">deb</span> <span class="n">control</span><span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span> <span class="n">debian</span><span class="o">-</span><span class="n">binary</span>
-<span class="n">tar</span> <span class="o">--</span><span class="n">lzma</span> <span class="o">-</span><span class="n">xvf ...</span></pre></div>
+<div class="highlight"><pre><span></span>wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+ar vx google-chrome-stable_current_amd64.deb
+rm google-chrome-stable_current_amd64.deb control.tar.gz debian-binary
+tar --lzma -xvf data.tar.lzma
+sudo cp …</pre></div>
                     <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/tutorials/google_pdf_viewer_chromium.html">more ...</a>
                 </div>
             </article>
             <hr/>
             <article>
                 <h2><a href="http://foivos.zakkak.net/tutorials/flashing_bios_acer_aspire_2920z.html">Flashing BIOS (Acer Aspire 2920z)</a></h2>
-                <div class="summary"><p>A few weeks ago my precious Acer Aspire 2920z started misbehaving.</p>
-<h3>The symptoms:</h3>
-<ol>
-<li>Power and battery leds flashing as soon as I plug it in.</li>
-<li>Automatic power on as soon as I plug it in.</li>
-<li>Screen backlight doesn't go on and i can see it gets through the
-    BIOS ...</li></ol>
+                <div class="summary"><p>
+A few weeks ago my precious Acer Aspire 2920z started misbehaving.
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">The symptoms:</h2>
+<div class="outline-text-2" id="text-1">
+<ol class="org-ol">
+<li>Power and battery leds flashing as soon as I plug it in.
+</li>
+<li>Automatic power on as soon as I plug it in.
+</li>
+<li>Screen backlight doesn't go on and i can see it gets through the BIOS
+splash …</li></ol></div></div>
                     <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/tutorials/flashing_bios_acer_aspire_2920z.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="http://foivos.zakkak.net/tutorials/changing_default_browser_thunderbird.html">Changing the default browser in Thunderbird</a></h2>
-                <div class="summary"><p>If you are unable to launch Firefox from URL links in a Thunderbird
-mail message, or if you want to change the browser that is launched,
-add the following lines to the <code>user.js</code> file, located in your
-Thunderbird profile folder (you may need to create the <code>user.js</code>
-file ...</p>
-                    <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/tutorials/changing_default_browser_thunderbird.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="http://foivos.zakkak.net/tutorials/how_create_local_git_repositories.html">How to create local git repositories</a></h2>
-                <div class="summary"><ol>
-<li>
-<p>Create the repo directory (the '.' prefix is to make it hidden)</p>
-<p></p>
-    mkdir .myrepo.git</p>
-</li>
-<li>
-<p>Go inside the directory</p>
-<p></p>
-    cd .myrepo.git</p>
-</li>
-<li>
-<p>Initialize the git repo</p>
-<p></p>
-    git init --bare</p>
-</li>
-</ol>
-<p>Our repo is now ready  </p>
-<p>to clone:</p>
-<div class="highlight"><pre><span class="n">git</span> <span class="n">clone</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="p">.</span><span class="n">myrepo</span><span class="p">.</span><span class="n">git</span> <span class="n">where_to_clone</span>
-</pre></div>
-
-
-<p><strong>NOTE</strong>: the first push must be</p>
-<div class="highlight"><pre><span class="n">git</span> <span class="n">push ...</span></pre></div>
-                    <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/tutorials/how_create_local_git_repositories.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="http://foivos.zakkak.net/tutorials/changing_user_id_linux.html">Changing user id in linux</a></h2>
-                <div class="summary"><p>As a <strong>different</strong> user execute</p>
-<div class="highlight"><pre><span class="n">usermod</span> <span class="o">-</span><span class="n">u</span>  <span class="n">username</span>
-<span class="n">find</span> <span class="o">/</span> <span class="o">-</span><span class="n">user</span> <span class="p">;</span> <span class="o">-</span><span class="n">exec</span> <span class="n">chown</span> <span class="o">-</span><span class="n">h</span> <span class="p">;</span> <span class="p">{}</span> <span class="err">\</span><span class="p">;</span>
-</pre></div>
-
-
-<p>example:</p>
-<div class="highlight"><pre><span class="n">usermod</span> <span class="o">-</span><span class="n">u</span> <span class="mi">2179</span> <span class="n">user1</span>
-<span class="n">find</span> <span class="o">/</span> <span class="o">-</span><span class="n">user</span> <span class="mi">1000</span> <span class="o">-</span><span class="n">exec</span> <span class="n">chown</span> <span class="o">-</span><span class="n">h</span> <span class="mi">2179</span> <span class="p">{}</span> <span class="err">\</span><span class="p">;</span>
-</pre></div>
-                    <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/tutorials/changing_user_id_linux.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="http://foivos.zakkak.net/tutorials/mounting_remote_folders_sshfs.html">Mounting remote folders with sshfs</a></h2>
-                <div class="summary"><p>This tutorial will show you how to mount a remote folder, that you can
-access through <strong>sftp</strong>, on your local filesystem.</p>
-<p>First you will need to set up your ssh connection to work
-<strong>passwordless</strong>. Read <a href="http://node/17">this</a> if you don't know how.</p>
-<p>Install sshfs to your system and add your ...</p>
-                    <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/tutorials/mounting_remote_folders_sshfs.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="http://foivos.zakkak.net/tutorials/how_use_your_google_openid_sites_supporting_openid_one.html">How to use your Google OpenID on sites supporting OpenID (like this one)</a></h2>
-                <div class="summary"><p><span>Simply
-type</span><span>https://www.google.com/accounts/o8/id</span><span> as
-your OpenID and it will do the trick ;)</span></p>
-                    <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/tutorials/how_use_your_google_openid_sites_supporting_openid_one.html">more ...</a>
                 </div>
             </article>
             <hr/>
@@ -231,51 +238,51 @@ your OpenID and it will do the trick ;)</span></p>
                         href="http://foivos.zakkak.net/category/tutorials2.html">Older &rarr;</a></li>
         </ul>
         </div>
-        <div class="col-sm-3 well well-sm" id="sidebar">
+        <div class="col-sm-3" id="sidebar">
+            <aside>
 
-<aside>
-    <section>
-        <ul class="list-group list-group-flush">
-                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
-                  <ul class="list-group" id="social">
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="mailto:foivos_(AT}_zakkak_(DOT}_net"><i class="fa fa-envelope-square fa-lg"></i> Email</a></li>
+                <li class="list-group-item"><a href="https://github.com/zakkak"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+                <li class="list-group-item"><a href="https://www.linkedin.com/in/zakkak"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+                <li class="list-group-item"><a href="/uploads/zakkak_cv.pdf"><i class="fa fa-file-pdf-o fa-lg"></i> My CV</a></li>
+              </ul>
+            </li>
 
-                    <li class="list-group-item"><a href="mailto:foivos_(AT}_zakkak_(DOT}_net"><i class="fa fa-envelope-square fa-lg"></i> Email</a></li>
-                    <li class="list-group-item"><a href="https://github.com/zakkak"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-                    <li class="list-group-item"><a href="https://www.linkedin.com/in/zakkak"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
+                <ul class="list-group" id="recentposts">
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/tutorials/gitlab_ldap_auth_without_querying_account.html">
+                            Gitlab LDAP authentication without querying account or anonymous binding
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/tutorials/building_the_linux_kernel.html">
+                            How to build the linux kernel
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/tutorials/using_git_to_backup_configuration.html">
+                            How to backup your configuration using Git
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/tutorials/change_uid_ecryptfs.html">
+                            How to change the UID of a user with an encrypted home directory in Ubuntu
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/tutorials/enable_automatic_security_updates_in_Ubuntu.html">
+                            Enable automatic security updates in Ubuntu
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
-                    <li class="list-group-item"><a href="/uploads/zakkak_cv.pdf"><i class="fa fa-file-pdf-o fa-lg"></i> My CV</a></li>
-                  </ul>
-                </li>
 
-                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
-                    <ul class="list-group" id="recentposts">
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/tutorials/ubuntu_1304_raid1_setup.html">
-                                Ubuntu 13.04 RAID-1 setup
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/tutorials/getting_started_emacs.html">
-                                Getting started with Emacs
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/tutorials/using_emacs_and_notmuch_mail_client.html">
-                                Using emacs and notmuch as a mail client
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/tutorials/google_pdf_viewer_chromium.html">
-                                Google PDF viewer on Chromium
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/tutorials/flashing_bios_acer_aspire_2920z.html">
-                                Flashing BIOS (Acer Aspire 2920z)
-                            </a>
-                        </li>
-                    </ul>
-                </li>
 
 
 
@@ -285,23 +292,21 @@ your OpenID and it will do the trick ;)</span></p>
         </div>
             <a href="https://github.com/zakkak">@zakkak</a> on GitHub
     </li>
-
-        </ul>
-    </section>
-
-</aside>        </div>
+    </ul>
+</section>            </aside>
+        </div>
     </div>
 </div>
 <footer>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2013 Foivos S. Zakkak
+         <div class="col-xs-10">&copy; 2016 Foivos S. Zakkak
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
     Content
-  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution 4.0 International License</a>, except where indicated otherwise.
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>, except where indicated otherwise.
 </small></p>
          </div>
          <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
@@ -354,5 +359,6 @@ your OpenID and it will do the trick ;)</span></p>
         })();
     </script>
     <!-- End Google Analytics Code -->
+
 </body>
 </html>

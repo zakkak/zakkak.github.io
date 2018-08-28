@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"
->
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
     <title>Blog - Foivos . Zakkak . net</title>
     <!-- Using the latest rendering mode for IE -->
@@ -27,16 +26,22 @@
     <link href="http://foivos.zakkak.net/theme/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="http://foivos.zakkak.net/theme/css/pygments/native.css" rel="stylesheet">
+    <link href="http://foivos.zakkak.net/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
     <link rel="stylesheet" href="http://foivos.zakkak.net/theme/css/style.css" type="text/css"/>
 
         <link href="http://foivos.zakkak.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
               title="Foivos . Zakkak . net ATOM Feed"/>
 
+
+
+        <link href="http://foivos.zakkak.net/feeds/blog.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Foivos . Zakkak . net Blog ATOM Feed"/>
+
 </head>
 <body>
 
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
+	<div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -56,71 +61,140 @@ Foivos . Zakkak . net            </a>
                             <a href="http://foivos.zakkak.net/category/code.html">Code</a>
                         </li>
                         <li >
+                            <a href="http://foivos.zakkak.net/category/courses.html">Courses</a>
+                        </li>
+                        <li >
                             <a href="http://foivos.zakkak.net/category/tutorials.html">Tutorials</a>
                         </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="http://foivos.zakkak.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+              <li><span>
+                <form class="navbar-search" action="/search.html">
+                  <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input" required>
+                </form></span>
+              </li>
+              <li><a href="http://foivos.zakkak.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>
 </div> <!-- /.navbar -->
-
+<!-- Banner -->
+<!-- End Banner -->
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-    <ol class="breadcrumb">
-        <li><a href="http://foivos.zakkak.net" title="Foivos . Zakkak . net"><i class="fa fa-home fa-lg"></i></a></li>
-        <li><a href="http://foivos.zakkak.net/" title="Foivos . Zakkak . net Categories">Categories</a></li>
-        <li class="active">Blog</li>
-    </ol>
-
             <article>
-                <h2><a href="http://foivos.zakkak.net/blog/mia_mera_san_tis_alles.html">Μία μέρα σαν τις άλλες;</a></h2>
-                <div class="summary"><p>Σήμερα ήταν μία πολύ σημαντική μέρα για κάποιους φίλους μου. Πήραν το
-πτυχίο τους (όχι ότι ξέρουν τι να το κάνουν, αλλά τουλάχιστον το πήραν).
-Ο ένας έκανε ανάποδη κωλοτούμπα στον αέρα και μετά έριξε και έναν τροχό
-στον αέρα (ναι ένιωσα φλώρος που απλά περπατούσα στις ορκωμοσίες μου). Ο ...</p>
-                    <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/blog/mia_mera_san_tis_alles.html">more ...</a>
+                <h2><a href="http://foivos.zakkak.net/blog/latex_peculiarities.html">LaTeX Peculiarities</a></h2>
+                <div class="summary">
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Separating sentences</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+In LaTeX, in order to separate two sentences one needs to
+</p>
+
+<ol class="org-ol">
+<li>insert two spaces between the period and the first letter of the second sentence, e.g., <code>First sentence.  Second sentence.</code>, or
+</li>
+<li>separate the two sentences with a new line, e.g.,
+<div class="org-src-container">
+
+<pre class="src src-latex">First sentence.
+Second sentence.
+</pre>
+</div>
+</li>
+</ol>
+
+<p>
+Using a …</p></div></div>
+                    <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/blog/latex_peculiarities.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://foivos.zakkak.net/blog/voluntary_logging.html">Voluntary Logging of My Life</a></h2>
+                <div class="summary"><p>
+In an effort to stop using google calendar I exported all the events I
+created since the first day I started using it (this was 4 years ago).
+</p>
+
+<p>
+So the last 4 years I have created 2256 events.
+</p>
+
+<p>
+That is about 1.54520547945 events per day&#x2026;  Essentially meaning that
+google …</p>
+                    <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/blog/voluntary_logging.html">more ...</a>
                 </div>
             </article>
             <hr/>
             <article>
                 <h2><a href="http://foivos.zakkak.net/blog/my_favorite_vim_plugins.html">My Favorite VIM plugins</a></h2>
-                <div class="summary"><table>
+                <div class="summary"><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
 <thead>
 <tr>
-<th>Plugin</th>
-<th>Description</th>
-<th>Link</th>
+<th scope="col" class="left">Plugin</th>
+<th scope="col" class="left">&#xa0;</th>
+<th scope="col" class="left">Description</th>
+<th scope="col" class="left">&#xa0;</th>
+<th scope="col" class="left">Link</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Vundle</strong></td>
-<td>The plugin manager</td>
-<td><a href="https://github.com/gmarik/vundle">https://github.com/gmarik/vundle</a></td>
+<td class="left"><i><b>Vundle</b></i></td>
+<td class="left">&#xa0;</td>
+<td class="left">The plugin manager</td>
+<td class="left">&#xa0;</td>
+<td class="left"><a href="https://github.com/gmarik/vundle">https://github.com/gmarik/vundle</a></td>
 </tr>
+
 <tr>
-<td><strong>Gundo</strong></td>
-<td>Undo tree visualizer</td>
-<td><a href="https://github.com/sjl/gundo.vim">https://github.com/sjl/gundo.vim</a></td>
+<td class="left"><i><b>Gundo</b></i></td>
+<td class="left">&#xa0;</td>
+<td class="left">Undo tree visualizer</td>
+<td class="left">&#xa0;</td>
+<td class="left"><a href="https://github.com/sjl/gundo.vim">https://github.com/sjl/gundo.vim</a></td>
 </tr>
+
 <tr>
-<td><strong>NERDTree</strong></td>
-<td>Folder tree visualizer</td>
-<td><a href="https://github.com/scrooloose/nerdtree">https://github.com/scrooloose/nerdtree</a></td>
+<td class="left"><i><b>NERDTree</b></i></td>
+<td class="left">&#xa0;</td>
+<td class="left">Folder tree visualizer</td>
+<td class="left">&#xa0;</td>
+<td class="left"><a href="https://github.com/scrooloose/nerdtree">https://github.com/scrooloose/nerdtree</a></td>
 </tr>
+
 <tr>
-<td><strong>NERDCommenter</strong></td>
-<td>Make commenting easy and fast</td>
-<td><a href="https://github.com/scrooloose/nerdcommenter">https://github.com/scrooloose/nerdcommenter</a></td>
+<td class="left"><i><b>NERDCommenter</b></i></td>
+<td class="left">&#xa0;</td>
+<td class="left">Make commenting easy and fast</td>
+<td class="left">&#xa0;</td>
+<td class="left"><a href="https://github.com/scrooloose/nerdcommenter">https://github.com/scrooloose/nerdcommenter</a></td>
 </tr>
+
 <tr>
-<td><strong>Automatic TeX</strong></td>
-<td>Writing LaTeX the easy way</td>
-<td><a href="https://github.com/coot/atp_vim">https ...</a></td></tr></tbody></table>
+<td class="left"><i><b>Automatic TeX</b></i></td>
+<td class="left">&#xa0;</td>
+<td class="left">Writing LaTeX the easy way</td>
+<td class="left">&#xa0;</td>
+<td class="left"><a href="https://github.com/coot/atp_vim">https …</a></td></tr></tbody></table>
                     <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/blog/my_favorite_vim_plugins.html">more ...</a>
                 </div>
             </article>
@@ -137,63 +211,48 @@ Foivos . Zakkak . net            </a>
                 </div>
             </article>
             <hr/>
-            <article>
-                <h2><a href="http://foivos.zakkak.net/blog/zeroday_flaw_bypasses_windows_uac.html">Zero-day flaw bypasses Windows UAC</a></h2>
-                <div class="summary"><div class="entry">
-
-A new vulnerability in the Windows kernel was disclosed this
-Wednesday(11-24-2010) that could allow malware to attain administrative
-privileges by bypassing User Account Control (UAC).
-
-A zero-day exploit in Microsoft Windows enables non-administrator
-accounts to execute code as if they were an administrator. The flaw
-appears to affect all ...</div>
-                    <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/blog/zeroday_flaw_bypasses_windows_uac.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
 
         </div>
-        <div class="col-sm-3 well well-sm" id="sidebar">
+        <div class="col-sm-3" id="sidebar">
+            <aside>
 
-<aside>
-    <section>
-        <ul class="list-group list-group-flush">
-                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
-                  <ul class="list-group" id="social">
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="mailto:foivos_(AT}_zakkak_(DOT}_net"><i class="fa fa-envelope-square fa-lg"></i> Email</a></li>
+                <li class="list-group-item"><a href="https://github.com/zakkak"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+                <li class="list-group-item"><a href="https://www.linkedin.com/in/zakkak"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+                <li class="list-group-item"><a href="/uploads/zakkak_cv.pdf"><i class="fa fa-file-pdf-o fa-lg"></i> My CV</a></li>
+              </ul>
+            </li>
 
-                    <li class="list-group-item"><a href="mailto:foivos_(AT}_zakkak_(DOT}_net"><i class="fa fa-envelope-square fa-lg"></i> Email</a></li>
-                    <li class="list-group-item"><a href="https://github.com/zakkak"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-                    <li class="list-group-item"><a href="https://www.linkedin.com/in/zakkak"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
+                <ul class="list-group" id="recentposts">
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/blog/latex_peculiarities.html">
+                            LaTeX Peculiarities
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/blog/voluntary_logging.html">
+                            Voluntary Logging of My Life
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/blog/my_favorite_vim_plugins.html">
+                            My Favorite VIM plugins
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/blog/svnkomp_vcsdiff.html">
+                            svnkomp -> vcsdiff
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
-                    <li class="list-group-item"><a href="/uploads/zakkak_cv.pdf"><i class="fa fa-file-pdf-o fa-lg"></i> My CV</a></li>
-                  </ul>
-                </li>
 
-                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
-                    <ul class="list-group" id="recentposts">
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/blog/mia_mera_san_tis_alles.html">
-                                Μία μέρα σαν τις άλλες;
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/blog/my_favorite_vim_plugins.html">
-                                My Favorite VIM plugins
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/blog/svnkomp_vcsdiff.html">
-                                svnkomp -> vcsdiff
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/blog/zeroday_flaw_bypasses_windows_uac.html">
-                                Zero-day flaw bypasses Windows UAC
-                            </a>
-                        </li>
-                    </ul>
-                </li>
 
 
 
@@ -203,23 +262,21 @@ appears to affect all ...</div>
         </div>
             <a href="https://github.com/zakkak">@zakkak</a> on GitHub
     </li>
-
-        </ul>
-    </section>
-
-</aside>        </div>
+    </ul>
+</section>            </aside>
+        </div>
     </div>
 </div>
 <footer>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2012 Foivos S. Zakkak
+         <div class="col-xs-10">&copy; 2018 Foivos S. Zakkak
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
     Content
-  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution 4.0 International License</a>, except where indicated otherwise.
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>, except where indicated otherwise.
 </small></p>
          </div>
          <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
@@ -272,5 +329,6 @@ appears to affect all ...</div>
         })();
     </script>
     <!-- End Google Analytics Code -->
+
 </body>
 </html>

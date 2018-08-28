@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"
->
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
     <title>Articles by zakkak - Foivos . Zakkak . net</title>
     <!-- Using the latest rendering mode for IE -->
@@ -26,16 +25,20 @@
     <link href="http://foivos.zakkak.net/theme/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="http://foivos.zakkak.net/theme/css/pygments/native.css" rel="stylesheet">
+    <link href="http://foivos.zakkak.net/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
     <link rel="stylesheet" href="http://foivos.zakkak.net/theme/css/style.css" type="text/css"/>
 
         <link href="http://foivos.zakkak.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
               title="Foivos . Zakkak . net ATOM Feed"/>
 
+
+
+
 </head>
 <body>
 
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
+	<div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -55,41 +58,171 @@ Foivos . Zakkak . net            </a>
                             <a href="http://foivos.zakkak.net/category/code.html">Code</a>
                         </li>
                         <li >
+                            <a href="http://foivos.zakkak.net/category/courses.html">Courses</a>
+                        </li>
+                        <li >
                             <a href="http://foivos.zakkak.net/category/tutorials.html">Tutorials</a>
                         </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="http://foivos.zakkak.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+              <li><span>
+                <form class="navbar-search" action="/search.html">
+                  <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input" required>
+                </form></span>
+              </li>
+              <li><a href="http://foivos.zakkak.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>
 </div> <!-- /.navbar -->
-
+<!-- Banner -->
+<!-- End Banner -->
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-        <ol class="breadcrumb">
-            <li><a href="http://foivos.zakkak.net" title="Foivos . Zakkak . net"><i class="fa fa-home fa-lg"></i></a></li>
-            <li><a href="http://foivos.zakkak.net/authors.html" title="Authors">Authors</a></li>
-            <li class="active">Foivos S. Zakkak</li>
-        </ol>
+            <article>
+                <h2><a href="http://foivos.zakkak.net/tutorials/how_create_local_git_repositories.html">How to create local git repositories</a></h2>
+                <div class="summary"><ol>
+<li>
+<p>Create the repo directory (the '.' prefix is to make it hidden)</p>
+<div class="highlight"><pre><span></span>mkdir .myrepo.git
+</pre></div>
 
+
+</li>
+<li>
+<p>Go inside the directory</p>
+<div class="highlight"><pre><span></span>cd .myrepo.git
+</pre></div>
+
+
+</li>
+<li>
+<p>Initialize the git repo</p>
+<div class="highlight"><pre><span></span>git init --bare
+</pre></div>
+
+
+</li>
+</ol>
+<p>Our repo is now ready  </p>
+<p>to clone:</p>
+<div class="highlight"><pre><span></span>git clone /path/to/.myrepo.git where_to_clone
+</pre></div>
+
+
+<p><strong>NOTE</strong>: the first push must be</p>
+<div class="highlight"><pre><span></span>git push …</pre></div>
+                    <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/tutorials/how_create_local_git_repositories.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://foivos.zakkak.net/tutorials/changing_user_id_linux.html">Changing user id in linux</a></h2>
+                <div class="summary"><p>As a <strong>different</strong> user execute</p>
+<div class="highlight"><pre><span></span>usermod -u  username
+find / -user ; -exec chown -h ; {} \;
+</pre></div>
+
+
+<p>example:</p>
+<div class="highlight"><pre><span></span>usermod -u 2179 user1
+find / -user 1000 -exec chown -h 2179 {} \;
+</pre></div>
+                    <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/tutorials/changing_user_id_linux.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://foivos.zakkak.net/tutorials/mounting_remote_folders_sshfs.html">Mounting remote folders with sshfs</a></h2>
+                <div class="summary"><p>This tutorial will show you how to mount a remote folder, that you can
+access through <strong>sftp</strong>, on your local filesystem.</p>
+<p>First you will need to set up your ssh connection to work
+<strong>passwordless</strong>. Read <a href="http://node/17">this</a> if you don't know how.</p>
+<p>Install sshfs to your system and add your user …</p>
+                    <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/tutorials/mounting_remote_folders_sshfs.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://foivos.zakkak.net/tutorials/how_use_your_google_openid_sites_supporting_openid_one.html">How to use your Google OpenID on sites supporting OpenID (like this one)</a></h2>
+                <div class="summary"><p><span>Simply
+type</span><span>https://www.google.com/accounts/o8/id</span><span> as
+your OpenID and it will do the trick ;)</span></p>
+                    <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/tutorials/how_use_your_google_openid_sites_supporting_openid_one.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://foivos.zakkak.net/code/hanoi_towers.html">Hanoi Towers</a></h2>
+                <div class="summary"><div class="gist">
+    <script src='https://gist.github.com/95b2b152f4172442f6cc.js'></script>
+    <noscript>
+        <pre><code>/******************************************************************************
+ *                                                                            *
+ * File: hanoi_towers.c                                                       *
+ *                                                                            *
+ * This program solves the Towers of Hanoi puzzle recursively                 *
+ *                                                                            *
+ * For details about that weird \033 staff visit                              *
+ *  www.linuxdoc.org/HOWTO/Bash-Prompt-HOWTO/c327.html                        *
+ *                                                                            *
+ * Compile:                                                                   *
+ *  gcc -lm hanoi.c -o hanoi                                                  *
+ *                                                                            *
+ * Copyright (C) 2011-2012  Foivos S. Zakkak                                  *
+ *                                                                            *
+ * This program is free software: you can redistribute it and …</code></pre></noscript></div>
+                    <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/code/hanoi_towers.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://foivos.zakkak.net/code/knights_round_table.html">Knights of the Round Table</a></h2>
+                <div class="summary"><div class="gist">
+    <script src='https://gist.github.com/8a327ddb7f5a773d57ac.js'></script>
+    <noscript>
+        <pre><code>/******************************************************************************
+ *                                                                            *
+ * File: round_knights.c                                                      *
+ *                                                                            *
+ * This program solves the knights of the round table math problem with some  *
+ * bitwise logic                                                              *
+ *                                                                            *
+ * For details about the problem                                              *
+ *  http://mathforum.org/library/drmath/view/55862.html                       *
+ *                                                                            *
+ * Copyright (C) 2011-2012        ++++++++++++++++++++++++++++++              *
+ *                                + Author:  Foivos S. Zakkak  +              *
+ *                                + Website: foivos.zakkak.net +              *
+ *                                + Email:   foivos@zakkak.net +              *
+ *                                ++++++++++++++++++++++++++++++              *
+ *                                                                            *
+ * This program is free …</code></pre></noscript></div>
+                    <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/code/knights_round_table.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
             <article>
                 <h2><a href="http://foivos.zakkak.net/tutorials/ssh_login_without_password.html">SSH login without password</a></h2>
                 <div class="summary"><p>Open your favorite terminal emulator and type</p>
-<div class="highlight"><pre><span class="n">ssh</span><span class="o">-</span><span class="n">keygen</span> <span class="o">-</span><span class="n">t</span> <span class="n">dsa</span>
+<div class="highlight"><pre><span></span>ssh-keygen -t dsa
 </pre></div>
 
 
 <p>(simply enter on whatever it asks you)</p>
 <p>try</p>
-<div class="highlight"><pre><span class="n">ssh</span><span class="o">-</span><span class="n">copy</span><span class="o">-</span><span class="n">id</span> <span class="o">-</span><span class="n">i</span> <span class="o">~/</span><span class="p">.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_dsa</span><span class="p">.</span><span class="n">pub</span> <span class="n">user</span><span class="err">@</span><span class="n">remote</span><span class="p">.</span><span class="n">machine</span><span class="p">.</span><span class="n">com</span>
+<div class="highlight"><pre><span></span>ssh-copy-id -i ~/.ssh/id_dsa.pub user@remote.machine.com
 </pre></div>
 
 
 <p>if it fails (you don't have ssh-copy-id) do</p>
-<div class="highlight"><pre><span class="n">cat</span> <span class="o">~/</span><span class="p">.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_dsa</span><span class="p">.</span><span class="n">pub</span> <span class="o">|</span> <span class="n">ssh</span> <span class="n">user</span><span class="err">@</span><span class="n">remote</span><span class="p">.</span><span class="n">machine</span><span class="p">.</span><span class="n">com</span> <span class="err">&#39;</span><span class="n">cat</span> <span class="o">&gt;&gt;</span> <span class="o">~/</span><span class="p">.</span><span class="n">ssh ...</span></pre></div>
+<div class="highlight"><pre><span></span>cat ~/.ssh/id_dsa.pub | ssh user@remote.machine.com &#39;cat &gt;&gt; ~/.ssh/authorized_keys&#39;
+</pre></div>
+
+
+<p>give your password …</p>
                     <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/tutorials/ssh_login_without_password.html">more ...</a>
                 </div>
             </article>
@@ -100,11 +233,11 @@ Foivos . Zakkak . net            </a>
 <p>libgpod4, gtkpod, ifuse, usbmuxd</p>
 <p><strong>Steps:</strong></p>
 <p>After having installed the above packages</p>
-<div class="highlight"><pre><span class="n">sudo</span> <span class="n">mkdir</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">iPhone</span> <span class="p">(</span><span class="n">you</span> <span class="n">can</span> <span class="n">choose</span> <span class="n">whatever</span> <span class="n">location</span> <span class="n">you</span> <span class="n">desire</span><span class="p">)</span>
-<span class="n">sudo</span> <span class="n">chown</span> <span class="err">`</span><span class="n">whoami</span><span class="err">`</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">iPhone</span>
-<span class="n">ifuse</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">iPhone</span> <span class="p">(</span><span class="n">this</span> <span class="n">will</span> <span class="n">mount</span> <span class="n">your</span> <span class="n">iphone</span> <span class="n">on</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">iPhone</span><span class="p">)</span>
-<span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">iPhone</span><span class="o">/</span><span class="n">iTunes_Control</span><span class="o">/</span><span class="n">Device</span>
-<span class="n">sudo</span> <span class="n">lsusb</span> <span class="o">-</span><span class="n">v</span> <span class="o">|</span> <span class="n">grep ...</span></pre></div>
+<div class="highlight"><pre><span></span>sudo mkdir /media/iPhone (you can choose whatever location you desire)
+sudo chown `whoami` /media/iPhone
+ifuse /media/iPhone (this will mount your iphone on /media/iPhone)
+mkdir -p /media/iPhone/iTunes_Control/Device
+sudo lsusb -v | grep …</pre></div>
                     <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/tutorials/synchronizing_iphone_linux.html">more ...</a>
                 </div>
             </article>
@@ -120,7 +253,7 @@ VPN</strong>...</p>
 <p>Gateway: 192.168.1.1  </p>
 <p>User name: login@csd.uoc.gr  </p>
 <p>Password: yourPass</p>
-<p>now click advanced... and check Use ...</p>
+<p>now click advanced... and check Use …</p>
                     <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/tutorials/connect_ucnet_over_vpn_ubuntu.html">more ...</a>
                 </div>
             </article>
@@ -132,86 +265,63 @@ VPN</strong>...</p>
 <p>You would prefer a better tool with merge options and appropriate
 coloring?</p>
 <p>Kompare is a great tool used by kdevelop to compare files. You can find
-it in the repositories of all famous linux distros or ...</p>
+it in the repositories of all famous linux distros or <a href="http://kde-apps.org/content/show.php/Kompare?content=19001">here …</a></p>
                     <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/tutorials/using_kompare_svn_diff.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="http://foivos.zakkak.net/tutorials/connecting_through_gate1csduocgr_and_gate2csduocgr.html">Connecting through gate1.csd.uoc.gr and gate2.csd.uoc.gr</a></h2>
-                <div class="summary"><h3><a id="simple_ssh" name="simple_ssh"></a>Απλό SSH:</h3>
-<ol>
-<li>
-<p>ssh gate1.csd.uoc.g​r</p>
-</li>
-<li>
-<p>Αφού εισάγετε των κωδικό σας και εμφανιστεί το %</p>
-<div class="highlight"><pre><span class="n">ssh</span> <span class="n">milo</span>
-</pre></div>
-
-
-</li>
-<li>
-<p>θα σας τυπώσει το παρακάτω μήνυμα</p>
-<p><address>
-The authe​nticity of host 'milo.csd.uoc.gr (147.52.19.9)' can't be
-established. RSA key fingerprint is
-5a:37:48:87:3a ...</address></p></li></ol>
-                    <a class="btn btn-default btn-xs" href="http://foivos.zakkak.net/tutorials/connecting_through_gate1csduocgr_and_gate2csduocgr.html">more ...</a>
                 </div>
             </article>
             <hr/>
 
         <ul class="pager">
                 <li class="previous"><a href="http://foivos.zakkak.net/author/zakkak2.html">&larr; Newer</a></li>
-                <li class="next disabled"><a href="#">Older &rarr;</a></li>
+                <li class="next"><a
+                        href="http://foivos.zakkak.net/author/zakkak4.html">Older &rarr;</a></li>
         </ul>
         </div>
-        <div class="col-sm-3 well well-sm" id="sidebar">
+        <div class="col-sm-3" id="sidebar">
+            <aside>
 
-<aside>
-    <section>
-        <ul class="list-group list-group-flush">
-                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
-                  <ul class="list-group" id="social">
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="mailto:foivos_(AT}_zakkak_(DOT}_net"><i class="fa fa-envelope-square fa-lg"></i> Email</a></li>
+                <li class="list-group-item"><a href="https://github.com/zakkak"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+                <li class="list-group-item"><a href="https://www.linkedin.com/in/zakkak"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+                <li class="list-group-item"><a href="/uploads/zakkak_cv.pdf"><i class="fa fa-file-pdf-o fa-lg"></i> My CV</a></li>
+              </ul>
+            </li>
 
-                    <li class="list-group-item"><a href="mailto:foivos_(AT}_zakkak_(DOT}_net"><i class="fa fa-envelope-square fa-lg"></i> Email</a></li>
-                    <li class="list-group-item"><a href="https://github.com/zakkak"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-                    <li class="list-group-item"><a href="https://www.linkedin.com/in/zakkak"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
+                <ul class="list-group" id="recentposts">
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/blog/latex_peculiarities.html">
+                            LaTeX Peculiarities
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/courses/managed_runtime_systems.html">
+                            Managed Runtime Systems
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/tutorials/gitlab_ldap_auth_without_querying_account.html">
+                            Gitlab LDAP authentication without querying account or anonymous binding
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/tutorials/building_the_linux_kernel.html">
+                            How to build the linux kernel
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/blog/voluntary_logging.html">
+                            Voluntary Logging of My Life
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
-                    <li class="list-group-item"><a href="/uploads/zakkak_cv.pdf"><i class="fa fa-file-pdf-o fa-lg"></i> My CV</a></li>
-                  </ul>
-                </li>
 
-                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
-                    <ul class="list-group" id="recentposts">
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/tutorials/ubuntu_1304_raid1_setup.html">
-                                Ubuntu 13.04 RAID-1 setup
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/code/syncbackup_script.html">
-                                A Sync/BackUp script
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/tutorials/getting_started_emacs.html">
-                                Getting started with Emacs
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/tutorials/using_emacs_and_notmuch_mail_client.html">
-                                Using emacs and notmuch as a mail client
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/tutorials/google_pdf_viewer_chromium.html">
-                                Google PDF viewer on Chromium
-                            </a>
-                        </li>
-                    </ul>
-                </li>
 
 
 
@@ -221,23 +331,21 @@ established. RSA key fingerprint is
         </div>
             <a href="https://github.com/zakkak">@zakkak</a> on GitHub
     </li>
-
-        </ul>
-    </section>
-
-</aside>        </div>
+    </ul>
+</section>            </aside>
+        </div>
     </div>
 </div>
 <footer>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2013 Foivos S. Zakkak
+         <div class="col-xs-10">&copy; 2018 Foivos S. Zakkak
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
     Content
-  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution 4.0 International License</a>, except where indicated otherwise.
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>, except where indicated otherwise.
 </small></p>
          </div>
          <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
@@ -290,5 +398,6 @@ established. RSA key fingerprint is
         })();
     </script>
     <!-- End Google Analytics Code -->
+
 </body>
 </html>

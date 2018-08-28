@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"
->
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
     <title>svnKomp (using Kompare for svndiff) - Foivos . Zakkak . net</title>
     <!-- Using the latest rendering mode for IE -->
@@ -13,8 +12,16 @@
 <link rel="canonical" href="http://foivos.zakkak.net/code/svnkomp_using_kompare_svndiff.html">
 
         <meta name="author" content="zakkak" />
-        <meta name="description" content="An extended version of this script can be found here. Download file 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 ..." />
+        <meta name="description" content="An extended version of this script can be found here. #!/usr/bin/env ruby ################################################################################ # # # File: svnkomp.rb # # ++++++++++++++++++++++++++++++ # # Copyright (C) 2012 + Author: Foivos S. Zakkak + # # + Website: foivos.zakkak.net + # # + Email: foivos@zakkak.net + # # ++++++++++++++++++++++++++++++ # # # # Based on the script svnvimdiff, written by # # Geoff Buchan # # # # This program is free software: you can redistribute it …" />
 
+        <meta property="og:site_name" content="Foivos . Zakkak . net" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="svnKomp (using Kompare for svndiff)"/>
+        <meta property="og:url" content="http://foivos.zakkak.net/code/svnkomp_using_kompare_svndiff.html"/>
+        <meta property="og:description" content="An extended version of this script can be found here. #!/usr/bin/env ruby ################################################################################ # # # File: svnkomp.rb # # ++++++++++++++++++++++++++++++ # # Copyright (C) 2012 + Author: Foivos S. Zakkak + # # + Website: foivos.zakkak.net + # # + Email: foivos@zakkak.net + # # ++++++++++++++++++++++++++++++ # # # # Based on the script svnvimdiff, written by # # Geoff Buchan # # # # This program is free software: you can redistribute it …"/>
+        <meta property="article:published_time" content="2012-10-14" />
+            <meta property="article:section" content="Code" />
+            <meta property="article:author" content="zakkak" />
 
 
     <!-- Bootstrap -->
@@ -22,16 +29,22 @@
     <link href="http://foivos.zakkak.net/theme/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="http://foivos.zakkak.net/theme/css/pygments/native.css" rel="stylesheet">
+    <link href="http://foivos.zakkak.net/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
     <link rel="stylesheet" href="http://foivos.zakkak.net/theme/css/style.css" type="text/css"/>
 
         <link href="http://foivos.zakkak.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
               title="Foivos . Zakkak . net ATOM Feed"/>
 
+
+
+        <link href="http://foivos.zakkak.net/feeds/code.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Foivos . Zakkak . net Code ATOM Feed"/>
+
 </head>
 <body>
 
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
+	<div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -51,26 +64,29 @@ Foivos . Zakkak . net            </a>
                             <a href="http://foivos.zakkak.net/category/code.html">Code</a>
                         </li>
                         <li >
+                            <a href="http://foivos.zakkak.net/category/courses.html">Courses</a>
+                        </li>
+                        <li >
                             <a href="http://foivos.zakkak.net/category/tutorials.html">Tutorials</a>
                         </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="http://foivos.zakkak.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+              <li><span>
+                <form class="navbar-search" action="/search.html">
+                  <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input" required>
+                </form></span>
+              </li>
+              <li><a href="http://foivos.zakkak.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>
 </div> <!-- /.navbar -->
-
+<!-- Banner -->
+<!-- End Banner -->
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-            <ol class="breadcrumb">
-                <li><a href="http://foivos.zakkak.net" title="Foivos . Zakkak . net"><i class="fa fa-home fa-lg"></i></a></li>
-                <li><a href="http://foivos.zakkak.net/category/code.html" title="Code">Code</a></li>
-                <li class="active">svnKomp (using Kompare for svndiff)</li>
-            </ol>
-
     <section id="content">
         <article>
             <header class="page-header">
@@ -88,8 +104,10 @@ Foivos . Zakkak . net            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2012-10-14T00:07:00"> Sun 14 October 2012</time>
+        <i class="fa fa-calendar"></i><time datetime="2012-10-14T00:07:00+03:00"> Sun 14 October 2012</time>
     </span>
+
+
 
 
 
@@ -97,239 +115,152 @@ Foivos . Zakkak . net            </a>
 </footer><!-- /.post-info -->                    </div>
                 </div>
                 <p>An extended version of this script can be found <a href="https://github.com/zakkak/vcsdiff/blob/master/bin/vcsdiff">here</a>.</p>
-<p><a href="/uploads/svnkomp.rb">Download file</a></p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">#!/usr/bin/env ruby</span>
+<div class="gist">
+    <script src='https://gist.github.com/4e4466a2f9bdbdf79ae0.js'></script>
+    <noscript>
+        <pre><code>#!/usr/bin/env ruby
 
-<span class="c1">################################################################################</span>
-<span class="c1">#                                                                              #</span>
-<span class="c1"># File: svnkomp.rb                                                             #</span>
-<span class="c1">#                                   ++++++++++++++++++++++++++++++             #</span>
-<span class="c1"># Copyright (C) 2012                + Author:  Foivos S. Zakkak  +             #</span>
-<span class="c1">#                                   + Website: foivos.zakkak.net +             #</span>
-<span class="c1">#                                   + Email:   foivos@zakkak.net +             #</span>
-<span class="c1">#                                   ++++++++++++++++++++++++++++++             #</span>
-<span class="c1">#                                                                              #</span>
-<span class="c1"># Based on the script svnvimdiff, written by                                   #</span>
-<span class="c1">#   Geoff Buchan &lt;geoffrey.buchan@gmail.com&gt;                                   #</span>
-<span class="c1">#                                                                              #</span>
-<span class="c1"># This program is free software: you can redistribute it and/or modify         #</span>
-<span class="c1"># it under the terms of the GNU General Public License as published by         #</span>
-<span class="c1"># the Free Software Foundation, either version 3 of the License, or            #</span>
-<span class="c1"># (at your option) any later version.                                          #</span>
-<span class="c1">#                                                                              #</span>
-<span class="c1"># This program is distributed in the hope that it will be useful,              #</span>
-<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of               #</span>
-<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                #</span>
-<span class="c1"># GNU General Public License for more details.                                 #</span>
-<span class="c1">#                                                                              #</span>
-<span class="c1"># You should have received a copy of the GNU General Public License            #</span>
-<span class="c1"># along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.        #</span>
-<span class="c1">#                                                                              #</span>
-<span class="c1">################################################################################</span>
+################################################################################
+#                                                                              #
+# File: svnkomp.rb                                                             #
+#                                   ++++++++++++++++++++++++++++++             #
+# Copyright (C) 2012                + Author:  Foivos S. Zakkak  +             #
+#                                   + Website: foivos.zakkak.net +             #
+#                                   + Email:   foivos@zakkak.net +             #
+#                                   ++++++++++++++++++++++++++++++             #
+#                                                                              #
+# Based on the script svnvimdiff, written by                                   #
+#   Geoff Buchan <geoffrey.buchan@gmail.com>                                   #
+#                                                                              #
+# This program is free software: you can redistribute it and/or modify         #
+# it under the terms of the GNU General Public License as published by         #
+# the Free Software Foundation, either version 3 of the License, or            #
+# (at your option) any later version.                                          #
+#                                                                              #
+# This program is distributed in the hope that it will be useful,              #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of               #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                #
+# GNU General Public License for more details.                                 #
+#                                                                              #
+# You should have received a copy of the GNU General Public License            #
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.        #
+#                                                                              #
+################################################################################
 
-<span class="nb">require</span> <span class="s1">&#39;optparse&#39;</span>
-<span class="nb">require</span> <span class="s1">&#39;ftools&#39;</span>
+require 'optparse'
+require 'ftools'
 
-<span class="n">options</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">option_parser</span> <span class="o">=</span> <span class="no">OptionParser</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">opts</span><span class="o">|</span>
-  <span class="n">opts</span><span class="o">.</span><span class="n">banner</span> <span class="o">=</span> <span class="sx">%&#39;Usage: </span><span class="si">#{</span><span class="n">opts</span><span class="o">.</span><span class="n">program_name</span><span class="si">}</span><span class="sx"> [OPTIONS] -- [DIFF OPTIONS]&#39;</span>
-  <span class="n">opts</span><span class="o">.</span><span class="n">separator</span> <span class="s1">&#39;&#39;</span>
-  <span class="n">opts</span><span class="o">.</span><span class="n">separator</span> <span class="s1">&#39;Options&#39;</span>
+options = {}
+option_parser = OptionParser.new do |opts|
+  opts.banner = %'Usage: #{opts.program_name} [OPTIONS] -- [DIFF OPTIONS]'
+  opts.separator ''
+  opts.separator 'Options'
 
-  <span class="n">options</span><span class="o">[</span><span class="ss">:files</span><span class="o">]</span> <span class="o">=</span> <span class="nb">Array</span><span class="o">.</span><span class="n">new</span>
-  <span class="n">opts</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;-f&#39;</span><span class="p">,</span><span class="s1">&#39;--file FILE&#39;</span><span class="p">,</span><span class="nb">Array</span><span class="p">,</span><span class="s1">&#39;Define the file/files you want to diff&#39;</span><span class="p">,</span>
-      <span class="s1">&#39;(you can use it more than once&#39;</span><span class="p">,</span>
-      <span class="s1">&#39;or seperate the filenames with commas)&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
-    <span class="n">options</span><span class="o">[</span><span class="ss">:files</span><span class="o">]+=</span><span class="n">f</span>
-  <span class="k">end</span>
+  options[:files] = Array.new
+  opts.on('-f','--file FILE',Array,'Define the file/files you want to diff',
+      '(you can use it more than once',
+      'or seperate the filenames with commas)') do |f|
+    options[:files]+=f
+  end
 
-  <span class="n">opts</span><span class="o">.</span><span class="n">separator</span> <span class="s1">&#39;&#39;</span>
-  <span class="n">opts</span><span class="o">.</span><span class="n">separator</span> <span class="s1">&#39;Diff options:&#39;</span>
-  <span class="n">opts</span><span class="o">.</span><span class="n">separator</span> <span class="s1">&#39;All diff options are passed to svn diff&#39;</span>
-  <span class="n">opts</span><span class="o">.</span><span class="n">separator</span> <span class="s1">&#39;&#39;</span>
-  <span class="n">opts</span><span class="o">.</span><span class="n">separator</span> <span class="s1">&#39;Common options:&#39;</span>
+  opts.separator ''
+  opts.separator 'Diff options:'
+  opts.separator 'All diff options are passed to svn diff'
+  opts.separator ''
+  opts.separator 'Common options:'
 
-  <span class="n">opts</span><span class="o">.</span><span class="n">on_tail</span><span class="p">(</span><span class="s1">&#39;-h&#39;</span><span class="p">,</span><span class="s1">&#39;--help&#39;</span><span class="p">,</span><span class="s1">&#39;Show this message&#39;</span><span class="p">)</span> <span class="k">do</span>
-    <span class="nb">puts</span> <span class="n">option_parser</span>
-    <span class="nb">exit</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="k">end</span>
-<span class="k">end</span>
+  opts.on_tail('-h','--help','Show this message') do
+    puts option_parser
+    exit 0;
+  end
+end
 
-<span class="k">begin</span>
-  <span class="n">option_parser</span><span class="o">.</span><span class="n">parse!</span><span class="p">(</span><span class="no">ARGV</span><span class="p">)</span>
-<span class="k">rescue</span> <span class="ss">OptionParser</span><span class="p">:</span><span class="ss">:InvalidOption</span><span class="p">,</span> <span class="ss">OptionParser</span><span class="p">:</span><span class="ss">:MissingArgument</span>
-  <span class="nb">puts</span> <span class="n">option_parser</span>
-  <span class="nb">exit</span> <span class="mi">1</span><span class="p">;</span>
-<span class="k">end</span>
+begin
+  option_parser.parse!(ARGV)
+rescue OptionParser::InvalidOption, OptionParser::MissingArgument
+  puts option_parser
+  exit 1;
+end
 
-<span class="c1"># if the user didn&#39;t specify any arguments go through each file in the directory</span>
-<span class="k">if</span> <span class="n">options</span><span class="o">[</span><span class="ss">:files</span><span class="o">].</span><span class="n">length</span><span class="o">==</span><span class="mi">0</span>
-  <span class="n">modified</span><span class="o">=</span><span class="sx">%x[svn st 2&gt; /dev/null | grep -e &quot;^[MU]&quot; | awk &#39;{print $2}&#39;]</span>
-  <span class="n">modified</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sr">%r[\n]</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
-    <span class="n">options</span><span class="o">[</span><span class="ss">:files</span><span class="o">].</span><span class="n">push</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">if</span> <span class="no">File</span><span class="o">.</span><span class="n">file?</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-  <span class="k">end</span>
-<span class="k">end</span>
+# if the user didn't specify any arguments go through each file in the directory
+if options[:files].length==0
+  modified=%x[svn st 2> /dev/null | grep -e "^[MU]" | awk '{print $2}']
+  modified.split(%r[\n]).each do |f|
+    options[:files].push(f) if File.file?(f)
+  end
+end
 
-<span class="n">patch</span><span class="o">=</span><span class="s2">&quot;/tmp/svnkomp_747_patch&quot;</span>
-<span class="n">onsvn</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+patch="/tmp/svnkomp_747_patch"
+onsvn=""
 
-<span class="n">options</span><span class="o">[</span><span class="ss">:files</span><span class="o">].</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
-  <span class="n">onsvn</span><span class="o">=</span><span class="s2">&quot;/tmp/&quot;</span><span class="o">+</span><span class="n">f</span>
-  <span class="sx">%x[cp </span><span class="si">#{</span><span class="n">f</span><span class="si">}</span><span class="sx"> </span><span class="si">#{</span><span class="n">onsvn</span><span class="si">}</span><span class="sx">]</span>
-  <span class="sx">%x[svn diff </span><span class="si">#{</span><span class="no">ARGV</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span><span class="si">}</span><span class="sx"> </span><span class="si">#{</span><span class="n">f</span><span class="si">}</span><span class="sx"> &gt; </span><span class="si">#{</span><span class="n">patch</span><span class="si">}</span><span class="sx">]</span>
-  <span class="k">if</span> <span class="o">!</span><span class="p">(</span><span class="vg">$?</span><span class="o">.</span><span class="n">success?</span><span class="p">)</span>
-    <span class="nb">exit</span> <span class="mi">1</span><span class="p">;</span>
-  <span class="k">end</span>
-  <span class="sx">%x[patch -R -p0 </span><span class="si">#{</span><span class="n">onsvn</span><span class="si">}</span><span class="sx"> </span><span class="si">#{</span><span class="n">patch</span><span class="si">}</span><span class="sx">]</span>
-  <span class="sx">%x[kompare </span><span class="si">#{</span><span class="n">onsvn</span><span class="si">}</span><span class="sx"> </span><span class="si">#{</span><span class="n">f</span><span class="si">}</span><span class="sx">]</span>
-  <span class="no">File</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">onsvn</span><span class="p">)</span>
-<span class="k">end</span>
+options[:files].each do |f|
+  onsvn="/tmp/"+f
+  %x[cp #{f} #{onsvn}]
+  %x[svn diff #{ARGV.join(" ")} #{f} > #{patch}]
+  if !($?.success?)
+    exit 1;
+  end
+  %x[patch -R -p0 #{onsvn} #{patch}]
+  %x[kompare #{onsvn} #{f}]
+  File.delete(onsvn)
+end
 
-<span class="nb">at_exit</span> <span class="k">do</span>
-  <span class="sx">%x[rm -rf </span><span class="si">#{</span><span class="n">onsvn</span><span class="si">}</span><span class="sx"> </span><span class="si">#{</span><span class="n">patch</span><span class="si">}</span><span class="sx">]</span>
-<span class="k">end</span>
-</pre></div>
-</td></tr></table>
+at_exit do
+  %x[rm -rf #{onsvn} #{patch}]
+end</code></pre>
+    </noscript>
+</div>
             </div>
             <!-- /.entry-content -->
         </article>
     </section>
 
         </div>
-        <div class="col-sm-3 well well-sm" id="sidebar">
+        <div class="col-sm-3" id="sidebar">
+            <aside>
 
-<aside>
-    <section>
-        <ul class="list-group list-group-flush">
-                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
-                  <ul class="list-group" id="social">
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="mailto:foivos_(AT}_zakkak_(DOT}_net"><i class="fa fa-envelope-square fa-lg"></i> Email</a></li>
+                <li class="list-group-item"><a href="https://github.com/zakkak"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+                <li class="list-group-item"><a href="https://www.linkedin.com/in/zakkak"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+                <li class="list-group-item"><a href="/uploads/zakkak_cv.pdf"><i class="fa fa-file-pdf-o fa-lg"></i> My CV</a></li>
+              </ul>
+            </li>
 
-                    <li class="list-group-item"><a href="mailto:foivos_(AT}_zakkak_(DOT}_net"><i class="fa fa-envelope-square fa-lg"></i> Email</a></li>
-                    <li class="list-group-item"><a href="https://github.com/zakkak"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-                    <li class="list-group-item"><a href="https://www.linkedin.com/in/zakkak"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
+                <ul class="list-group" id="recentposts">
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/blog/latex_peculiarities.html">
+                            LaTeX Peculiarities
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/courses/managed_runtime_systems.html">
+                            Managed Runtime Systems
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/tutorials/gitlab_ldap_auth_without_querying_account.html">
+                            Gitlab LDAP authentication without querying account or anonymous binding
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/tutorials/building_the_linux_kernel.html">
+                            How to build the linux kernel
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/blog/voluntary_logging.html">
+                            Voluntary Logging of My Life
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
-                    <li class="list-group-item"><a href="/uploads/zakkak_cv.pdf"><i class="fa fa-file-pdf-o fa-lg"></i> My CV</a></li>
-                  </ul>
-                </li>
 
-                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
-                    <ul class="list-group" id="recentposts">
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/tutorials/ubuntu_1304_raid1_setup.html">
-                                Ubuntu 13.04 RAID-1 setup
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/code/syncbackup_script.html">
-                                A Sync/BackUp script
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/tutorials/getting_started_emacs.html">
-                                Getting started with Emacs
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/tutorials/using_emacs_and_notmuch_mail_client.html">
-                                Using emacs and notmuch as a mail client
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/tutorials/google_pdf_viewer_chromium.html">
-                                Google PDF viewer on Chromium
-                            </a>
-                        </li>
-                    </ul>
-                </li>
 
 
 
@@ -339,23 +270,21 @@ Foivos . Zakkak . net            </a>
         </div>
             <a href="https://github.com/zakkak">@zakkak</a> on GitHub
     </li>
-
-        </ul>
-    </section>
-
-</aside>        </div>
+    </ul>
+</section>            </aside>
+        </div>
     </div>
 </div>
 <footer>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2013 Foivos S. Zakkak
+         <div class="col-xs-10">&copy; 2018 Foivos S. Zakkak
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
     Content
-  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution 4.0 International License</a>, except where indicated otherwise.
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>, except where indicated otherwise.
 </small></p>
          </div>
          <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
@@ -408,5 +337,6 @@ Foivos . Zakkak . net            </a>
         })();
     </script>
     <!-- End Google Analytics Code -->
+
 </body>
 </html>

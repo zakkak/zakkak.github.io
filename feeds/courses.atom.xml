@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Foivos . Zakkak . net - Courses</title><link href="http://foivos.zakkak.net/" rel="alternate"></link><link href="http://foivos.zakkak.net/feeds/courses.atom.xml" rel="self"></link><id>http://foivos.zakkak.net/</id><updated>2018-05-14T00:00:00+03:00</updated><entry><title>Managed Runtime Systems</title><link href="http://foivos.zakkak.net/courses/managed_runtime_systems.html" rel="alternate"></link><published>2017-11-28T00:00:00+02:00</published><updated>2018-05-14T00:00:00+03:00</updated><author><name>zakkak</name></author><id>tag:foivos.zakkak.net,2017-11-28:/courses/managed_runtime_systems.html</id><summary type="html">
+&lt;div id="outline-container-sec-1" class="outline-2"&gt;
+&lt;h2 id="sec-1"&gt;Introduction&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;
+The aim of this course is to introduce students to the world of managed runtime systems.
+Managed runtime systems are the ones responsible for executing interpreted languages.
+Such languages are usually compiled to some intermediate representation instead of native machine code, this intermediate representation is then parsed and executed …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</summary><content type="html">
+&lt;div id="outline-container-sec-1" class="outline-2"&gt;
+&lt;h2 id="sec-1"&gt;Introduction&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;
+The aim of this course is to introduce students to the world of managed runtime systems.
+Managed runtime systems are the ones responsible for executing interpreted languages.
+Such languages are usually compiled to some intermediate representation instead of native machine code, this intermediate representation is then parsed and executed by the corresponding managed runtime system.
+In this course we study how managed programming languages are implemented in the managed runtime systems, and more specifically the Java programming language.
+We also focus on how automatic memory management works, and how just-in-time compilers optimize code on the fly.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-sec-2" class="outline-2"&gt;
+&lt;h2 id="sec-2"&gt;Syllabus&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-2"&gt;
+&lt;p&gt;
+Lectures will take place at &lt;b&gt;A.121&lt;/b&gt; every &lt;b&gt;Tuesday 14:00-16:00&lt;/b&gt; and &lt;b&gt;Thursday 12:00-14:00&lt;/b&gt;.
+&lt;/p&gt;
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col  class="left" /&gt;
+
+&lt;col  class="left" /&gt;
+
+&lt;col  class="left" /&gt;
+
+&lt;col  class="right" /&gt;
+
+&lt;col  class="left" /&gt;
+
+&lt;col  class="left" /&gt;
+
+&lt;col  class="left" /&gt;
+
+&lt;col  class="left" /&gt;
+
+&lt;col  class="left" /&gt;
+
+&lt;col  class="left" /&gt;
+
+&lt;col  class="left" /&gt;
+
+&lt;col  class="left" /&gt;
+
+&lt;col  class="left" /&gt;
+
+&lt;col  class="left" /&gt;
+
+&lt;col  class="left" /&gt;
+
+&lt;col  class="left" /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="left"&gt;Week&lt;/th&gt;
+&lt;th scope="col" class="left"&gt;&amp;#xa0;&lt;/th&gt;
+&lt;th scope="col" class="left"&gt;&amp;#xa0;&lt;/th&gt;
+&lt;th scope="col" class="right"&gt;#&lt;/th&gt;
+&lt;th scope="col" class="left"&gt;&amp;#xa0;&lt;/th&gt;
+&lt;th scope="col" class="left"&gt;&amp;#xa0;&lt;/th&gt;
+&lt;th scope="col" class="left"&gt;Description&lt;/th&gt;
+&lt;th scope="col" class="left"&gt;&amp;#xa0;&lt;/th&gt;
+&lt;th scope="col" class="left"&gt;&amp;#xa0;&lt;/th&gt;
+&lt;th scope="col" class="left"&gt;Tuesday&lt;/th&gt;
+&lt;th scope="col" class="left"&gt;&amp;#xa0;&lt;/th&gt;
+&lt;th scope="col" class="left"&gt;&amp;#xa0;&lt;/th&gt;
+&lt;th scope="col" class="left"&gt;Thursday&lt;/th&gt;
+&lt;th scope="col" class="left"&gt;&amp;#xa0;&lt;/th&gt;
+&lt;th scope="col" class="left"&gt;&amp;#xa0;&lt;/th&gt;
+&lt;th scope="col" class="left"&gt;Assignment&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="left"&gt;05/02/2018&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="right"&gt;1&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Introduction: What is a managed runtime system&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&lt;a href="https://speakerdeck.com/zakkak/managed-runtime-systems-lecture-00-course-introduction"&gt;Slides (Course Intro)&lt;/a&gt;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&lt;a href="https://speakerdeck.com/zakkak/managed-runtime-systems-lecture-01-introduction"&gt;Slides (VMs Intro)&lt;/a&gt;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;--&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="left"&gt;12/02/2018&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="right"&gt;2&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Bytecode Interpretation&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&lt;a href="https://speakerdeck.com/zakkak/managed-runtime-systems-lecture-02-the-java-virtual-machine"&gt;Slides (The JVM)&lt;/a&gt;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&lt;a href="https://speakerdeck.com/zakkak/managed-runtime-systems-lecture-03-memory-management"&gt;Slides (GC Intro)&lt;/a&gt;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&lt;a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.58.26"&gt;Reading (Interpreters)&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="left"&gt;19/02/2018&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="right"&gt;3&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Garbage Collection&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Paper (Interpreters)&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&lt;a href="https://speakerdeck.com/zakkak/managed-runtime-systems-lecture-04-memory-management-continued"&gt;Slides (GC Intro2)&lt;/a&gt;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;--&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="left"&gt;26/02/2018&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="right"&gt;4&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Just In Time Compilation&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&lt;a href="https://speakerdeck.com/zakkak/managed-runtime-systems-lecture-05-just-in-time-compilation-part-1"&gt;Slides (JIT 1)&lt;/a&gt;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&lt;a href="http://www.oracle.com/technetwork/tutorials/tutorials-1876574.html"&gt;Tutorial (G1)&lt;/a&gt;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&lt;a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.63.6386&amp;rank=1"&gt;Reading (G1)&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="left"&gt;05/03/2018&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="right"&gt;5&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Just In Time Compilation&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&lt;a href="https://www.dropbox.com/s/3uaajo2nc9g5qv4/11%20Dynamic%20optimization.pdf"&gt;Slides (JIT 2)&lt;/a&gt;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Paper (JIT History)&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&lt;a href="http://eecs.ucf.edu/~dcm/Teaching/COT4810-Spring2011/Literature/JustInTimeCompilation.pdf"&gt;Reading (JIT History)&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="left"&gt;12/03/2018&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="right"&gt;6&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Metacircular VMs&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&lt;a href="https://speakerdeck.com/zakkak/managed-runtime-systems-lecture-07-meta-circular-vms"&gt;Slides (Metacircular)&lt;/a&gt;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Paper (Maxine VM)&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&lt;a href="https://dl.acm.org/citation.cfm?id=2400689"&gt;Reading (Maxine VM)&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="left"&gt;19/03/2018&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="right"&gt;7&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Metacircular VMs&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Tutorial (Maxine VM)&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&lt;a href="https://www.dropbox.com/s/l9rel49ux78ccav/15%20Truffle%20and%20Graal.pdf"&gt;Slides (Truffle)&lt;/a&gt;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;--&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="left"&gt;26/03/2018&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="right"&gt;8&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Concurrency and Memory Models&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&lt;a href="https://speakerdeck.com/zakkak/managed-runtime-systems-lecture-09-concurrency"&gt;Slides (Concurrency)&lt;/a&gt;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Paper (JMM)&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&lt;a href="http://rsim.cs.uiuc.edu/Pubs/popl05.pdf"&gt;Reading (JMM)&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="left"&gt;02/04/2018&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="right"&gt;-&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Easter Holidays&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;--&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;--&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;--&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="left"&gt;09/04/2018&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="right"&gt;-&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Easter Holidays&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;--&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;--&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;--&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="left"&gt;16/04/2018&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="right"&gt;9&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Concurrency and Memory Models&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&lt;a href="https://speakerdeck.com/zakkak/managed-runtime-systems-lecture-10-java-concurrency"&gt;Slides (Java Concurrency)&lt;/a&gt;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Paper (JDMM)&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&lt;a href="https://www.researchgate.net/publication/264976954_JDMM_A_Java_Memory_Model_for_Non-Cache-Coherent_Memory_Architectures"&gt;Reading (JDMM)&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="left"&gt;23/04/2018&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="right"&gt;10&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Advanced Garbage Collection&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Slides&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Paper (Performance)&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&lt;a href="https://dri.es/statistically-rigorous-java-performance-evaluation"&gt;Reading (Performance)&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="left"&gt;30/04/2018&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="right"&gt;11&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Profiling and Adaptive Optimization&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&lt;a href="https://speakerdeck.com/zakkak/the-art-of-java-performance-what-why-how"&gt;Slides (Guest: Dr. Kotselidis)&lt;/a&gt;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;--&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;--&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="left"&gt;07/05/2018&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="right"&gt;12&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;(Optional) Project discussions&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;--&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;--&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;--&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="left"&gt;14/05/2018&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="right"&gt;13&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Project Presentations&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Project Presentations&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;Project Presentations&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="left"&gt;--&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-sec-3" class="outline-2"&gt;
+&lt;h2 id="sec-3"&gt;Material / Slides&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-3"&gt;
+&lt;p&gt;
+The slides of the course will be available in PDF format at &lt;a href="https://speakerdeck.com/zakkak"&gt;https://speakerdeck.com/zakkak&lt;/a&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+For the source code (LaTeX Beamer) of the slides you can visit &lt;a href="https://github.com/zakkak/Managed-Runtime-Systems-Course"&gt;https://github.com/zakkak/Managed-Runtime-Systems-Course&lt;/a&gt;.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-sec-4" class="outline-2"&gt;
+&lt;h2 id="sec-4"&gt;Marking Scheme&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-4"&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col  class="left" /&gt;
+
+&lt;col  class="left" /&gt;
+
+&lt;col  class="right" /&gt;
+&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="left"&gt;Midterm&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="right"&gt;0%&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="left"&gt;Reading Assignments&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="right"&gt;35% (7x5%)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="left"&gt;Final exam&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="right"&gt;0%&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="left"&gt;Project&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="right"&gt;50%&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="left"&gt;Class participation&lt;/td&gt;
+&lt;td class="left"&gt;&amp;#xa0;&lt;/td&gt;
+&lt;td class="right"&gt;15%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-sec-5" class="outline-2"&gt;
+&lt;h2 id="sec-5"&gt;Reading Assignments&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-5"&gt;
+&lt;p&gt;
+During this course you will be asked to read a number of scientific papers covering the topics at hand.
+In total you will be asked to read 7 scientific papers and you will be assigned to deliver a short summary for each of them.
+We will discuss each paper in the classroom to better understand them and answer any questions you might come up with.
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-sec-5-1" class="outline-3"&gt;
+&lt;h3 id="sec-5-1"&gt;Summary format&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-5-1"&gt;
+&lt;p&gt;
+Your summary should answer the following questions:
+&lt;/p&gt;
+
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;What is the key point of the paper? (If it is the survey, what are the key techniques it presents?)
+&lt;/li&gt;
+&lt;li&gt;What did you like the most in the paper?
+&lt;/li&gt;
+&lt;li&gt;What could be improved in the presentation/content of the paper?
+&lt;/li&gt;
+&lt;li&gt;Do you have any ideas on how to improve the presented idea/technique?
+&lt;/li&gt;
+&lt;li&gt;On a scale of 0-5, with 5 being the most positive, how would you rate the paper?
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-sec-5-2" class="outline-3"&gt;
+&lt;h3 id="sec-5-2"&gt;Summary Submission&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-5-2"&gt;
+&lt;p&gt;
+A Google form for each paper has been created, please fill it before the beginning of the lecture where we will discuss the corresponding paper.
+&lt;/p&gt;
+
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;&lt;a href="https://goo.gl/forms/c4qbPluYNkOwe8In2"&gt;The Structure and Performance of Efficient Interpreters (2003)&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://goo.gl/forms/e2Q4r5qojNxEVUEm2"&gt;Garbage-First Garbage Collection (2004)&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://goo.gl/forms/kVKu30aUTdzOla382"&gt;A Brief History of Just-In-Time (2003)&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://goo.gl/forms/mYqQUzrirY0FQtVn1"&gt;Maxine: An approachable virtual machine for, and in, java (2013)&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://goo.gl/forms/QewopXkENOLrq3Aw1"&gt;The Java Memory Model (2005)&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://goo.gl/forms/uU7OiB3rCzNcFaSG3"&gt;JDMM: A Java Memory Model for Non-Cache-Coherent Memory Architectures (2014)&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://goo.gl/forms/eMW4eQvZ1IEl3kjD3"&gt;Statistically Rigorous Java Performance Evaluation (2007)&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-sec-6" class="outline-2"&gt;
+&lt;h2 id="sec-6"&gt;Projects&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-6"&gt;
+&lt;p&gt;
+You can either work alone or form a team of two.
+For your project you can either focus on JIT compilation or Garbage Collection.
+&lt;/p&gt;
+
+&lt;p&gt;
+You shall choose and propose a project on your own.
+The project proposal should answer the following questions:
+&lt;/p&gt;
+
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;What do you find interesting in the project?
+&lt;/li&gt;
+&lt;li&gt;What do you expect to learn through this project implementation?
+&lt;/li&gt;
+&lt;li&gt;How are you going to demonstrate the success of your project?
+&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;
+You are strongly encouraged to work on Maxine VM for your project, but projects on openJDK (or other VMs, even non-Java VMs) will be also accepted.
+&lt;/p&gt;
+
+&lt;p&gt;
+Projects will be developed on github and will be based on the latest release of the corresponding VM you will chose to work on.
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-sec-6-1" class="outline-3"&gt;
+&lt;h3 id="sec-6-1"&gt;Project proposal deadline&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-6-1"&gt;
+&lt;p&gt;
+Please submit your project proposals by &lt;b&gt;15/03/2018&lt;/b&gt;!
+&lt;/p&gt;
+
+&lt;p&gt;
+If you want feedback please submit earlier.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-sec-7" class="outline-2"&gt;
+&lt;h2 id="sec-7"&gt;Contact&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-7"&gt;
+&lt;p&gt;
+You can contact me directly via e-mail or through the course's mailing list &lt;code&gt;hy446-list |at| csd.uoc.gr&lt;/code&gt;.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-sec-8" class="outline-2"&gt;
+&lt;h2 id="sec-8"&gt;Acknowledgments&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-8"&gt;
+&lt;/div&gt;&lt;div id="outline-container-sec-8-1" class="outline-3"&gt;
+&lt;h3 id="sec-8-1"&gt;Guest lecture&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-8-1"&gt;
+&lt;p&gt;
+I kindly thank Dr. Christos Kotselidis for his insightful presentation regarding &lt;a href="https://speakerdeck.com/zakkak/the-art-of-java-performance-what-why-how"&gt;"The Art of Java Performance"&lt;/a&gt; and the exciting live demo.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-sec-8-2" class="outline-3"&gt;
+&lt;h3 id="sec-8-2"&gt;Inspiration and Material&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-8-2"&gt;
+&lt;p&gt;
+I would also like to  thank &lt;a href="http://www.wolczko.com"&gt;Mario Wolczko&lt;/a&gt; for sharing his material and experiences from a similar course he taught at UC Berkeley.
+The original material of his course can be found &lt;a href="http://www.wolczko.com/CS294/index.html"&gt;here&lt;/a&gt;.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="course"></category></entry></feed>

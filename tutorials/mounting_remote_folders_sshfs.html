@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"
->
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
     <title>Mounting remote folders with sshfs - Foivos . Zakkak . net</title>
     <!-- Using the latest rendering mode for IE -->
@@ -13,8 +12,16 @@
 <link rel="canonical" href="http://foivos.zakkak.net/tutorials/mounting_remote_folders_sshfs.html">
 
         <meta name="author" content="zakkak" />
-        <meta name="description" content="This tutorial will show you how to mount a remote folder, that you can access through sftp, on your local filesystem. First you will need to set up your ssh connection to work passwordless. Read this if you don&#39;t know how. Install sshfs to your system and add your ..." />
+        <meta name="description" content="This tutorial will show you how to mount a remote folder, that you can access through sftp, on your local filesystem. First you will need to set up your ssh connection to work passwordless. Read this if you don&#39;t know how. Install sshfs to your system and add your user …" />
 
+        <meta property="og:site_name" content="Foivos . Zakkak . net" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Mounting remote folders with sshfs"/>
+        <meta property="og:url" content="http://foivos.zakkak.net/tutorials/mounting_remote_folders_sshfs.html"/>
+        <meta property="og:description" content="This tutorial will show you how to mount a remote folder, that you can access through sftp, on your local filesystem. First you will need to set up your ssh connection to work passwordless. Read this if you don&#39;t know how. Install sshfs to your system and add your user …"/>
+        <meta property="article:published_time" content="2012-02-21" />
+            <meta property="article:section" content="Tutorials" />
+            <meta property="article:author" content="zakkak" />
 
 
     <!-- Bootstrap -->
@@ -22,16 +29,22 @@
     <link href="http://foivos.zakkak.net/theme/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="http://foivos.zakkak.net/theme/css/pygments/native.css" rel="stylesheet">
+    <link href="http://foivos.zakkak.net/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
     <link rel="stylesheet" href="http://foivos.zakkak.net/theme/css/style.css" type="text/css"/>
 
         <link href="http://foivos.zakkak.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
               title="Foivos . Zakkak . net ATOM Feed"/>
 
+
+
+        <link href="http://foivos.zakkak.net/feeds/tutorials.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Foivos . Zakkak . net Tutorials ATOM Feed"/>
+
 </head>
 <body>
 
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
+	<div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -50,27 +63,30 @@ Foivos . Zakkak . net            </a>
                         <li >
                             <a href="http://foivos.zakkak.net/category/code.html">Code</a>
                         </li>
+                        <li >
+                            <a href="http://foivos.zakkak.net/category/courses.html">Courses</a>
+                        </li>
                         <li class="active">
                             <a href="http://foivos.zakkak.net/category/tutorials.html">Tutorials</a>
                         </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="http://foivos.zakkak.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+              <li><span>
+                <form class="navbar-search" action="/search.html">
+                  <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input" required>
+                </form></span>
+              </li>
+              <li><a href="http://foivos.zakkak.net/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>
 </div> <!-- /.navbar -->
-
+<!-- Banner -->
+<!-- End Banner -->
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-            <ol class="breadcrumb">
-                <li><a href="http://foivos.zakkak.net" title="Foivos . Zakkak . net"><i class="fa fa-home fa-lg"></i></a></li>
-                <li><a href="http://foivos.zakkak.net/category/tutorials.html" title="Tutorials">Tutorials</a></li>
-                <li class="active">Mounting remote folders with sshfs</li>
-            </ol>
-
     <section id="content">
         <article>
             <header class="page-header">
@@ -88,8 +104,10 @@ Foivos . Zakkak . net            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2012-02-21T17:52:00"> Tue 21 February 2012</time>
+        <i class="fa fa-calendar"></i><time datetime="2012-02-21T17:52:00+02:00"> Tue 21 February 2012</time>
     </span>
+
+
 
 
 
@@ -101,23 +119,23 @@ access through <strong>sftp</strong>, on your local filesystem.</p>
 <p>First you will need to set up your ssh connection to work
 <strong>passwordless</strong>. Read <a href="http://node/17">this</a> if you don't know how.</p>
 <p>Install sshfs to your system and add your user to the fuse group.</p>
-<div class="highlight"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">sshfs</span>
-<span class="n">sudo</span> <span class="n">adduser</span> <span class="err">$</span><span class="n">USER</span> <span class="n">fuse</span>
+<div class="highlight"><pre><span></span>sudo apt-get install sshfs
+sudo adduser $USER fuse
 </pre></div>
 
 
 <p>Open /etc/fstab and append the following line (yes it is <strong>one</strong>line)</p>
-<div class="highlight"><pre><span class="n">sshfs</span><span class="err">#</span><span class="n">username</span><span class="err">@</span><span class="n">remote</span><span class="p">.</span><span class="n">server</span><span class="o">:/</span><span class="n">remote</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">folder</span> <span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to_mount</span> <span class="n">fuse</span> <span class="n">comment</span><span class="o">=</span><span class="n">sshfs</span><span class="p">,</span><span class="n">noauto</span><span class="p">,</span><span class="n">users</span><span class="p">,</span><span class="n">exec</span><span class="p">,</span><span class="n">reconnect</span><span class="p">,</span><span class="n">transform_symlinks</span><span class="p">,</span><span class="n">BatchMode</span><span class="o">=</span><span class="n">yes</span> <span class="mi">0</span> <span class="mi">0</span>
+<div class="highlight"><pre><span></span>sshfs#username@remote.server:/remote/path/folder /local/path/to_mount fuse comment=sshfs,noauto,users,exec,reconnect,transform_symlinks,BatchMode=yes 0 0
 </pre></div>
 
 
 <p>To <strong>mount</strong> execute:</p>
-<div class="highlight"><pre><span class="n">mount</span> <span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to_mount</span>
+<div class="highlight"><pre><span></span>mount /local/path/to_mount
 </pre></div>
 
 
 <p>To <strong>unmount</strong> execute:</p>
-<div class="highlight"><pre><span class="n">fusermount</span> <span class="o">-</span><span class="n">u</span> <span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to_mount</span> <span class="n">to</span> <span class="n">unmount</span><span class="p">.</span>
+<div class="highlight"><pre><span></span>fusermount -u /local/path/to_mount to unmount.
 </pre></div>
             </div>
             <!-- /.entry-content -->
@@ -125,51 +143,51 @@ access through <strong>sftp</strong>, on your local filesystem.</p>
     </section>
 
         </div>
-        <div class="col-sm-3 well well-sm" id="sidebar">
+        <div class="col-sm-3" id="sidebar">
+            <aside>
 
-<aside>
-    <section>
-        <ul class="list-group list-group-flush">
-                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
-                  <ul class="list-group" id="social">
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="mailto:foivos_(AT}_zakkak_(DOT}_net"><i class="fa fa-envelope-square fa-lg"></i> Email</a></li>
+                <li class="list-group-item"><a href="https://github.com/zakkak"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+                <li class="list-group-item"><a href="https://www.linkedin.com/in/zakkak"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+                <li class="list-group-item"><a href="/uploads/zakkak_cv.pdf"><i class="fa fa-file-pdf-o fa-lg"></i> My CV</a></li>
+              </ul>
+            </li>
 
-                    <li class="list-group-item"><a href="mailto:foivos_(AT}_zakkak_(DOT}_net"><i class="fa fa-envelope-square fa-lg"></i> Email</a></li>
-                    <li class="list-group-item"><a href="https://github.com/zakkak"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
-                    <li class="list-group-item"><a href="https://www.linkedin.com/in/zakkak"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
+                <ul class="list-group" id="recentposts">
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/blog/latex_peculiarities.html">
+                            LaTeX Peculiarities
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/courses/managed_runtime_systems.html">
+                            Managed Runtime Systems
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/tutorials/gitlab_ldap_auth_without_querying_account.html">
+                            Gitlab LDAP authentication without querying account or anonymous binding
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/tutorials/building_the_linux_kernel.html">
+                            How to build the linux kernel
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="http://foivos.zakkak.net/blog/voluntary_logging.html">
+                            Voluntary Logging of My Life
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
-                    <li class="list-group-item"><a href="/uploads/zakkak_cv.pdf"><i class="fa fa-file-pdf-o fa-lg"></i> My CV</a></li>
-                  </ul>
-                </li>
 
-                <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
-                    <ul class="list-group" id="recentposts">
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/tutorials/ubuntu_1304_raid1_setup.html">
-                                Ubuntu 13.04 RAID-1 setup
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/code/syncbackup_script.html">
-                                A Sync/BackUp script
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/tutorials/getting_started_emacs.html">
-                                Getting started with Emacs
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/tutorials/using_emacs_and_notmuch_mail_client.html">
-                                Using emacs and notmuch as a mail client
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="http://foivos.zakkak.net/tutorials/google_pdf_viewer_chromium.html">
-                                Google PDF viewer on Chromium
-                            </a>
-                        </li>
-                    </ul>
-                </li>
 
 
 
@@ -179,23 +197,21 @@ access through <strong>sftp</strong>, on your local filesystem.</p>
         </div>
             <a href="https://github.com/zakkak">@zakkak</a> on GitHub
     </li>
-
-        </ul>
-    </section>
-
-</aside>        </div>
+    </ul>
+</section>            </aside>
+        </div>
     </div>
 </div>
 <footer>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2013 Foivos S. Zakkak
+         <div class="col-xs-10">&copy; 2018 Foivos S. Zakkak
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
     Content
-  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution 4.0 International License</a>, except where indicated otherwise.
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>, except where indicated otherwise.
 </small></p>
          </div>
          <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
@@ -248,5 +264,6 @@ access through <strong>sftp</strong>, on your local filesystem.</p>
         })();
     </script>
     <!-- End Google Analytics Code -->
+
 </body>
 </html>
