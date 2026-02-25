@@ -6,6 +6,8 @@ permalink: /teaching/managed-runtime-systems
 venue: "University of Crete, Computer Science Department"
 date: 2026-02-10
 location: "Heraklion, Greece"
+redirect_from:
+  - /courses/managed-runtime-systems/
 ---
 
 ## Introduction
